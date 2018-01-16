@@ -6,13 +6,13 @@ import java.util.Map;
 import com.google.gson.Gson;
 
 public class AppInterfaceUtil {
-	private static final  Map<Integer, String> CODEMAP = new HashMap<Integer,String>();//·µ»Ø±àºÅ¼°ĞÅÏ¢¼¯ºÏ
+	private static final  Map<Integer, String> CODEMAP = new HashMap<Integer,String>();//ï¿½ï¿½ï¿½Ø±ï¿½Å¼ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½
 	private static Gson gson = new Gson();
 	
 	public static void init(){
 		if(CODEMAP.size()==0){
 			CODEMAP.put(0, "success");
-			CODEMAP.put(1, "ÓÃ»§ÃûÃÜÂëÓĞÎó");
+			CODEMAP.put(1, "ç”¨æˆ·åå¯†ç æœ‰è¯¯");
 		}
 	}
 	

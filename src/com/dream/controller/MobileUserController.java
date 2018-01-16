@@ -26,7 +26,7 @@ public class MobileUserController {
 		
 		bean.setId(123456789);
 		
-		bean.setName("ÁºìÇÎÄ");
+		bean.setName("æ¢çƒ¨æ–‡");
 		
 		
 		response.setCharacterEncoding("utf-8");
