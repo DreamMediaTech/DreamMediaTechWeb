@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dream.mapper.UserMapper">
+	
+	<select id="selectTeamById" resultType="Team">
+	 select * from team where TMid=#{tmId}
+	</select>
+	
+	<select id="selectAllTeamFromEmployee" resultType="Team">
+		SELECT team.TMid,TMname,TMdescribe,TMtime,team.Eid FROM team,teamemployee WHERE teamemployee.TMid=team.TMid AND teamemployee.Eid=#{eId}
+	</select>
+	
+	<select id="selectAllMenmberInTeam" resultType="Employee"> 
+		SELECT employee.* FROM employee,teamemployee WHERE teamemployee.Eid=employee.Eid AND teamemployee.TMid=#{tmId}
+	</select>
+	
+	<parameterMap type="map" id="teamInfo">
+	<parameter property="tmName"/>
+	<parameter property="tmDescribe"/>
+	<parameter property="tmTime"/>
+	<parameter property="eId"/>
+	</parameterMap>
+	<insert id="createTeam"  useGeneratedKeys="true" keyProperty="tmId" parameterType="Team">
+		insert into team values(null,#{tmName},#{tmDescribe},#{tmTime},#{eId});
+	</insert>
+	
+	<delete id="deleteTeam">
+		delete from team where TMid =#{tmId}
+	</delete>
+	
+	<delete id="deleteTeam2">
+		delete from teamemployee where TMid =#{tmId}
+	</delete>
+	
+	<update id="changeTeamName" parameterType="Team" >
+		update team set TMname=#{tmName} where TMid=#{tmId}
+	</update>
+	
+	<parameterMap type="map" id="TeamEmployee">
+	<parameter property="tmId"/>
+	<parameter property="eId"/>
+	</parameterMap>
+	<insert id="addTeamMember" parameterMap="TeamEmployee" >
+		 replace  into teamemployee (TMid,Eid) values(#{tmId},#{eId})
+	</insert>
+	
+	
+	<delete id="deleteTeamMember" parameterMap="TeamEmployee" >
+		delete from teamemployee where TMid=#{tmId} and Eid=#{eId}
+	</delete>
+</mapper>
