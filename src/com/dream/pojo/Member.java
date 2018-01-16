@@ -13,7 +13,13 @@ public class Member {
 	private int bonusIntegral;
 	private int consumptionIntegral;
 	private int sharingIntegral;
-
+	private User user;
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	private int superQuota;
 	private int iId;
 	

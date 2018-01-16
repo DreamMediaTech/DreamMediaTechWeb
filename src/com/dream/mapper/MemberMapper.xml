@@ -3,4 +3,31 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dream.mapper.MemberMapper">
 
+<resultMap id="MemberMap" type="com.dream.pojo.Member">
+<id property="mId" column="Mid"></id>
+<result property="birthday" column="Birthday"></result>
+<result property="mail" column="Mail"></result>
+<result property="alipay" column="Alipay"></result>
+<result property="wechat" column="wechat"></result>
+<result property="reBate" column="Rebate"></result>
+<result property="introducer" column="Introducer"></result>
+<result property="firstSuperior" column="FisrstSuperior"></result>
+<result property="secondSuperior" column="SeconSuperior"></result>
+<result property="bonusIntegral" column="BonusIntegral"></result>
+<result property="consumptionIntegral" column="ConsumptionIntegral"></result>
+<result property="sharingIntegral" column="SharingIntegral"></result>
+<result property="superQuota" column="SuperQuota"></result>
+<result property="iId" column="Iid"></result>
+<association property="user" javaType="com.dream.pojo.User">
+   <id property="uId" column="Uid"></id>
+    <result property="uName" column="Uname"></result>
+     <result property="uSex" column="Usex"></result>
+      <result property="uPhone" column="Upassword"></result>
+       <result property="mId" column="Mid"></result>
+        <result property="agId" column="AGid"></result>
+</association>
+</resultMap>
+<select id="queryallmember" resultMap="MemberMap">
+select * from member m , user u where u.Mid=m.Mid
+</select>
 </mapper>

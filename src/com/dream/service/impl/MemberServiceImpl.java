@@ -1,5 +1,7 @@
 package com.dream.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,18 +15,23 @@ public class MemberServiceImpl implements MemberService{
 private MemberMapper memberMapper;
 
 /**
- * 为分享注册人添加注册积分
+ * 查询所有会员，返回list值
  */
-
 @Override
-public void addintroducer() {
+public List<Member> queryallmember() {
 	// TODO Auto-generated method stub
-	User user =new User();
-	Member member=new Member();
-	user.setuId("2018test");
-	
-	memberMapper.addintroducer();
-	
+	List<Member> list=memberMapper.queryallmember();
+	return list;
+}
+/**
+ * 查询单个会员，返回Pojo值
+ */
+@Override
+public Member querymember(Member member) {
+	// TODO Auto-generated method stub
+	//不需要获得其他值，member自动获取
+	member=memberMapper.querymember(member);
+	return member;
 }
 
 
