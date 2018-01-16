@@ -12,13 +12,13 @@ public class MemberServiceImpl implements MemberService{
 private MemberMapper memberMapper;
 
 /**
- * 当有介绍人时，对介绍人进行积分添加
+ * 涓哄垎浜敞鍐屼汉娣诲姞娉ㄥ唽绉垎
  */
 
 @Override
 public void addintroducer() {
 	// TODO Auto-generated method stub
-	
+	memberMapper.addintroducer();
 }
 
 
