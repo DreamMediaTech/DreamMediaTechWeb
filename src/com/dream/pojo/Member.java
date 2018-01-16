@@ -13,8 +13,17 @@ public class Member {
 	private int bonusIntegral;
 	private int consumptionIntegral;
 	private int sharingIntegral;
-	private int quota;
+
 	private int superQuota;
+	private int iId;
+	
+		
+	public int getiId() {
+		return iId;
+	}
+	public void setiId(int iId) {
+		this.iId = iId;
+	}
 	public int getmId() {
 		return mId;
 	}
@@ -87,12 +96,7 @@ public class Member {
 	public void setSharingIntegral(int sharingIntegral) {
 		this.sharingIntegral = sharingIntegral;
 	}
-	public int getQuota() {
-		return quota;
-	}
-	public void setQuota(int quota) {
-		this.quota = quota;
-	}
+	
 	public int getSuperQuota() {
 		return superQuota;
 	}

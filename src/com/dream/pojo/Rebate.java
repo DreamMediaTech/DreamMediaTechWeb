@@ -3,9 +3,17 @@ package com.dream.pojo;
 public class Rebate {
 	private int reId;
 	private int rId;
-	private int price;
+	
 	private int mId;
 	private String reTyep;
+	private int iId;
+	
+	public int getiId() {
+		return iId;
+	}
+	public void setiId(int iId) {
+		this.iId = iId;
+	}
 	public int getReId() {
 		return reId;
 	}
@@ -18,12 +26,7 @@ public class Rebate {
 	public void setrId(int rId) {
 		this.rId = rId;
 	}
-	public int getPrice() {
-		return price;
-	}
-	public void setPrice(int price) {
-		this.price = price;
-	}
+	
 	public int getmId() {
 		return mId;
 	}

@@ -6,6 +6,16 @@ public class ShareAtricle {
 	private String uId;
 	private int clicks;
 	private int limit;
+	private int iId;
+
+	
+	
+	public int getiId() {
+		return iId;
+	}
+	public void setiId(int iId) {
+		this.iId = iId;
+	}
 	public int getSaId() {
 		return saId;
 	}

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.dream.mapper.MemberMapper;
 import com.dream.pojo.Member;
+import com.dream.pojo.User;
 
 @Service("memberservice")
 public class MemberServiceImpl implements MemberService{
@@ -18,7 +19,12 @@ private MemberMapper memberMapper;
 @Override
 public void addintroducer() {
 	// TODO Auto-generated method stub
+	User user =new User();
+	Member member=new Member();
+	user.setuId("2018test");
+	
 	memberMapper.addintroducer();
+	
 }
 
 
