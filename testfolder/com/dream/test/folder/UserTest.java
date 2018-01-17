@@ -22,7 +22,7 @@ public class UserTest {
 	@Test
 	public void queryuser() {
 		User user=new User();
-		user.setuId("2018test");
+		user.setuId(2018);
 		UserService userService=(UserService) ac.getBean("userservice");
 		user=userService.queryuser(user);
 		System.out.println(user.getuName()+"\t"+user.getuPhone()+"\t"+user.getuSex()  );

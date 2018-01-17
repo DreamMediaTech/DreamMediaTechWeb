@@ -7,12 +7,13 @@ public class Member {
 	private String alipay;
 	private String wechat;
 	private float reBate;
-	private String introducer;
-	private String firstSuperior;
-	private String secondSuperior;
+	private int introducer;
+	private int firstSuperior;
+	private int secondSuperior;
 	private float bonusIntegral;
 	private float consumptionIntegral;
 	private float sharingIntegral;
+	
 	private User user;
 	public User getUser() {
 		return user;
@@ -66,24 +67,25 @@ public class Member {
 	public void setReBate(float reBate) {
 		this.reBate = reBate;
 	}
-	public String getIntroducer() {
+	public int getIntroducer() {
 		return introducer;
 	}
-	public void setIntroducer(String introducer) {
+	public void setIntroducer(int introducer) {
 		this.introducer = introducer;
 	}
-	public String getFirstSuperior() {
+	public int getFirstSuperior() {
 		return firstSuperior;
 	}
-	public void setFirstSuperior(String firstSuperior) {
+	public void setFirstSuperior(int firstSuperior) {
 		this.firstSuperior = firstSuperior;
 	}
-	public String getSecondSuperior() {
+	public int getSecondSuperior() {
 		return secondSuperior;
 	}
-	public void setSecondSuperior(String secondSuperior) {
+	public void setSecondSuperior(int secondSuperior) {
 		this.secondSuperior = secondSuperior;
 	}
+	
 	public float getBonusIntegral() {
 		return bonusIntegral;
 	}

@@ -1,17 +1,24 @@
 package com.dream.pojo;
 
 public class User {
-	private String uId;
+	private int uId;
 	private String uName;
 	private String uSex;
 	private String uPhone;
 	private String uPassword;
 	private int mId;
 	private int agId;
-	public String getuId() {
+	private String ymId;
+	public String getYmId() {
+		return ymId;
+	}
+	public void setYmId(String ymId) {
+		this.ymId = ymId;
+	}
+	public int getuId() {
 		return uId;
 	}
-	public void setuId(String uId) {
+	public void setuId(int uId) {
 		this.uId = uId;
 	}
 	public String getuName() {

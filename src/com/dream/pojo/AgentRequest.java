@@ -2,19 +2,19 @@ package com.dream.pojo;
 
 public class AgentRequest {
 	private int arId;
-	private String uId;
+	private int uId;
 	private String arState;
-	private String arResponsibility;
+	private int arResponsibility;
 	public int getArId() {
 		return arId;
 	}
 	public void setArId(int arId) {
 		this.arId = arId;
 	}
-	public String getuId() {
+	public int getuId() {
 		return uId;
 	}
-	public void setuId(String uId) {
+	public void setuId(int uId) {
 		this.uId = uId;
 	}
 	public String getArState() {
@@ -23,10 +23,10 @@ public class AgentRequest {
 	public void setArState(String arState) {
 		this.arState = arState;
 	}
-	public String getArResponsibility() {
+	public int getArResponsibility() {
 		return arResponsibility;
 	}
-	public void setArResponsibility(String arResponsibility) {
+	public void setArResponsibility(int arResponsibility) {
 		this.arResponsibility = arResponsibility;
 	}
 	

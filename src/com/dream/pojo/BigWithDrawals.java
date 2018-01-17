@@ -2,21 +2,21 @@ package com.dream.pojo;
 
 public class BigWithDrawals {
 	private int bwId;
-	private String uId;
+	private int uId;
 	private int money;
 	private String bwTime;
 	private String bwState;
-	private String bwRespinsibility;
+	private int bwRespinsibility;
 	public int getBwId() {
 		return bwId;
 	}
 	public void setBwId(int bwId) {
 		this.bwId = bwId;
 	}
-	public String getuId() {
+	public int getuId() {
 		return uId;
 	}
-	public void setuId(String uId) {
+	public void setuId(int uId) {
 		this.uId = uId;
 	}
 	public int getMoney() {
@@ -37,10 +37,10 @@ public class BigWithDrawals {
 	public void setBwState(String bwState) {
 		this.bwState = bwState;
 	}
-	public String getBwRespinsibility() {
+	public int getBwRespinsibility() {
 		return bwRespinsibility;
 	}
-	public void setBwRespinsibility(String bwRespinsibility) {
+	public void setBwRespinsibility(int bwRespinsibility) {
 		this.bwRespinsibility = bwRespinsibility;
 	}
 	

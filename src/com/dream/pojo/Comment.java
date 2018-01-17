@@ -2,8 +2,8 @@ package com.dream.pojo;
 
 public class Comment {
 	private int cId;
-	private String cUser;
-	private String cResponsibility;
+	private int cUser;
+	private int cResponsibility;
 	private String cContent;
 	private int cState;
 	private int vId;
@@ -13,16 +13,16 @@ public class Comment {
 	public void setcId(int cId) {
 		this.cId = cId;
 	}
-	public String getcUser() {
+	public int getcUser() {
 		return cUser;
 	}
-	public void setcUser(String cUser) {
+	public void setcUser(int cUser) {
 		this.cUser = cUser;
 	}
-	public String getcResponsibility() {
+	public int getcResponsibility() {
 		return cResponsibility;
 	}
-	public void setcResponsibility(String cResponsibility) {
+	public void setcResponsibility(int cResponsibility) {
 		this.cResponsibility = cResponsibility;
 	}
 	public String getcContent() {

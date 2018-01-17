@@ -2,7 +2,7 @@ package com.dream.pojo;
 
 public class PackagePurchaseRecord {
 	private int rId;
-	private String uId;
+	private int uId;
 	private String pName;
 	private String rTime;
 	public int getrId() {
@@ -11,10 +11,10 @@ public class PackagePurchaseRecord {
 	public void setrId(int rId) {
 		this.rId = rId;
 	}
-	public String getuId() {
+	public int getuId() {
 		return uId;
 	}
-	public void setuId(String uId) {
+	public void setuId(int uId) {
 		this.uId = uId;
 	}
 	public String getpName() {

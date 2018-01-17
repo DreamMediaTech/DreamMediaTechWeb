@@ -3,13 +3,10 @@ package com.dream.pojo;
 public class ShareAtricle {
 	private int saId;
 	private int aId;
-	private String uId;
+	private int uId;
 	private int clicks;
 	private int limit;
 	private int iId;
-
-	
-	
 	public int getiId() {
 		return iId;
 	}
@@ -28,10 +25,10 @@ public class ShareAtricle {
 	public void setaId(int aId) {
 		this.aId = aId;
 	}
-	public String getuId() {
+	public int getuId() {
 		return uId;
 	}
-	public void setuId(String uId) {
+	public void setuId(int uId) {
 		this.uId = uId;
 	}
 	public int getClicks() {

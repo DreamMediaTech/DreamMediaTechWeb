@@ -2,7 +2,7 @@ package com.dream.pojo;
 
 public class SensitiveRecord {
 	private int srId;
-	private String operator;
+	private int operator;
 	private String srContent;
 	private String srTime;
 	public int getSrId() {
@@ -11,10 +11,10 @@ public class SensitiveRecord {
 	public void setSrId(int srId) {
 		this.srId = srId;
 	}
-	public String getOperator() {
+	public int getOperator() {
 		return operator;
 	}
-	public void setOperator(String operator) {
+	public void setOperator(int operator) {
 		this.operator = operator;
 	}
 	public String getSrContent() {

@@ -7,7 +7,7 @@ public class Video {
 	private String vIntroduce;
 	private int vNum;
 	private int vPrice;
-	private String vAuthor;
+	private int vAuthor;
 	private String vState;
 	private int vComment;
 	private int firstType;
@@ -47,10 +47,10 @@ public class Video {
 	public void setvPrice(int vPrice) {
 		this.vPrice = vPrice;
 	}
-	public String getvAuthor() {
+	public int getvAuthor() {
 		return vAuthor;
 	}
-	public void setvAuthor(String vAuthor) {
+	public void setvAuthor(int vAuthor) {
 		this.vAuthor = vAuthor;
 	}
 	public String getvState() {

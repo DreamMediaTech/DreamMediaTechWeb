@@ -1,12 +1,12 @@
 package com.dream.pojo;
 
 public class UserRole {
-	private String uId;
+	private int uId;
 	private int rId;
-	public String getuId() {
+	public int getuId() {
 		return uId;
 	}
-	public void setuId(String uId) {
+	public void setuId(int uId) {
 		this.uId = uId;
 	}
 	public int getrId() {
