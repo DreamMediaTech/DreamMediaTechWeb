@@ -4,8 +4,8 @@
 <mapper namespace="com.dream.mapper.AgentMapper">
 
 
-<update id="updataAgentapply" parameterType="AgentRequest">
-updata  agentrequest set arstate=#{arState} , arresponsibility=#{arResponsibility} where arid=#{arId}
+<update id="updateAgentapply" parameterType="AgentRequest">
+update  agentrequest set arstate=#{arState} , ARresponsibility=#{arResponsibility} where arid=#{arId}
 </update>
 
 </mapper>

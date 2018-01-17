@@ -21,6 +21,6 @@ public class AgentTest {
 		agentRequest.setArState("拒绝");
 		agentRequest.setArResponsibility(2);
 		AgentService agentService=(AgentService) ac.getBean("agentservice");
-		agentService.updataAgentapply(agentRequest);
+		agentService.updateAgentapply(agentRequest);
 	}
 }

@@ -6,4 +6,5 @@
 <update id="updateVideoapply" parameterType="VideoProviderRequest">
 update videoproviderrequest  set VPRresponsibility=#{vprRespinsibility} ,vprstate=#{vprState} where vprid=#{vprId} 
 </update>
+<select id="queryallapply" ></select>
 </mapper>

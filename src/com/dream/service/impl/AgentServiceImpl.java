@@ -11,9 +11,9 @@ public class AgentServiceImpl implements AgentService{
  @Autowired
  private AgentMapper agentMapper;
 	@Override
-	public void updataAgentapply(AgentRequest agentRequest) {
+	public void updateAgentapply(AgentRequest agentRequest) {
 		// TODO Auto-generated method stub
-		agentMapper.updataAgentapply(agentRequest);
+		agentMapper.updateAgentapply(agentRequest);
 	}
 
 }
