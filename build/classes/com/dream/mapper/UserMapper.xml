@@ -6,4 +6,12 @@
 	select * from user where YMid=#{ymId}
 	</select>
 	
+	<select id="getRoleById" resultType="Role">
+	select * from Role where Rid = #{value}
+	</select>
+	
+	<insert id="defineUserToRole" >
+	insert into user_role(uid,rid) values(#{userid},#{Roleid})
+	</insert>
+	
 </mapper>
