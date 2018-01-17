@@ -2,7 +2,7 @@ package com.dream.pojo;
 
 public class WithDrawals {
 	private int wId;
-	private int uId;
+	private User user;
 	private int money;
 	private String wTime;
 	public int getwId() {
@@ -11,11 +11,12 @@ public class WithDrawals {
 	public void setwId(int wId) {
 		this.wId = wId;
 	}
-	public int getuId() {
-		return uId;
+	
+	public User getUser() {
+		return user;
 	}
-	public void setuId(int uId) {
-		this.uId = uId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	public int getMoney() {
 		return money;

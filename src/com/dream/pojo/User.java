@@ -1,14 +1,17 @@
 package com.dream.pojo;
 
+import java.util.List;
+
 public class User {
 	private int uId;
 	private String uName;
 	private String uSex;
 	private String uPhone;
 	private String uPassword;
-	private int mId;
-	private int agId;
 	private String ymId;
+	private Member memberInformation;
+	private Agents agentsInformation;
+	private List<Role> roles;
 	public String getYmId() {
 		return ymId;
 	}
@@ -45,16 +48,27 @@ public class User {
 	public void setuPassword(String uPassword) {
 		this.uPassword = uPassword;
 	}
-	public int getmId() {
-		return mId;
+	public List<Role> getRoles() {
+		return roles;
 	}
-	public void setmId(int mId) {
-		this.mId = mId;
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
 	}
-	public int getAgId() {
-		return agId;
+	public Member getMemberInformation() {
+		return memberInformation;
 	}
-	public void setAgId(int agId) {
-		this.agId = agId;
+	public void setMemberInformation(Member memberInformation) {
+		this.memberInformation = memberInformation;
 	}
+	public Agents getAgentsInformation() {
+		return agentsInformation;
+	}
+	public void setAgentsInformation(Agents agentsInformation) {
+		this.agentsInformation = agentsInformation;
+	}
+	
+	
+	
+	
+	
 }

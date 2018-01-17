@@ -2,8 +2,8 @@ package com.dream.pojo;
 
 public class VideoPurchaseRecord {
 	private int vprId;
-	private int uId;
-	private int vId;
+	private User user;
+	private Video video;
 	private int count;
 	private int buyCount;
 	private String time;
@@ -14,17 +14,18 @@ public class VideoPurchaseRecord {
 	public void setVprId(int vprId) {
 		this.vprId = vprId;
 	}
-	public int getuId() {
-		return uId;
+	
+	public User getUser() {
+		return user;
 	}
-	public void setuId(int uId) {
-		this.uId = uId;
+	public void setUser(User user) {
+		this.user = user;
 	}
-	public int getvId() {
-		return vId;
+	public Video getVideo() {
+		return video;
 	}
-	public void setvId(int vId) {
-		this.vId = vId;
+	public void setVideo(Video video) {
+		this.video = video;
 	}
 	public int getCount() {
 		return count;

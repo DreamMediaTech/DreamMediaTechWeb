@@ -6,7 +6,7 @@ public class Comment {
 	private int cResponsibility;
 	private String cContent;
 	private int cState;
-	private int vId;
+	private Video video;
 	public int getcId() {
 		return cId;
 	}
@@ -37,11 +37,13 @@ public class Comment {
 	public void setcState(int cState) {
 		this.cState = cState;
 	}
-	public int getvId() {
-		return vId;
+	public Video getVideo() {
+		return video;
 	}
-	public void setvId(int vId) {
-		this.vId = vId;
+	public void setVideo(Video video) {
+		this.video = video;
 	}
+	
+	
 	
 }
