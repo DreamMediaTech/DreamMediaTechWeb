@@ -2,20 +2,27 @@ package com.dream.pojo;
 
 public class VideoProviderRequest {
 	private int vprId;
-	private int uId;
+	private User user;
 	private String vprState;
-	private int vprRespinsibility;
+	private User vprRespinsibility;
 	public int getVprId() {
 		return vprId;
 	}
 	public void setVprId(int vprId) {
 		this.vprId = vprId;
 	}
-	public int getuId() {
-		return uId;
+	
+	public User getUser() {
+		return user;
 	}
-	public void setuId(int uId) {
-		this.uId = uId;
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public User getVprRespinsibility() {
+		return vprRespinsibility;
+	}
+	public void setVprRespinsibility(User vprRespinsibility) {
+		this.vprRespinsibility = vprRespinsibility;
 	}
 	public String getVprState() {
 		return vprState;
@@ -23,11 +30,6 @@ public class VideoProviderRequest {
 	public void setVprState(String vprState) {
 		this.vprState = vprState;
 	}
-	public int getVprRespinsibility() {
-		return vprRespinsibility;
-	}
-	public void setVprRespinsibility(int vprRespinsibility) {
-		this.vprRespinsibility = vprRespinsibility;
-	}
+
 	
 }

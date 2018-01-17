@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.dream.pojo.User;
 import com.dream.pojo.VideoProviderRequest;
 import com.dream.service.impl.VideoService;
 
@@ -24,7 +25,9 @@ public class VideoTest {
 	public void updateVideoapply() {
 		VideoProviderRequest videoProviderRequest=new VideoProviderRequest();
 		videoProviderRequest.setVprId(180117);
-		videoProviderRequest.setVprRespinsibility(2);
+		User user=new User();
+		user.setuId(2);
+		videoProviderRequest.setVprRespinsibility(user);
 		videoProviderRequest.setVprState("通过");
 		VideoService videoService =(VideoService) ac.getBean("videoservice");
 		videoService.updateVideoapply(videoProviderRequest);

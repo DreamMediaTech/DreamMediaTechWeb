@@ -26,7 +26,8 @@ public class AgentServiceImpl implements AgentService{
 	@Override
 	public List<AgentRequest> queryallapply() {
 		// TODO Auto-generated method stub
-		return null;
+		List<AgentRequest> list=agentMapper.queryallapply();
+		return list;
 	}
 	/**
 	 * 后台查询单个申请表
@@ -34,7 +35,8 @@ public class AgentServiceImpl implements AgentService{
 	@Override
 	public AgentRequest queryagentapply(AgentRequest agentRequest) {
 		// TODO Auto-generated method stub
-		return null;
+		agentRequest=agentMapper.queryagentapply(agentRequest);
+		return agentRequest;
 	}
 
 }

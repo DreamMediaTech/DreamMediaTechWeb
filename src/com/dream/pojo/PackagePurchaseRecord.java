@@ -2,8 +2,8 @@ package com.dream.pojo;
 
 public class PackagePurchaseRecord {
 	private int rId;
-	private int uId;
-	private String pName;
+	private User user;
+	private IntegralPackage integralPackage;
 	private String rTime;
 	public int getrId() {
 		return rId;
@@ -11,17 +11,17 @@ public class PackagePurchaseRecord {
 	public void setrId(int rId) {
 		this.rId = rId;
 	}
-	public int getuId() {
-		return uId;
+	public User getUser() {
+		return user;
 	}
-	public void setuId(int uId) {
-		this.uId = uId;
+	public void setUser(User user) {
+		this.user = user;
 	}
-	public String getpName() {
-		return pName;
+	public IntegralPackage getIntegralPackage() {
+		return integralPackage;
 	}
-	public void setpName(String pName) {
-		this.pName = pName;
+	public void setIntegralPackage(IntegralPackage integralPackage) {
+		this.integralPackage = integralPackage;
 	}
 	public String getrTime() {
 		return rTime;

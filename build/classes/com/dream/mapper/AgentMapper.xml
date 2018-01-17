@@ -13,6 +13,6 @@ select * from AgentRequest
 </select>
 <!-- 后台查询单个申请表 -->
 <select id="queryagentapply" resultType="AgentRequest" parameterType="AgentRequest">
-select * from AgentRequest  where agid=#{agId}
+select * from AgentRequest  where arid=#{arId}
 </select>
 </mapper>

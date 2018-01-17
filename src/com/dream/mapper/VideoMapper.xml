@@ -4,7 +4,7 @@
 <mapper namespace="com.dream.mapper.VideoMapper">
 <!-- 后台修改申请表 -->
 <update id="updateVideoapply" parameterType="VideoProviderRequest">
-update videoproviderrequest  set VPRresponsibility=#{vprRespinsibility} ,vprstate=#{vprState} where vprid=#{vprId} 
+update videoproviderrequest  set VPRresponsibility=#{vprRespinsibility.uId} ,vprstate=#{vprState} where vprid=#{vprId} 
 </update>
 <!-- 后台查询所有申请表 -->
 <select id="queryallapply" resultType="VideoProviderRequest">

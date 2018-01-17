@@ -5,6 +5,7 @@ public class Article {
 	private String aTitle;
 	private String aContent;
 	private int clicks;
+	private User user;
 	private String aTime;
 	public int getaId() {
 		return aId;
@@ -36,4 +37,11 @@ public class Article {
 	public void setaTime(String aTime) {
 		this.aTime = aTime;
 	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
 }

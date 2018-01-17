@@ -1,5 +1,8 @@
 package com.dream.test.folder;
 
+import java.util.Iterator;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -26,5 +29,20 @@ public class AgentTest {
 		AgentService agentService=(AgentService) ac.getBean("agentservice");
 		agentService.updateAgentapply(agentRequest);
 	}
-	
+	@Test 
+	public void queryallapply() {
+		AgentService agentService=(AgentService) ac.getBean("agentservice");
+		List<AgentRequest> list=agentService.queryallapply();
+		for (Iterator iterator = list.iterator(); iterator.hasNext();) {
+			AgentRequest agentRequest = (AgentRequest) iterator.next();
+			System.out.println(agentRequest.getArState());
+		}
+	}
+	@Test 
+	public void queryagentapply() {
+		AgentRequest agentRequest= new AgentRequest();
+		agentRequest.setArId(180117);
+		AgentService agentService=(AgentService) ac.getBean("agentservice");
+		agentRequest=agentService.queryagentapply(agentRequest);
+	}
 }

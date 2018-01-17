@@ -1,6 +1,6 @@
 package com.dream.pojo;
 
-public class Package {
+public class IntegralPackage {
 	private int pId;
 	private String pName;
 	private int price;

@@ -1,9 +1,12 @@
 package com.dream.pojo;
 
+import java.util.List;
+
 public class Role {
 	private int rId;
 	private String rName;
 	private String rDescribe;
+	private List<Function> functions;
 	public int getrId() {
 		return rId;
 	}
@@ -22,5 +25,12 @@ public class Role {
 	public void setrDescribe(String rDescribe) {
 		this.rDescribe = rDescribe;
 	}
+	public List<Function> getFunctions() {
+		return functions;
+	}
+	public void setFunctions(List<Function> functions) {
+		this.functions = functions;
+	}
+	
 	
 }
