@@ -34,5 +34,5 @@ public Member querymember(Member member) {
 	return member;
 }
 
-
+ 
 }

@@ -30,4 +30,36 @@
 <select id="queryallmember" resultMap="MemberMap">
 select * from member m , user u where u.Mid=m.Mid
 </select>
+
+<select id="querymember" resultMap="MemberMap" parameterType="Member">
+select * from member m , user u where u.Mid=m.Mid and m.Mid=#{mId}
+</select>
+
+<update id="updatamember" parameterType="Member">
+update member m,user u 
+<set>
+<if test="Uname!=null and Uname !=''">
+u.Uname=#{uName}
+</if>
+<if test="Usex!=null and Usex !=''">
+u.Usex=#{uSex}
+</if>
+<if test="Uname!=null and Uname !=''">
+u.Uname=#{uName}
+</if>
+<if test="Bitrhday!=null and Birthday!=''">
+m.Birthday=#{birthday}
+</if>
+<if test="Mail!=null and Mail !=''">
+m.Mail=#{mail}
+</if>
+<if test="Alipay!=null and Alipay !=''">
+m.Alipay=#{alipay}
+</if>
+<if test="WeChat !=null and WeChat !=''">
+m.WeChat=#{wechat}
+</if>
+
+</set>
+</update>
 </mapper>

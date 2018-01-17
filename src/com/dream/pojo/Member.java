@@ -10,9 +10,9 @@ public class Member {
 	private String introducer;
 	private String firstSuperior;
 	private String secondSuperior;
-	private int bonusIntegral;
-	private int consumptionIntegral;
-	private int sharingIntegral;
+	private float bonusIntegral;
+	private float consumptionIntegral;
+	private float sharingIntegral;
 	private User user;
 	public User getUser() {
 		return user;
@@ -84,22 +84,22 @@ public class Member {
 	public void setSecondSuperior(String secondSuperior) {
 		this.secondSuperior = secondSuperior;
 	}
-	public int getBonusIntegral() {
+	public float getBonusIntegral() {
 		return bonusIntegral;
 	}
-	public void setBonusIntegral(int bonusIntegral) {
+	public void setBonusIntegral(float bonusIntegral) {
 		this.bonusIntegral = bonusIntegral;
 	}
-	public int getConsumptionIntegral() {
+	public float getConsumptionIntegral() {
 		return consumptionIntegral;
 	}
-	public void setConsumptionIntegral(int consumptionIntegral) {
+	public void setConsumptionIntegral(float consumptionIntegral) {
 		this.consumptionIntegral = consumptionIntegral;
 	}
-	public int getSharingIntegral() {
+	public float getSharingIntegral() {
 		return sharingIntegral;
 	}
-	public void setSharingIntegral(int sharingIntegral) {
+	public void setSharingIntegral(float sharingIntegral) {
 		this.sharingIntegral = sharingIntegral;
 	}
 	

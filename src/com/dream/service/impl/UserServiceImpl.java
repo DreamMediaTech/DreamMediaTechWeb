@@ -11,4 +11,11 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private UserMapper userMapper;
 
+	@Override
+	public User queryuser(User user) {
+		// TODO Auto-generated method stub
+		user=userMapper.queryuser(user);
+		return user;
+	}
+
 }
