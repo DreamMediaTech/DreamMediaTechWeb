@@ -12,6 +12,7 @@ public class User {
 	private Member memberInformation;
 	private Agents agentsInformation;
 	private List<Role> roles;
+	private List<Function> functions;
 	public String getYmId() {
 		return ymId;
 	}
@@ -66,9 +67,11 @@ public class User {
 	public void setAgentsInformation(Agents agentsInformation) {
 		this.agentsInformation = agentsInformation;
 	}
-	
-	
-	
-	
+	public List<Function> getFunctions() {
+		return functions;
+	}
+	public void setFunctions(List<Function> functions) {
+		this.functions = functions;
+	}
 	
 }
