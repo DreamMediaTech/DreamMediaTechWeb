@@ -14,6 +14,9 @@ public class AgentTest {
 	public void init(){
 		ac = new ClassPathXmlApplicationContext("spring/spring-bean.xml");
 	}
+	/**
+	 * 后台申请表修改测试
+	 */
 	@Test
 	public void updataAgentapply() {
 		AgentRequest agentRequest= new AgentRequest();
@@ -23,4 +26,5 @@ public class AgentTest {
 		AgentService agentService=(AgentService) ac.getBean("agentservice");
 		agentService.updateAgentapply(agentRequest);
 	}
+	
 }

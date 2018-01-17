@@ -3,7 +3,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dream.mapper.UserMapper">
 	<select id="queryuser" resultType="User">
-	select * from user where Uid=#{uId}
+	select * from user where YMid=#{ymId}
 	</select>
 	
 </mapper>

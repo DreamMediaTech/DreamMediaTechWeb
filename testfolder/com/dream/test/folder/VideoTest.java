@@ -1,5 +1,8 @@
 package com.dream.test.folder;
 
+import java.util.Iterator;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -25,5 +28,27 @@ public class VideoTest {
 		videoProviderRequest.setVprState("通过");
 		VideoService videoService =(VideoService) ac.getBean("videoservice");
 		videoService.updateVideoapply(videoProviderRequest);
+	}
+	/**
+	 * 查询所有申请
+	 */
+	@Test 
+	public void queryallapply() {
+		VideoService videoService =(VideoService) ac.getBean("videoservice");
+		List<VideoProviderRequest> list=videoService.queryallapply();
+		for (Iterator iterator = list.iterator(); iterator.hasNext();) {
+			VideoProviderRequest videoProviderRequest = (VideoProviderRequest) iterator.next();
+			System.out.println(videoProviderRequest.getVprState());
+		}
+	}
+	/**
+	 * 查询某个特定的申请
+	 */
+	@Test
+	public void queryvideoapply() {
+		VideoProviderRequest videoProviderRequest=new VideoProviderRequest();
+		videoProviderRequest.setVprId(180117);
+		VideoService videoService =(VideoService) ac.getBean("videoservice");
+		videoProviderRequest=videoService.queryvideoapply(videoProviderRequest);
 	}
 }

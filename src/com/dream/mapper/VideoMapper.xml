@@ -2,9 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dream.mapper.VideoMapper">
-
+<!-- 后台修改申请表 -->
 <update id="updateVideoapply" parameterType="VideoProviderRequest">
 update videoproviderrequest  set VPRresponsibility=#{vprRespinsibility} ,vprstate=#{vprState} where vprid=#{vprId} 
 </update>
-<select id="queryallapply" ></select>
+<!-- 后台查询所有申请表 -->
+<select id="queryallapply" resultType="VideoProviderRequest">
+select * from videoproviderrequest 
+</select>
+<!-- 后台查询单个申请表 -->
+<select id="queryvideoapply" resultType="VideoProviderRequest" parameterType="VideoProviderRequest">
+select * from videoproviderrequest  where vprid=#{vprId}
+</select>
 </mapper>
