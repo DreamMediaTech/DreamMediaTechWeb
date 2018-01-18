@@ -2,17 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dream.mapper.AgentMapper">
+<resultMap id="AgentRequestMapper" type="AgentRequest">
+<id property="arId" column="ARid"></id>
+<result property="uId" column="Uid"></result>
+<result property="arState" column="ARstate" />
+<result property="arResponsibility" column="ARresponsibility" />
+<association property="user" javaType="com.dream.pojo.User">
+   <id property="uId" column="Uid"></id>
+    <result property="uName" column="Uname"></result>
+     <result property="uSex" column="Usex"></result>
+      <result property="uPhone" column="Upassword"></result>
+        <result property="ymId" column="YMid"></result>
+</association>
+</resultMap>
 
 <!-- 后台进行申请表修改 -->
 <update id="updateAgentapply" parameterType="AgentRequest">
 update  agentrequest set arstate=#{arState} , ARresponsibility=#{arResponsibility} where arid=#{arId}
 </update>
+
 <!-- 后台查询所有申请表 -->
-<select id="queryallapply" resultType="AgentRequest">
-select * from AgentRequest 
+<select id="queryallapply" resultMap="AgentRequestMapper">
+select * from AgentRequest a,user u where u.uId=a.uId
 </select>
 <!-- 后台查询单个申请表 -->
-<select id="queryagentapply" resultType="AgentRequest" parameterType="AgentRequest">
-select * from AgentRequest  where arid=#{arId}
+<select id="queryagentapply" resultMap="AgentRequestMapper" parameterType="AgentRequest">
+select * from AgentRequest a,user u,user u1   where arid=#{arId}   and u.Uid=a.ARresponsibility 
+and a.Uid=u1.Uid
 </select>
 </mapper>

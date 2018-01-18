@@ -25,6 +25,7 @@
       <result property="uPhone" column="Upassword"></result>
        <result property="mId" column="Mid"></result>
         <result property="agId" column="AGid"></result>
+        <result property="ymId" column="YMid"></result>
 </association>
 </resultMap>
 <select id="queryallmember" resultMap="MemberMap">

@@ -2,16 +2,37 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dream.mapper.VideoMapper">
+<resultMap id="VideoProviderRequestMapper" type="VideoProviderRequest">
+<id property="vprId" column="VPRid"></id>
+<result property="uId" column="Uid" />
+<result property="vprState" column="VPRstate" />
+<association property="vprResponsibility" javaType="com.dream.pojo.User">
+   <id property="uId" column="Uid"></id>
+    <result property="uName" column="Uname"></result>
+     <result property="uSex" column="Usex"></result>
+      <result property="uPhone" column="Upassword"></result>
+        <result property="ymId" column="YMid"></result>
+</association>
+<association property="user" javaType="com.dream.pojo.User">
+   <id property="uId" column="Uid"></id>
+    <result property="uName" column="Uname"></result>
+     <result property="uSex" column="Usex"></result>
+      <result property="uPhone" column="Upassword"></result>
+        <result property="ymId" column="YMid"></result>
+</association>
+</resultMap>
+
 <!-- 后台修改申请表 -->
 <update id="updateVideoapply" parameterType="VideoProviderRequest">
 update videoproviderrequest  set VPRresponsibility=#{vprRespinsibility.uId} ,vprstate=#{vprState} where vprid=#{vprId} 
 </update>
 <!-- 后台查询所有申请表 -->
-<select id="queryallapply" resultType="VideoProviderRequest">
-select * from videoproviderrequest 
+<select id="queryallapply" resultType="VideoProviderRequestMapper">
+select * from videoproviderrequest v,user u where u.uId=v.uId
 </select>
 <!-- 后台查询单个申请表 -->
-<select id="queryvideoapply" resultType="VideoProviderRequest" parameterType="VideoProviderRequest">
-select * from videoproviderrequest  where vprid=#{vprId}
+<select id="queryvideoapply" resultType="VideoProviderRequestMapper" parameterType="VideoProviderRequest">
+select * from videoproviderrequest a,user u,user u1   where vprid=#{vprId}  and u.Uid=a.VPRresponsibility 
+and a.Uid=u1.Uid
 </select>
 </mapper>

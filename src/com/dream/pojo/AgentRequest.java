@@ -5,6 +5,13 @@ public class AgentRequest {
 	private int uId;
 	private String arState;
 	private int arResponsibility;
+	private User user;
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	public int getArId() {
 		return arId;
 	}

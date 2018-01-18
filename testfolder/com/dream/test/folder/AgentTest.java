@@ -9,6 +9,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.dream.pojo.AgentRequest;
+import com.dream.pojo.User;
 import com.dream.service.impl.AgentService;
 
 public class AgentTest {
@@ -24,7 +25,7 @@ public class AgentTest {
 	public void updataAgentapply() {
 		AgentRequest agentRequest= new AgentRequest();
 		agentRequest.setArId(180117);
-		agentRequest.setArState("拒绝");
+		agentRequest.setArState("拒绝1");
 		agentRequest.setArResponsibility(2);
 		AgentService agentService=(AgentService) ac.getBean("agentservice");
 		agentService.updateAgentapply(agentRequest);
@@ -45,4 +46,5 @@ public class AgentTest {
 		AgentService agentService=(AgentService) ac.getBean("agentservice");
 		agentRequest=agentService.queryagentapply(agentRequest);
 	}
+	
 }
