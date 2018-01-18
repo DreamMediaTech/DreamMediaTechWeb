@@ -9,6 +9,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.dream.pojo.AgentRequest;
+import com.dream.pojo.Agents;
 import com.dream.pojo.User;
 import com.dream.service.impl.AgentService;
 
@@ -26,7 +27,9 @@ public class AgentTest {
 		AgentRequest agentRequest= new AgentRequest();
 		agentRequest.setArId(180117);
 		agentRequest.setArState("拒绝1");
-		agentRequest.setArResponsibility(2);
+		User user =new User();
+		user.setuId(2);
+		agentRequest.setArResponsibility(user);
 		AgentService agentService=(AgentService) ac.getBean("agentservice");
 		agentService.updateAgentapply(agentRequest);
 	}
@@ -39,12 +42,24 @@ public class AgentTest {
 			System.out.println(agentRequest.getArState());
 		}
 	}
-	@Test 
-	public void queryagentapply() {
-		AgentRequest agentRequest= new AgentRequest();
-		agentRequest.setArId(180117);
-		AgentService agentService=(AgentService) ac.getBean("agentservice");
-		agentRequest=agentService.queryagentapply(agentRequest);
-	}
 	
+	/**
+	 * 查询所有代理商操作
+	 */
+			@Test
+			public void queryallagents() {
+				AgentService agentService =(AgentService)ac.getBean("agentservice");
+				List<Agents> list= agentService.queryallagents();
+			}
+			/**
+			 * 查询单个代理商信息
+			 */
+			@Test
+			public void queryagents() {
+				Agents agents=new Agents();
+				agents.setAgId(88);
+				AgentService agentService =(AgentService)ac.getBean("agentservice");
+				agents= agentService.queryagents(agents);
+				System.out.println(agents.getUser().getuId());
+			}
 }

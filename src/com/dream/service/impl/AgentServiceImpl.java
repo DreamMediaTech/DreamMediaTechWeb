@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.dream.mapper.AgentMapper;
 import com.dream.pojo.AgentRequest;
+import com.dream.pojo.Agents;
 
 @Service("agentservice")
 public class AgentServiceImpl implements AgentService{
@@ -30,13 +31,23 @@ public class AgentServiceImpl implements AgentService{
 		return list;
 	}
 	/**
-	 * 后台查询单个申请表
+	 * 后台查询所有代理商
 	 */
 	@Override
-	public AgentRequest queryagentapply(AgentRequest agentRequest) {
+	public List<Agents> queryallagents() {
 		// TODO Auto-generated method stub
-		agentRequest=agentMapper.queryagentapply(agentRequest);
-		return agentRequest;
+		List<Agents> list = agentMapper.queryallagents();
+		return list;
 	}
+	/**
+	 * 查询单个代理商信息
+	 */
+	@Override
+	public Agents queryagents(Agents agents) {
+		// TODO Auto-generated method stub
+		agents= agentMapper.queryagents(agents);
+		return agents;
+	}
+
 
 }

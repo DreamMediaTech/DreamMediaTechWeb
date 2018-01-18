@@ -6,14 +6,13 @@ public class BigWithDrawals {
 	private int money;
 	private String bwTime;
 	private String bwState;
-	private int bwRespinsibility;
+	private User bwRespinsibility;
 	public int getBwId() {
 		return bwId;
 	}
 	public void setBwId(int bwId) {
 		this.bwId = bwId;
 	}
-	
 	public User getUser() {
 		return user;
 	}
@@ -38,11 +37,12 @@ public class BigWithDrawals {
 	public void setBwState(String bwState) {
 		this.bwState = bwState;
 	}
-	public int getBwRespinsibility() {
+	public User getBwRespinsibility() {
 		return bwRespinsibility;
 	}
-	public void setBwRespinsibility(int bwRespinsibility) {
+	public void setBwRespinsibility(User bwRespinsibility) {
 		this.bwRespinsibility = bwRespinsibility;
 	}
+
 	
 }

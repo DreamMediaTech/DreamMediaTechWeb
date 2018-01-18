@@ -18,7 +18,13 @@ import com.google.gson.Gson;
 @Controller
 @RequestMapping("/MobileUserController")
 public class MobileUserController {
-	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws IOException
+	 */
 	@RequestMapping("/testInterface")
 	@ResponseBody
 	public Map getData(HttpServletRequest request , HttpServletResponse response) throws IOException{

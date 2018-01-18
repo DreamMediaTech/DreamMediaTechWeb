@@ -29,14 +29,5 @@ private VideoMapper videoMapper;
 		List<VideoProviderRequest> list=videoMapper.queryallapply();
 		return list;
 	}
-	/**
-	 * 后台查询单个申请表
-	 */
-	@Override
-	public VideoProviderRequest queryvideoapply(VideoProviderRequest videoProviderRequest) {
-		// TODO Auto-generated method stub
-		VideoProviderRequest vpr=videoMapper.queryvideoapply(videoProviderRequest);
-		return vpr;
-	}
-
+	
 }

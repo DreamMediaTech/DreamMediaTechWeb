@@ -2,11 +2,48 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dream.mapper.AgentMapper">
+<!-- 用于审核表 -->
 <resultMap id="AgentRequestMapper" type="AgentRequest">
 <id property="arId" column="ARid"></id>
 <result property="uId" column="Uid"></result>
 <result property="arState" column="ARstate" />
-<result property="arResponsibility" column="ARresponsibility" />
+<association property="arResponsibility" javaType="com.dream.pojo.User">
+   <id property="uId" column="Uid"></id>
+    <result property="uName" column="Uname"></result>
+     <result property="uSex" column="Usex"></result>
+      <result property="uPhone" column="Upassword"></result>
+        <result property="ymId" column="YMid"></result>
+</association>
+<association property="user" javaType="com.dream.pojo.User">
+   <id property="uId" column="Uid"></id>
+    <result property="uName" column="Uname"></result>
+     <result property="uSex" column="Usex"></result>
+      <result property="uPhone" column="Upassword"></result>
+        <result property="ymId" column="YMid"></result>
+</association>
+</resultMap>
+<!-- 用于查询代理商 -->
+<resultMap id="AgentsMapper" type="Agents">
+<id property="agId" column="AGid"></id>
+<result property="area" column="area"></result>
+<result property="firstRebate" column="FirstRebate" />
+<result property="secondRebate" column="SecondRebate" />
+<association property="member" javaType="com.dream.pojo.Member">
+  <id property="mId" column="Mid"></id>
+<result property="birthday" column="Birthday"></result>
+<result property="mail" column="Mail"></result>
+<result property="alipay" column="Alipay"></result>
+<result property="wechat" column="wechat"></result>
+<result property="reBate" column="Rebate"></result>
+<result property="introducer" column="Introducer"></result>
+<result property="firstSuperior" column="FisrstSuperior"></result>
+<result property="secondSuperior" column="SeconSuperior"></result>
+<result property="bonusIntegral" column="BonusIntegral"></result>
+<result property="consumptionIntegral" column="ConsumptionIntegral"></result>
+<result property="sharingIntegral" column="SharingIntegral"></result>
+<result property="superQuota" column="SuperQuota"></result>
+<result property="iId" column="Iid"></result>
+</association>
 <association property="user" javaType="com.dream.pojo.User">
    <id property="uId" column="Uid"></id>
     <result property="uName" column="Uname"></result>
@@ -18,16 +55,21 @@
 
 <!-- 后台进行申请表修改 -->
 <update id="updateAgentapply" parameterType="AgentRequest">
-update  agentrequest set arstate=#{arState} , ARresponsibility=#{arResponsibility} where arid=#{arId}
+update  agentrequest set arstate=#{arState} , ARresponsibility=#{arResponsibility.uId} where arid=#{arId}
 </update>
 
 <!-- 后台查询所有申请表 -->
 <select id="queryallapply" resultMap="AgentRequestMapper">
-select * from AgentRequest a,user u where u.uId=a.uId
+select * from AgentRequest a,user u ,user u1  where u.uId=a.uId and u1.uId=a.arResponsibility
 </select>
-<!-- 后台查询单个申请表 -->
-<select id="queryagentapply" resultMap="AgentRequestMapper" parameterType="AgentRequest">
-select * from AgentRequest a,user u,user u1   where arid=#{arId}   and u.Uid=a.ARresponsibility 
-and a.Uid=u1.Uid
+
+<!-- 查询所有代理商的信息 -->
+<select id="queryallagents" resultMap="AgentsMapper">
+select * from agents , user , member   where user.AGid=agents.AGid and member.Mid=user.Mid
+</select>
+
+<!-- 查询单个代理商的信息 -->
+<select id="queryagents" resultMap="AgentsMapper">
+select * from agents , user , member   where user.AGid=agents.AGid and member.Mid=user.Mid and  agents.AGid=#{agId} 
 </select>
 </mapper>

@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dream.mapper.VideoMapper">
-<resultMap id="VideoProviderRequestMapper" type="VideoProviderRequest">
-<id property="vprId" column="VPRid"></id>
-<result property="uId" column="Uid" />
-<result property="vprState" column="VPRstate" />
-<association property="vprResponsibility" javaType="com.dream.pojo.User">
+<mapper namespace="com.dream.mapper.BigWithdrawalsMapper">
+
+<resultMap id="BigWithDrawalsMapper" type="BigWithDrawals">
+<id property="bwId" column="BWid"></id>
+
+<result property="money" column="Money" />
+<result property="bwTime" column="BWtime" />
+<result property="bwState" column="BWstate" />
+<association property="bwRespinsibility" javaType="com.dream.pojo.User">
    <id property="uId" column="Uid"></id>
     <result property="uName" column="Uname"></result>
      <result property="uSex" column="Usex"></result>
@@ -22,13 +25,14 @@
 </association>
 </resultMap>
 
-<!-- 后台修改申请表 -->
-<update id="updateVideoapply" parameterType="VideoProviderRequest">
-update videoproviderrequest  set VPRresponsibility=#{vprResponsibility.uId} ,vprstate=#{vprState} where vprid=#{vprId} 
+<!-- 后台进行申请表修改 -->
+<update id="updateapply" parameterType="BigWithDrawals">
+update  BigWithDrawals set BWstate=#{bwState} , BWresponsibility=#{bwRespinsibility.uId} where BWid=#{bwId}
 </update>
+
 <!-- 后台查询所有申请表 -->
-<select id="queryallapply" resultMap="VideoProviderRequestMapper">
-select * from videoproviderrequest v,user u,user u1 where v.Uid=u1.Uid  and v.VPRresponsibility=u.Uid
+<select id="queryallapply" resultMap="BigWithDrawalsMapper">
+select * from BigWithDrawals a,user u ,user u1  where u.uId=a.uId and u1.uId=a.BWresponsibility
 </select>
 
 </mapper>

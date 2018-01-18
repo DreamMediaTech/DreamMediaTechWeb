@@ -27,7 +27,7 @@ public class VideoTest {
 		videoProviderRequest.setVprId(180117);
 		User user=new User();
 		user.setuId(2);
-		videoProviderRequest.setVprRespinsibility(user);
+		videoProviderRequest.setVprResponsibility(user);
 		videoProviderRequest.setVprState("通过");
 		VideoService videoService =(VideoService) ac.getBean("videoservice");
 		videoService.updateVideoapply(videoProviderRequest);
@@ -44,14 +44,5 @@ public class VideoTest {
 			System.out.println(videoProviderRequest.getVprState());
 		}
 	}
-	/**
-	 * 查询某个特定的申请
-	 */
-	@Test
-	public void queryvideoapply() {
-		VideoProviderRequest videoProviderRequest=new VideoProviderRequest();
-		videoProviderRequest.setVprId(180117);
-		VideoService videoService =(VideoService) ac.getBean("videoservice");
-		videoProviderRequest=videoService.queryvideoapply(videoProviderRequest);
-	}
+	
 }
