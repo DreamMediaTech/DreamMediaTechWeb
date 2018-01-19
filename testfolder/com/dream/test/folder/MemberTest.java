@@ -28,7 +28,7 @@ public class MemberTest {
 	@Test
 	public void querymember() {
 		Member member=new Member();
-		member.setmId(2018);
+		member.setmId(800);
 		MemberService memberService=(MemberService)ac.getBean("memberservice");
 		member=memberService.querymember(member);
 		System.out.println(member.getUser().getYmId());

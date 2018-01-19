@@ -23,8 +23,6 @@
     <result property="uName" column="Uname"></result>
      <result property="uSex" column="Usex"></result>
       <result property="uPhone" column="Upassword"></result>
-       <result property="mId" column="Mid"></result>
-        <result property="agId" column="AGid"></result>
         <result property="ymId" column="YMid"></result>
 </association>
 </resultMap>

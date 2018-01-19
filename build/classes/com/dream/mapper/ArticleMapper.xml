@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dream.mapper.ArticleMapper">
+<resultMap id="ArticleMapper" type="Article">
+<id property="aId" column="Aid"></id>
+<result property="aTitle" column="Atitle" />
+<result property="aContent" column="Acontent" />
+<result property="clicks" column="Clicks" />
+<result property="aTime" column="Atime" />
+<association property="user" javaType="com.dream.pojo.User">
+   <id property="uId" column="Uid"></id>
+    <result property="uName" column="Uname"></result>
+     <result property="uSex" column="Usex"></result>
+      <result property="uPhone" column="Upassword"></result>
+        <result property="ymId" column="YMid"></result>
+</association>
+</resultMap>
+<!-- 新增文章 -->
+<insert id="insertarticle" parameterType="Article">
+insert into article values(#{aId},#{aTitle},#{aContent},#{clicks},#{aTime},#{author}) 
+</insert>
+<!-- 删除某篇 -->
+<delete id="deletearticle" parameterType="int">
+delete from article where aid=#{aId}
+</delete>
+<!-- 查询所有文章 -->
+<select id="queryallarticle" resultMap="ArticleMapper">
+select * from article a,user u where a.Uid=u.Uid 
+</select>
+<!-- 查询发布人的所有文章 -->
+<select id="queryarticlebyid" resultMap="ArticleMapper">
+select * from article a,user u where a.Uid=u.Uid and a.Uid=#{user.uId}
+</select>
+<!-- 查询谋篇文章内容 -->
+<select id="queryarticle" resultMap="ArticleMapper">
+select * from article a,user u where a.Uid=u.Uid and Aid=#{aId}
+</select>
+</mapper>

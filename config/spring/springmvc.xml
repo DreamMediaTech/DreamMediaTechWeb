@@ -28,7 +28,7 @@
   
   
   <!-- 这是个日期转换器  -->
-  <!--  
+
 	  	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 	  		<property name="converters">
 	  			<list>
@@ -36,7 +36,7 @@
 	  			</list>
 	  		</property>
 	  	</bean>
-	  	-->
+	  
       <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
       	<property name="prefix" value="/WEB-INF/page/" />
       	<property name="suffix" value=".jsp"/>
