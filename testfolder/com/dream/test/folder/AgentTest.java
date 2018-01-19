@@ -21,18 +21,18 @@ public class AgentTest {
 	}
 	/**
 	 * 后台申请表修改测试
-	 */
+	
 	@Test
 	public void updataAgentapply() {
 		AgentRequest agentRequest= new AgentRequest();
-		agentRequest.setArId(180117);
-		agentRequest.setArState("拒绝1");
+		agentRequest.setArId(999);
+		agentRequest.setArState("拒绝");
 		User user =new User();
 		user.setuId(2);
 		agentRequest.setArResponsibility(user);
 		AgentService agentService=(AgentService) ac.getBean("agentservice");
 		agentService.updateAgentapply(agentRequest);
-	}
+	} */
 	@Test 
 	public void queryallapply() {
 		AgentService agentService=(AgentService) ac.getBean("agentservice");
@@ -62,4 +62,16 @@ public class AgentTest {
 				agents= agentService.queryagents(agents);
 				System.out.println(agents.getUser().getuId());
 			}
+			/**
+			 * app相应申请成为代理商 测试通过
+			@Test
+			public void insetagents() {
+				AgentRequest agentRequest=new AgentRequest();
+				agentRequest.setArId(999);
+				agentRequest.setArState("待审核");
+				agentRequest.setuId(1);
+				AgentService agentService =(AgentService)ac.getBean("agentservice");
+				agentService.insertagent(agentRequest);
+			}
+			*/
 }

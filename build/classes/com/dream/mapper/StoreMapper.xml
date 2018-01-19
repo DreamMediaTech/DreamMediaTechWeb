@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dream.mapper.AgentMapper">
+<mapper namespace="com.dream.mapper.StoreMapper">
 <!-- 用于审核表 -->
 <resultMap id="AgentRequestMapper" type="AgentRequest">
 <id property="arId" column="ARid"></id>
@@ -72,8 +72,4 @@ select * from agents , user , member   where user.AGid=agents.AGid and member.Mi
 <select id="queryagents" resultMap="AgentsMapper">
 select * from agents , user , member   where user.AGid=agents.AGid and member.Mid=user.Mid and  agents.AGid=#{agId} 
 </select>
-<!-- app响应申请成为代理商 -->
-<insert id="insertagent" parameterType="AgentRequest">
-insert into AgentRequest values(#{arId},#{arState},#{uId},null)
-</insert>
 </mapper>

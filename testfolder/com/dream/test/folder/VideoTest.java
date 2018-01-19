@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.dream.pojo.AgentRequest;
 import com.dream.pojo.User;
 import com.dream.pojo.VideoProviderRequest;
 import com.dream.service.impl.VideoService;
@@ -20,18 +21,18 @@ public class VideoTest {
 	}
 	/**
 	 * 测试通过申请处理
-	 */
+	
 	@Test
 	public void updateVideoapply() {
 		VideoProviderRequest videoProviderRequest=new VideoProviderRequest();
-		videoProviderRequest.setVprId(180117);
+		videoProviderRequest.setVprId(999);
 		User user=new User();
 		user.setuId(2);
 		videoProviderRequest.setVprResponsibility(user);
 		videoProviderRequest.setVprState("通过");
 		VideoService videoService =(VideoService) ac.getBean("videoservice");
 		videoService.updateVideoapply(videoProviderRequest);
-	}
+	} */
 	/**
 	 * 查询所有申请
 	 */
@@ -44,5 +45,16 @@ public class VideoTest {
 			System.out.println(videoProviderRequest.getVprState());
 		}
 	}
-	
+	/**
+	 * app请求成为视频创作者 ,测试通过
+	 
+	@Test
+	public void insertVPR() {
+		VideoProviderRequest videoProviderRequest =new VideoProviderRequest();
+		videoProviderRequest.setuId(1);
+		videoProviderRequest.setVprId(999);
+		videoProviderRequest.setVprState("待审核");
+		VideoService videoService =(VideoService) ac.getBean("videoservice");
+		videoService.insertVRP(videoProviderRequest);
+	}*/
 }

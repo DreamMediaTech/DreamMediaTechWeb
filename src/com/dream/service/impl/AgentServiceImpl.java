@@ -48,6 +48,15 @@ public class AgentServiceImpl implements AgentService{
 		agents= agentMapper.queryagents(agents);
 		return agents;
 	}
+	/**
+	 * app相应申请成为代理商业
+	 */
+	@Override
+	public void insertagent(AgentRequest agentRequest) {
+		// TODO Auto-generated method stub
+		agentMapper.insertagent(agentRequest);
+		
+	}
 
 
 }

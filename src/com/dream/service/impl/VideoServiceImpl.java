@@ -29,5 +29,14 @@ private VideoMapper videoMapper;
 		List<VideoProviderRequest> list=videoMapper.queryallapply();
 		return list;
 	}
+	/**
+	 * app申请成为视频创作者
+	 */
+	@Override
+	public void insertVRP(VideoProviderRequest videoProviderRequest) {
+		// TODO Auto-generated method stub
+		videoMapper.insertVRP(videoProviderRequest);
+		
+	}
 	
 }

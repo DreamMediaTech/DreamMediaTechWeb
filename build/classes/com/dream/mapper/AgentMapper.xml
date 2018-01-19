@@ -72,4 +72,8 @@ select * from agents , user , member   where user.AGid=agents.AGid and member.Mi
 <select id="queryagents" resultMap="AgentsMapper">
 select * from agents , user , member   where user.AGid=agents.AGid and member.Mid=user.Mid and  agents.AGid=#{agId} 
 </select>
+<!-- app响应申请成为代理商 -->
+<insert id="insertagent" parameterType="AgentRequest">
+insert into AgentRequest values(#{arId},#{arState},#{uId},null)
+</insert>
 </mapper>

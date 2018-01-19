@@ -30,5 +30,8 @@ update videoproviderrequest  set VPRresponsibility=#{vprResponsibility.uId} ,vpr
 <select id="queryallapply" resultMap="VideoProviderRequestMapper">
 select * from videoproviderrequest v,user u,user u1 where v.Uid=u1.Uid  and v.VPRresponsibility=u.Uid
 </select>
-
+<!-- app请求申请为视频创作者 -->
+<insert id="insertVRP" parameterType="VideoProviderRequest">
+insert into VideoProviderRequest values(#{vprId},#{vprState},#{uId},null)
+</insert>
 </mapper>

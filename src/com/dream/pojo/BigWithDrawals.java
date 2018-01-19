@@ -2,11 +2,14 @@ package com.dream.pojo;
 
 public class BigWithDrawals {
 	private int bwId;
+
 	private User user;
 	private int money;
 	private String bwTime;
 	private String bwState;
 	private User bwRespinsibility;
+	
+	
 	public int getBwId() {
 		return bwId;
 	}
