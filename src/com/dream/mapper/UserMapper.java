@@ -12,5 +12,13 @@ public interface UserMapper {
 		
 		public void defineUserToRole(@Param("userid") int uid,@Param("Roleid") int rid);//给用户分配角色
 		
+		public void insertNewUser(User user);//创建新用户
 
+		public User queryUserByPhone(String phone);//根据电话号码查询用户信息
+		
+		public int checkPhone(String phone);//检查电话能否注册
+		
+		public void updateUser(User user);//修改用户信息
+		
+		public void updateUserPassword(User user);
 }

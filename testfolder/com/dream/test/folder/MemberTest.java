@@ -17,20 +17,29 @@ public class MemberTest {
 	/**
 	 * 测试查询所有会员信息包括user表
 	 */
+//	@Test
+//	public void queryallmember() {
+//		MemberService memberService=(MemberService)ac.getBean("memberservice");
+//		memberService.queryallmember();
+//	}
+//	/**
+//	 * 测试查询单个会员信息包括user表
+//	 */
+//	@Test
+//	public void querymember() {
+//		Member member=new Member();
+//		member.setmId(800);
+//		MemberService memberService=(MemberService)ac.getBean("memberservice");
+//		member=memberService.querymember(member);
+//		System.out.println(member.getUser().getYmId());
+//	}
+//	/**
+//	 * 测试创建新用户
+//	 */
 	@Test
-	public void queryallmember() {
+	public void createMember(){
 		MemberService memberService=(MemberService)ac.getBean("memberservice");
-		memberService.queryallmember();
-	}
-	/**
-	 * 测试查询单个会员信息包括user表
-	 */
-	@Test
-	public void querymember() {
-		Member member=new Member();
-		member.setmId(800);
-		MemberService memberService=(MemberService)ac.getBean("memberservice");
-		member=memberService.querymember(member);
-		System.out.println(member.getUser().getYmId());
+		Member newMember = memberService.createMember(null);
+		System.out.println(newMember.getmId());
 	}
 }

@@ -2,6 +2,41 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dream.mapper.UserMapper">
+<resultMap type="com.dream.pojo.User" id="UserMap">
+   <id property="uId" column="Uid"></id>
+    <result property="uName" column="Uname"></result>
+    <result property="uSex" column="Usex"></result>
+    <result property="uPhone" column="Upassword"></result>
+    <result property="ymId" column="YMid"></result>
+    <association property="memberInformation" javaType="com.dream.pojo.Member">
+        <id property="mId" column="Mid"></id>
+        <result property="birthday" column="Birthday"></result>
+        <result property="mail" column="Mail"></result>
+        <result property="alipay" column="Alipay"></result>
+        <result property="wechat" column="wechat"></result>
+        <result property="introducer" column="Introducer"></result>
+        <result property="firstSuperior" column="FisrstSuperior"></result>
+        <result property="secondSuperior" column="SeconSuperior"></result>
+        <result property="bonusIntegral" column="BonusIntegral"></result>
+        <result property="consumptionIntegral" column="ConsumptionIntegral"></result>
+        <result property="sharingIntegral" column="SharingIntegral"></result>
+        <result property="superQuota" column="SuperQuota"></result>
+    </association>
+    <association property="agentsInformation" javaType="com.dream.pojo.Agents">
+        <id property="agId" column="AGid"></id>
+        <result property="area" column="area"></result>
+        <result property="firstRebate" column="FirstRebate" />
+        <result property="secondRebate" column="SecondRebate" />
+    </association>
+</resultMap>
+    <select id="getUserById" resultMap="UserMap">
+	select u.Uid,u.Uname ,u.Usex,u.Upassword,u.YMid,
+	m.Mid,m.Birthday,m.Mail,m.wechat,m.Introducer,m.FirstSuperior,m.SecondSuperior,m.BonusIntegral,m.ConsumptionIntegral,m.SharingIntegral,m.SuperQuota,
+	ag.AGid,ag.area,ag.FirstRebate,ag.SecondRebate
+	from user u,member m,agents ag 
+	where u.Mid = m.Mid and u.AGid = ag.AGid and u.uId = #{uId}
+	</select>
+
 	<select id="queryuser" resultType="User">
 	select * from user where YMid=#{ymId}
 	</select>
@@ -13,5 +48,23 @@
 	<insert id="defineUserToRole" >
 	insert into user_role(uid,rid) values(#{userid},#{Roleid})
 	</insert>
+	
+	<insert id="insertNewUser" useGeneratedKeys="true" keyProperty="uId">
+	    insert into user(Uphone,Upassword,YMid) values(#{uPhone},#{uPassword},#{ymId})
+	</insert>
+	
+	<select id="queryUserByPhone" resultType="User">
+	select * from user where Uphone = #{uPhone}
+	</select>
+	
+	<select id="checkPhone" resultType="Integer">
+	select count(*) from user where Uphone = #{phone}
+	</select>
+	
+	<update id="updateUser">
+	update user set Uname=#{uName},Usex=#{uSex},Uphone=#{uPhone},Mid=#{memberInformation.mId},AGid=#{agentsInformation.agId},YMid=#{ymId} where Uid=#{uId}
+	</update>
+	
+
 	
 </mapper>

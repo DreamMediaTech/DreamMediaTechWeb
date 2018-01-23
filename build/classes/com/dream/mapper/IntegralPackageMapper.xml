@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dream.mapper.IntegralPackageMapper">
+
+<select id="insertNewPackage" >
+insert into integralpackage (PName,Price,BonusIntegral,ConsumptionIntegral,SharingIntegral,SuperQuota) 
+values(#{pName},#{price},#{bonusIntegral},#{consumptionIntegral},#{sharingIntegral},#{superQuota});
+</select>
+
+<insert id="insertNewPurchaseRecord">
+insert into packagepurchaserecord (Pid,Rtime,Uid) values(#{integralPackage.pId},#{rTime},#{user.uId})
+</insert>
+<update id="buyPackage">
+update member set BonusIntegral=#{bonusIntegral},ConsumptionIntegral=#{consumptionIntegral},SharingIntegral = #{sharingIntegral} where Mid = #{mId}
+</update>
+
+<select id="getAllPackage" resultType="com.dream.pojo.IntegralPackage">
+    select * from integralpackage
+</select>
+
+</mapper>

@@ -8,6 +8,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.dream.pojo.Role;
 import com.dream.pojo.User;
 import com.dream.service.impl.UserService;
+import com.dream.util.Encoder;
 
 
 
@@ -36,11 +37,41 @@ public class UserTest {
 //		userService.getRoleById(1);
 //		
 //	}
-	
+//	
+//	@Test
+//	public void defineUserToRole(){
+//		UserService userService=(UserService) ac.getBean("userservice");
+//		userService.defineRoleToUser(1, 1);
+//	}
+//	
+//	@Test
+//	public void register(){
+//		UserService userService=(UserService) ac.getBean("userservice");
+//		if(userService.checkPhone("12345")){
+//			userService.registerUser("12345", Encoder.EncoderByMd5("456"),null);
+//		}
+//	}
 	@Test
-	public void defineUserToRole(){
+	public void registerByShare(){
 		UserService userService=(UserService) ac.getBean("userservice");
-		userService.defineRoleToUser(1, 1);
+		if(userService.checkPhone("114")){
+			User user  = new User();
+			user.setuId(1);
+			userService.registerUser("114", Encoder.EncoderByMd5("456"),user);
+		}
 	}
+//	
+//	@Test
+//	public void checkPhoneTest(){
+//		UserService userService=(UserService) ac.getBean("userservice");
+//		System.out.println(userService.checkPhone("123456"));
+//	}
+//	
+//	@Test
+//	public void login(){
+//		UserService userService=(UserService) ac.getBean("userservice");
+//		userService.appLogin("1234", Encoder.EncoderByMd5("456"));
+//	}
 	
+
 }

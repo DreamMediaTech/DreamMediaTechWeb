@@ -33,6 +33,25 @@ public Member querymember(Member member) {
 	member=memberMapper.querymember(member);
 	return member;
 }
+/**
+ * 创建新会员
+ */
+@Override
+public Member createMember(User Introducer) {
+	Member member = new Member();
+	member.setBonusIntegral(0);
+	member.setConsumptionIntegral(0);
+	member.setSharingIntegral(0);
+	member.setSuperQuota(0);
+	if(Introducer!=null){
+		member.setIntroducer(Introducer.getuId());
+		memberMapper.createMemberByShare(member);
+	}else{
+		memberMapper.createMember(member);
+	}
+	return member;
+}
 
+ 
  
 }
