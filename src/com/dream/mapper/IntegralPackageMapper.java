@@ -11,7 +11,9 @@ public interface IntegralPackageMapper {
 	
 	public void insertNewPackage(IntegralPackage integralPackage);//添加新礼包
 	
-	public void buyPackage(Member member);//修改积分
+	public void updatePackage(IntegralPackage integralPackage);//修改大礼包
+	
+	public void buyPackage(Member member);//修改个人积分
 	
 	public void insertNewPurchaseRecord(PackagePurchaseRecord packagePurchaseRecord); //增加购买记录
 	

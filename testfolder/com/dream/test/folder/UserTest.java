@@ -21,14 +21,14 @@ public class UserTest {
 	/**
 	 * 测试根据uid查询进行登陆
 	 */
-//	@Test
-//	public void queryuser() {
-//		User user=new User();
-//		user.setYmId("ym001");
-//		UserService userService=(UserService) ac.getBean("userservice");
-//		user=userService.queryuser(user);
-//		System.out.println(user.getuName()+"\t"+user.getuPhone()+"\t"+user.getuSex()  );
-//	}
+	@Test
+	public void queryuser() {
+		User user=new User();
+	user.setYmId("ym001");
+	UserService userService=(UserService) ac.getBean("userservice");
+		user=userService.queryuser(user);
+		System.out.println(user.getuName()+"\t"+user.getuPhone()+"\t"+user.getuSex()  );
+	}
 //	
 //	@Test
 //	public void getRole() {
@@ -51,6 +51,9 @@ public class UserTest {
 //			userService.registerUser("12345", Encoder.EncoderByMd5("456"),null);
 //		}
 //	}
+	/**
+	 * 
+	 
 	@Test
 	public void registerByShare(){
 		UserService userService=(UserService) ac.getBean("userservice");
@@ -60,7 +63,7 @@ public class UserTest {
 			userService.registerUser("114", Encoder.EncoderByMd5("456"),user);
 		}
 	}
-//	
+//	*/
 //	@Test
 //	public void checkPhoneTest(){
 //		UserService userService=(UserService) ac.getBean("userservice");

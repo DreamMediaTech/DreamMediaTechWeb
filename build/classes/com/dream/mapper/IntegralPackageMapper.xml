@@ -19,4 +19,27 @@ update member set BonusIntegral=#{bonusIntegral},ConsumptionIntegral=#{consumpti
     select * from integralpackage
 </select>
 
+<update id="updatePackage" parameterType="IntegralPackage">
+update integralpackage  set
+<if test="pName!=null and pName!=''">
+pName=#{pName},
+</if>
+<if test="price!=0">
+price=#{price},
+</if>
+<if test="bonusIntegral!=0">
+bonusIntegral=#{bonusIntegral},
+</if>
+<if test="consumptionIntegral!=0">
+consumptionIntegral=#{consumptionIntegral},
+</if>
+<if test="sharingIntegral!=0">
+sharingIntegral=#{sharingIntegral},
+</if>
+<if test="superQuota!=0">
+superQuota=#{superQuota}
+</if>
+where pId=#{pId}
+</update>
+
 </mapper>

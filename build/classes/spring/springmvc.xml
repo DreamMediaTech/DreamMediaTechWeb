@@ -22,12 +22,13 @@
 		        </bean>
 		    </mvc:message-converters>
 		</mvc:annotation-driven>
+		
 		<!-- 对于注解的Handler可以单个配置实际开发中建议使用组件扫描	.controller的包 -->		
       	<context:component-scan base-package="com.dream.controller"></context:component-scan>
 
   
   
-  <!-- 这是个日期转换器  -->
+  <!-- 这是个日期转换器  
 
 	  	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 	  		<property name="converters">
@@ -35,11 +36,11 @@
 	  				<bean class="com.oa.converter.DateConverter"></bean>
 	  			</list>
 	  		</property>
-	  	</bean>
-	  
+	  	</bean>-->
+	  <!--  这个是用来访问webinf，，，，已弃用
       <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-      	<property name="prefix" value="/WEB-INF/page/" />
+      	<property name="prefix" value="/" />
       	<property name="suffix" value=".jsp"/>
       </bean>
-
+-->
 </beans>          
