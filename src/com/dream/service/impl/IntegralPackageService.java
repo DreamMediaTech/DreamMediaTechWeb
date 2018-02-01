@@ -18,4 +18,5 @@ public interface IntegralPackageService {
 	
 	public List<IntegralPackage> getAllPackage();//获取所有礼包
 
+	public void deletePackage(int pid);//删除礼包
 }

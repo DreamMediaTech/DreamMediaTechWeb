@@ -11,7 +11,8 @@ public class VideoProviderRequest {
 	}
 	private User user;
 	private String vprState;
-	private User vprResponsibility;
+	private int vprResponsibility;
+	private String vprName;
 	public int getVprId() {
 		return vprId;
 	}
@@ -25,11 +26,18 @@ public class VideoProviderRequest {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public User getVprResponsibility() {
+	
+	public int getVprResponsibility() {
 		return vprResponsibility;
 	}
-	public void setVprResponsibility(User vprResponsibility) {
+	public void setVprResponsibility(int vprResponsibility) {
 		this.vprResponsibility = vprResponsibility;
+	}
+	public String getVprName() {
+		return vprName;
+	}
+	public void setVprName(String vprName) {
+		this.vprName = vprName;
 	}
 	public String getVprState() {
 		return vprState;

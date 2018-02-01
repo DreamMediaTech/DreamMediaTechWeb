@@ -59,7 +59,13 @@ public class IntegralPackageServiceImpl implements IntegralPackageService{
 	public void updatePackage(IntegralPackage integralPackage) {
 		// TODO Auto-generated method stub
 		integralPackageMapper.updatePackage(integralPackage);
-	};
+	}
+
+	@Override
+	public void deletePackage(int pid) {
+		// TODO Auto-generated method stub
+		integralPackageMapper.deletePackage(pid);
+	}
 	
 	
 }

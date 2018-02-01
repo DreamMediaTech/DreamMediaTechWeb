@@ -4,9 +4,13 @@
 <mapper namespace="com.dream.mapper.IntegralPackageMapper">
 
 <select id="insertNewPackage" >
-insert into integralpackage (PName,Price,BonusIntegral,ConsumptionIntegral,SharingIntegral,SuperQuota) 
-values(#{pName},#{price},#{bonusIntegral},#{consumptionIntegral},#{sharingIntegral},#{superQuota});
+insert into integralpackage (PName,Price,BonusIntegral,ConsumptionIntegral,SharingIntegral,vipQuota) 
+values(#{pName},#{price},#{bonusIntegral},#{consumptionIntegral},#{sharingIntegral},#{vipQuota});
 </select>
+
+<delete id="deletePackage" parameterType="int">
+delete from  integralpackage where Pid=#{pId}
+</delete>
 
 <insert id="insertNewPurchaseRecord">
 insert into packagepurchaserecord (Pid,Rtime,Uid) values(#{integralPackage.pId},#{rTime},#{user.uId})

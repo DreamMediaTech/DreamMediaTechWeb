@@ -7,7 +7,7 @@ public class IntegralPackage {
 	private int bonusIntegral;
 	private int consumptionIntegral;
 	private int sharingIntegral;
-	private int superQuota;
+	private int vipQuota;
 	public int getpId() {
 		return pId;
 	}
@@ -44,11 +44,11 @@ public class IntegralPackage {
 	public void setSharingIntegral(int sharingIntegral) {
 		this.sharingIntegral = sharingIntegral;
 	}
-	public int getSuperQuota() {
-		return superQuota;
+	public int getvipQuota() {
+		return vipQuota;
 	}
-	public void setSuperQuota(int superQuota) {
-		this.superQuota = superQuota;
+	public void setvipQuota(int vipQuota) {
+		this.vipQuota = vipQuota;
 	}
 	
 }

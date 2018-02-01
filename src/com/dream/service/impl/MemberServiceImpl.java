@@ -42,7 +42,6 @@ public Member createMember(User Introducer) {
 	member.setBonusIntegral(0);
 	member.setConsumptionIntegral(0);
 	member.setSharingIntegral(0);
-	member.setSuperQuota(0);
 	if(Introducer!=null){
 		member.setIntroducer(Introducer.getuId());
 		memberMapper.createMemberByShare(member);
@@ -50,6 +49,18 @@ public Member createMember(User Introducer) {
 		memberMapper.createMember(member);
 	}
 	return member;
+}
+@Override
+public void updateMember(Member member) {
+	// TODO Auto-generated method stub
+	memberMapper.updateMember(member);
+	
+}
+@Override
+public List<Member> querydimmember(String dim) {
+	// TODO Auto-generated method stub
+	List<Member> list =memberMapper.querydimmember(dim);
+	return list;
 }
 
  

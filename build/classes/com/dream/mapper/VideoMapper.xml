@@ -6,18 +6,13 @@
 <id property="vprId" column="VPRid"></id>
 <result property="uId" column="Uid" />
 <result property="vprState" column="VPRstate" />
-<association property="vprResponsibility" javaType="com.dream.pojo.User">
-   <id property="uId" column="Uid"></id>
-    <result property="uName" column="Uname"></result>
-     <result property="uSex" column="Usex"></result>
-      <result property="uPhone" column="Upassword"></result>
-        <result property="ymId" column="YMid"></result>
-</association>
+<result property="vprResponsibility" column="VPRresponsibility" />
+<result property="vprName" column="VPRname" />
 <association property="user" javaType="com.dream.pojo.User">
    <id property="uId" column="Uid"></id>
     <result property="uName" column="Uname"></result>
      <result property="uSex" column="Usex"></result>
-      <result property="uPhone" column="Upassword"></result>
+      <result property="uPhone" column="Uphone"></result>
         <result property="ymId" column="YMid"></result>
 </association>
 </resultMap>

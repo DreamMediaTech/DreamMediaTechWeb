@@ -41,6 +41,6 @@ public class LoginController {
 		else {modelAndView.setViewName("/login.jsp");}
 		return modelAndView;
 	}
-	
+
 }
 

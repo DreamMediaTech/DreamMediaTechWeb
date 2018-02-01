@@ -7,18 +7,13 @@
 <id property="arId" column="ARid"></id>
 <result property="uId" column="Uid"></result>
 <result property="arState" column="ARstate" />
-<association property="arResponsibility" javaType="com.dream.pojo.User">
-   <id property="uId" column="Uid"></id>
-    <result property="uName" column="Uname"></result>
-     <result property="uSex" column="Usex"></result>
-      <result property="uPhone" column="Upassword"></result>
-        <result property="ymId" column="YMid"></result>
-</association>
+<result property="arResponsibility" column="ARresponsibility" />
+<result property="arName" column="ARname" />
 <association property="user" javaType="com.dream.pojo.User">
    <id property="uId" column="Uid"></id>
     <result property="uName" column="Uname"></result>
      <result property="uSex" column="Usex"></result>
-      <result property="uPhone" column="Upassword"></result>
+      <result property="uPhone" column="Uphone"></result>
         <result property="ymId" column="YMid"></result>
 </association>
 </resultMap>
@@ -58,6 +53,10 @@
 update  agentrequest set arstate=#{arState} , ARresponsibility=#{arResponsibility.uId} where arid=#{arId}
 </update>
 
+<!-- 后台进行申请表修改 -->
+<update id="updateagents" parameterType="Agents">
+update  Agents set area=#{area} , FirstRebate=#{firstRebate} ,SecondRebate=#{secondRebate}  where agid=#{agId}
+</update>
 <!-- 后台查询所有申请表 -->
 <select id="queryallapply" resultMap="AgentRequestMapper">
 select * from AgentRequest a,user u ,user u1  where u.uId=a.uId and u1.uId=a.arResponsibility

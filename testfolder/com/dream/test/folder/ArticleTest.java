@@ -66,11 +66,11 @@ public class ArticleTest {
 	} */
 	/**
 	 * 测试查询某个文章所有内容
-	 */
+	 
 	@Test public void quertarticle() {
 		Article article =new Article();
 		article.setaId(56);
 		ArticleService articleService= (ArticleService) ac.getBean("articleservice");
 		articleService.queryarticle(article);
-	}
+	}*/
 }

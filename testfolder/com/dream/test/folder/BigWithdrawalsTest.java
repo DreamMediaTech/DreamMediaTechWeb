@@ -2,6 +2,8 @@ package com.dream.test.folder;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +22,7 @@ public class BigWithdrawalsTest {
 	}
 	/**
 	 * 进行提现订单修改
-	*/
+	
 	@Test 
 	public void updateapply() {
 		User user = new User();
@@ -31,15 +33,21 @@ public class BigWithdrawalsTest {
 		bigWithDrawals.setBwId(999);
 		BigWithdrawalsService bigWithdrawalsService =(BigWithdrawalsService)ac.getBean("bigwithdrawalsservice");
 		bigWithdrawalsService.updateapply(bigWithDrawals);
-	} 
+	} */
 	/**
 	 * 进行订单查询
-	 
+	 */
 	@Test
 	public void queryallapply() {
 		BigWithdrawalsService bigWithdrawalsService =(BigWithdrawalsService)ac.getBean("bigwithdrawalsservice");
-		bigWithdrawalsService.queryallapply();
-	}*/
+		
+		List<BigWithDrawals> list= bigWithdrawalsService.queryallapply();
+		for (Iterator iterator = list.iterator(); iterator.hasNext();) {
+			BigWithDrawals bigWithDrawals = (BigWithDrawals) iterator.next();
+			
+			System.out.println(bigWithDrawals.getuId().getuName());
+		}
+	}
 	/**
 	 * app响应提出申请提现  测试通过
 	 

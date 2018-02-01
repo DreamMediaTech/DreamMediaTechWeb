@@ -8,19 +8,12 @@
 <result property="money" column="Money" />
 <result property="bwTime" column="BWtime" />
 <result property="bwState" column="BWstate" />
-<association property="bwRespinsibility" javaType="com.dream.pojo.User">
+<result property="bwName" column="BWname" />
+<result property="bwRespinsibility" column="BWrespinsibility" />
+<association property="uId"  javaType="com.dream.pojo.User">
    <id property="uId" column="Uid"></id>
     <result property="uName" column="Uname"></result>
-     <result property="uSex" column="Usex"></result>
-      <result property="uPhone" column="Upassword"></result>
-        <result property="ymId" column="YMid"></result>
-</association>
-<association property="user" javaType="com.dream.pojo.User">
-   <id property="uId" column="Uid"></id>
-    <result property="uName" column="Uname"></result>
-     <result property="uSex" column="Usex"></result>
-      <result property="uPhone" column="Upassword"></result>
-        <result property="ymId" column="YMid"></result>
+     <result property="mId" column="Mid"/>
 </association>
 </resultMap>
 
@@ -31,7 +24,7 @@ update  BigWithDrawals set BWstate=#{bwState} , BWresponsibility=#{bwRespinsibil
 
 <!-- 后台查询所有申请表 -->
 <select id="queryallapply" resultMap="BigWithDrawalsMapper">
-select * from BigWithDrawals a,user u ,user u1  where u.uId=a.uId and u1.uId=a.BWresponsibility
+select * from BigWithDrawals a,user u ,user u1  where u1.uId=a.BWresponsibility  and u.uId=a.uId
 </select>
 <!-- app请求提现操作 -->
 <insert id ="insertbwd" parameterType="BigWithDrawals">

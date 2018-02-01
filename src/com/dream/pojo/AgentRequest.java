@@ -4,7 +4,8 @@ public class AgentRequest {
 	private int arId;
 	private int uId;
 	private String arState;
-	private User arResponsibility;
+	private int arResponsibility;
+	private String arName;
 	private User user;
 	public User getUser() {
 		return user;
@@ -30,11 +31,18 @@ public class AgentRequest {
 	public void setArState(String arState) {
 		this.arState = arState;
 	}
-	public User getArResponsibility() {
+	public int getArResponsibility() {
 		return arResponsibility;
 	}
-	public void setArResponsibility(User arResponsibility) {
+	public void setArResponsibility(int arResponsibility) {
 		this.arResponsibility = arResponsibility;
 	}
+	public String getArName() {
+		return arName;
+	}
+	public void setArName(String arName) {
+		this.arName = arName;
+	}
+	
 	
 }

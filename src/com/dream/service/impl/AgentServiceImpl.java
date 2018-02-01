@@ -57,6 +57,11 @@ public class AgentServiceImpl implements AgentService{
 		agentMapper.insertagent(agentRequest);
 		
 	}
+	@Override
+	public void updateagents(Agents agents) {
+		// TODO Auto-generated method stub
+		agentMapper.updateagents(agents);
+	}
 
 
 }

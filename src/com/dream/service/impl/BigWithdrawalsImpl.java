@@ -1,5 +1,6 @@
 package com.dream.service.impl;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ public class BigWithdrawalsImpl implements BigWithdrawalsService {
 	public List<BigWithDrawals> queryallapply() {
 		// TODO Auto-generated method stub
 		List<BigWithDrawals> list =bigWithdrawalsMapper.queryallapply();
+		
 		return list;
 	}
 	/**

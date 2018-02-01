@@ -9,31 +9,51 @@
 <result property="mail" column="Mail"></result>
 <result property="alipay" column="Alipay"></result>
 <result property="wechat" column="wechat"></result>
-<result property="introducer" column="Introducer"></result>
-<result property="firstSuperior" column="FisrstSuperior"></result>
-<result property="secondSuperior" column="SeconSuperior"></result>
 <result property="bonusIntegral" column="BonusIntegral"></result>
 <result property="consumptionIntegral" column="ConsumptionIntegral"></result>
 <result property="sharingIntegral" column="SharingIntegral"></result>
 <result property="superQuota" column="SuperQuota"></result>
-<result property="iId" column="Iid"></result>
+<result property="introducer" column="Introducer"/>
+<result property="firstSuperior" column="FirstSuperior"/>
+<result property="secondSuperior" column="SecondSuperior"/>
+<result property="drwaralQuota" column="DrwaralQuota"/>
 <association property="user" javaType="com.dream.pojo.User">
    <id property="uId" column="Uid"></id>
     <result property="uName" column="Uname"></result>
     <result property="uSex" column="Usex"></result>
-    <result property="uPhone" column="Upassword"></result>
+    <result property="uPhone" column="Uphone"></result>
 </association>
 </resultMap>
+
+<!-- 用户模糊查询 -->
+
+<select id="querydimmember" parameterType="String" resultMap="MemberMap">
+select * from member m , user u  where u.Mid=m.mid and m.mid like '%${dim}%' or u.uname like '%${dim}%' 
+</select>
+
+
+
 <select id="queryallmember" resultMap="MemberMap">
 select * from member m , user u where u.Mid=m.Mid
 </select>
 
 <select id="querymember" resultMap="MemberMap" parameterType="Member">
-select * from member m , user u where u.Mid=m.Mid and m.Mid=#{mId}
+select * from member m , user u where u.Mid=m.Mid and m.Mid=#{mId} 
 </select>
 
-<update id="updateMember" parameterType="Member">
-update member set Birthday = #{birthday},Mail = #{mail},Alipay = #{alipay},WeChat = #{wechat},BonusIntegral=#{bonusIntegral},ConsumptionIntergral=#{consumptionIntegral},SharingIntegral = #{sharingIntegral},Introducer = #{introducer} , FirstSuperior = #{firstSuperior},SecondSuperior = #{secondSuperior}
+<update id="updateMember" parameterType="Member" >
+update member <set>
+<if  test="bonusIntegral!=null and bonusIntegral!=''">
+ bonusIntegral = #{bonusIntegral},
+</if>
+<if  test="consumptionIntegral!=null and consumptionIntegral!=''">
+ ConsumptionIntergral = #{consumptionIntegral},
+</if>
+<if  test="sharingIntegral!=null and sharingIntegral!=''">
+ SharingIntegral = #{sharingIntegral},
+</if>
+</set>
+where Mid=#{mId}
 </update>
 
 <insert id="createMember" useGeneratedKeys="true" keyProperty="mId">
@@ -43,4 +63,5 @@ insert into member(BonusIntegral,ConsumptionIntegral,SharingIntegral,SuperQuota)
 <insert id="createMemberByShare" useGeneratedKeys="true" keyProperty="mId">
 insert into member(BonusIntegral,ConsumptionIntegral,SharingIntegral,SuperQuota,Introducer) values(#{bonusIntegral},#{consumptionIntegral},#{sharingIntegral},#{superQuota},#{introducer})
 </insert>
+
 </mapper>

@@ -2,15 +2,14 @@
     pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>圆梦中心</title>
-        <link type="text/css" href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link type="text/css" href="/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
-        <link type="text/css" href="/css/theme.css" rel="stylesheet">
-        <link type="text/css" href="/images/icons/css/font-awesome.css" rel="stylesheet">
+        <link type="text/css" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link type="text/css" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link type="text/css" href="${pageContext.request.contextPath}/css/theme.css" rel="stylesheet">
+        <link type="text/css" href="${pageContext.request.contextPath}/images/icons/css/font-awesome.css" rel="stylesheet">
         <link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600'
             rel='stylesheet'>
     </head>
@@ -22,28 +21,9 @@
                         <i class="icon-reorder shaded"></i></a><a class="brand" href="index.html">圆梦中心 </a>
                     <div class="nav-collapse collapse navbar-inverse-collapse">
                         <ul class="nav pull-right">
-                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">预留
-                                <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Item No. 1</a></li>
-                                    <li><a href="#">Don't Click</a></li>
-                                    <li class="divider"></li>
-                                    <li class="nav-header">Example Header</li>
-                                    <li><a href="#">A Separated link</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">管理员A</a></li>
-                            <li class="nav-user dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="images/user.png" class="nav-avatar" />
-                                <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Your Profile</a></li>
-                                    <li><a href="#">Edit Profile</a></li>
-                                    <li><a href="#">Account Settings</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Logout</a></li>
-                                </ul>
-                            </li>
+                         
+                            <li><a href="#">欢迎你：${sessionScope.uname}</a></li>
+                           	<li><a href="${pageContext.request.contextPath}/login.jsp">退出</a></li>
                         </ul>
                     </div>
                     <!-- /.nav-collapse -->
@@ -63,9 +43,9 @@
                                 </i>人员中心 <b class="label green pull-right">
                                     11</b>  </a>
                                     <ul id="account" class="collapse unstyled">
-                                        <li><a href="account-list.html"><i class="icon-inbox"></i>会员列表 <b class="label green pull-right">
+                                        <li><a href="${pageContext.request.contextPath}/accountController/getaccount.action"><i class="icon-inbox"></i>会员列表 <b class="label green pull-right">
                                     11</b>  </a></li>
-                                        <li><a href="agency-list.html"><i class="icon-inbox"></i>代理商列表 </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/agencyController/getagents.action"><i class="icon-inbox"></i>代理商列表 </a></li>
                                     </ul>
                                 </li>
                             
@@ -77,9 +57,9 @@
                                 </i>文章中心 <b class="label green pull-right">
                                     11</b>  </a>
                                     <ul id="article" class="collapse unstyled">
-                                        <li><a href="public-article.html"><i class="icon-inbox"></i>发布文章 <b class="label green pull-right">
+                                        <li><a href="${pageContext.request.contextPath}/articleController/skiparticle.action"><i class="icon-inbox"></i>发布文章 <b class="label green pull-right">
                                     11</b>  </a></li>
-                                        <li><a href="article-list.html"><i class="icon-inbox"></i>文章列表 </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/articleController/getarticle.action"><i class="icon-inbox"></i>文章列表 </a></li>
                                        
                                     </ul>
                                 </li>
@@ -91,9 +71,9 @@
                                 </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
                                 </i>视频中心 </a>
                                     <ul id="video" class="collapse unstyled">
-                                        <li><a href="video-upload.html"><i class="icon-inbox"></i>视频上传 </a></li>
-                                        <li><a href="video-list.html"><i class="icon-inbox"></i>视频列表 </a></li>
-                                        <li><a href="video-apply.html"><i class="icon-inbox"></i>申请记录 </a></li>
+                                        <li><a href="video-upload.jsp"><i class="icon-inbox"></i>视频上传 </a></li>
+                                        <li><a href="video-list.jsp"><i class="icon-inbox"></i>视频列表 </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/videoController/getapply.action"><i class="icon-inbox"></i>申请记录 </a></li>
                                     </ul>
                                 </li> 
                             </ul>
@@ -102,11 +82,12 @@
                                 </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
                                 </i>管理中心 </a>
                                     <ul id="agency" class="collapse unstyled">
-                                        <li><a href="edit-admin.html"><i class="icon-inbox"></i>运营用户信息 </a></li> 
-                                         <li><a href="withdraw.html"><i class="icon-inbox"></i>提现审核 </a></li> 
-                                          <li><a href="agency-apply.html"><i class="icon-inbox"></i>代理商审核 </a></li> 
-                                        <li><a href="rate.html"><i class="icon-inbox"></i>礼包及比例调整 </a></li>
-                                        	<li><a href="service.html"><i class="icon-inbox"></i>自助客服修改 </a></li>  
+                                        <li><a href="edit-admin.jsp"><i class="icon-inbox"></i>运营用户信息 </a></li> 
+                                         <li><a href="${pageContext.request.contextPath}/otherController/getallwithdrawal.action"><i class="icon-inbox"></i>提现审核 </a></li> 
+                                          <li><a href="${pageContext.request.contextPath}/agencyController/getapply.action"><i class="icon-inbox"></i>代理商审核 </a></li> 
+                                          <li><a href="${pageContext.request.contextPath}/videoController/getapply.action"><i class="icon-inbox"></i>视频创作者审核 </a></li> 
+                                        <li><a href="${pageContext.request.contextPath}/packageController/getallpackage.action"><i class="icon-inbox"></i>礼包及比例调整 </a></li>
+                                        	<li><a href="service.jsp"><i class="icon-inbox"></i>自助客服修改 </a></li>  
                                     </ul>
                                 </li>
                             </ul>    
@@ -144,7 +125,7 @@
                                 </li>
                             </ul>                        
                              <ul class="widget widget-menu unstyled">
-                             <li><a href="login.html"><i class="menu-icon icon-signout"></i>退出</a></li>
+                             <li><a href="login.jsp"><i class="menu-icon icon-signout"></i>退出</a></li>
                             </ul>
                         </div>
                         <!--/.sidebar-->
@@ -169,13 +150,13 @@
                 <b class="copyright">&copy; 2018 TMOD9527 - EGrappler </b>All rights reserved. More Templates 
             </div>
         </div>
-        <script src="/scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
-        <script src="/scripts/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
-        <script src="/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="/scripts/flot/jquery.flot.js" type="text/javascript"></script>
-        <script src="/scripts/flot/jquery.flot.resize.js" type="text/javascript"></script>
-        <script src="/scripts/datatables/jquery.dataTables.js" type="text/javascript"></script>
-        <script src="/scripts/common.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/scripts/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/scripts/flot/jquery.flot.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/scripts/flot/jquery.flot.resize.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/scripts/datatables/jquery.dataTables.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/scripts/common.js" type="text/javascript"></script>
       
     </body>
 </html>

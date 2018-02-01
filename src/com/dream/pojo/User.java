@@ -9,10 +9,19 @@ public class User {
 	private String uPhone;
 	private String uPassword;
 	private String ymId;
+	private int mId;
 	private Member memberInformation;
 	private Agents agentsInformation;
 	private List<Role> roles;
 	private List<Function> functions;
+	
+	
+	public int getmId() {
+		return mId;
+	}
+	public void setmId(int mId) {
+		this.mId = mId;
+	}
 	public String getYmId() {
 		return ymId;
 	}

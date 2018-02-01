@@ -12,7 +12,7 @@
    <id property="uId" column="Uid"></id>
     <result property="uName" column="Uname"></result>
      <result property="uSex" column="Usex"></result>
-      <result property="uPhone" column="Upassword"></result>
+      <result property="uPhone" column="Uphone"></result>
         <result property="ymId" column="YMid"></result>
 </association>
 </resultMap>
