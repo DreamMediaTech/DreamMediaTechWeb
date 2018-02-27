@@ -3,7 +3,7 @@
         <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-    <head>
+     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>圆梦中心</title>
@@ -11,15 +11,15 @@
         <link type="text/css" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
         <link type="text/css" href="${pageContext.request.contextPath}/css/theme.css" rel="stylesheet">
         <link type="text/css" href="${pageContext.request.contextPath}/images/icons/css/font-awesome.css" rel="stylesheet">
-        <link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600'
-            rel='stylesheet'>
+    <link type="text/css" href="${pageContext.request.contextPath}/bootstrap/css/googleapis.css"
+            rel="stylesheet">
     </head>
      <body>
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
-                        <i class="icon-reorder shaded"></i></a><a class="brand" href="index.html">圆梦中心 </a>
+                        <i class="icon-reorder shaded"></i></a><a class="brand" href="#">圆梦中心 </a>
                     <div class="nav-collapse collapse navbar-inverse-collapse">
                         <ul class="nav pull-right">
                          
@@ -61,7 +61,8 @@
                                         <li><a href="${pageContext.request.contextPath}/articleController/skiparticle.action"><i class="icon-inbox"></i>发布文章 <b class="label green pull-right">
                                     11</b>  </a></li>
                                         <li><a href="${pageContext.request.contextPath}/articleController/getarticle.action"><i class="icon-inbox"></i>文章列表 </a></li>
-                                       
+                                        <li><a href="${pageContext.request.contextPath}/articleController/queryarticlebyid.action?uId=${sessionScope.uid}"><i class="icon-inbox"></i>我的文章 </a></li>
+										<li><a href="${pageContext.request.contextPath}/articleController/getarticlerequest.action"><i class="icon-inbox"></i>文章审核中心 </a></li>
                                     </ul>
                                 </li>
                             
@@ -72,9 +73,10 @@
                                 </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
                                 </i>视频中心 </a>
                                     <ul id="video" class="collapse unstyled">
-                                        <li><a href="video-upload.jsp"><i class="icon-inbox"></i>视频上传 </a></li>
-                                        <li><a href="video-list.jsp"><i class="icon-inbox"></i>视频列表 </a></li>
-                                        <li><a href="${pageContext.request.contextPath}/videoController/getapply.action"><i class="icon-inbox"></i>申请记录 </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/videoController/getUploadPage.action"><i class="icon-inbox"></i>视频上传 </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/videoController/getAllVideoToWeb.action"><i class="icon-inbox"></i>视频列表 </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/videoController/getAllCommentToWeb.action"><i class="icon-inbox"></i>评论管理 </a></li>
+                                        <li><a href="#"><i class="icon-inbox"></i>申请记录 </a></li>
                                     </ul>
                                 </li> 
                             </ul>
@@ -83,7 +85,7 @@
                                 </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
                                 </i>管理中心 </a>
                                     <ul id="agency" class="collapse unstyled">
-                                        <li><a href="edit-admin.jsp"><i class="icon-inbox"></i>运营用户信息 </a></li> 
+                                        <li><a href="${pageContext.request.contextPath}/function_roleController/queryrole.action"><i class="icon-inbox"></i>角色管理 </a></li> 
                                          <li><a href="${pageContext.request.contextPath}/otherController/getallwithdrawal.action"><i class="icon-inbox"></i>提现审核 </a></li> 
                                           <li><a href="${pageContext.request.contextPath}/agencyController/getapply.action"><i class="icon-inbox"></i>代理商审核 </a></li> 
                                           <li><a href="${pageContext.request.contextPath}/videoController/getapply.action"><i class="icon-inbox"></i>视频创作者审核 </a></li> 
@@ -113,18 +115,7 @@
                                     </ul>
                                 </li>
                             </ul>    
-                               <ul class="widget widget-menu unstyled">
-                                <li><a class="collapsed" data-toggle="collapse" href="#statistics"><i class="menu-icon icon-cog">
-                                </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
-                                </i>统计中心 </a>
-                                    <ul id="statistics" class="collapse unstyled">
-                                     <li><a href="#"><i class="icon-inbox"></i>会员统计</a></li> 
-                                      <li><a href="#"><i class="icon-inbox"></i>代理商统计</a></li> 
-                                       <li><a href="#"><i class="icon-inbox"></i>文章统计</a></li> 
-                                        <li><a href="#"><i class="icon-inbox"></i>视频统计</a></li> 
-                                    </ul>
-                                </li>
-                            </ul>                        
+                                               
                              <ul class="widget widget-menu unstyled">
                              <li><a href="login.jsp"><i class="menu-icon icon-signout"></i>退出</a></li>
                             </ul>
@@ -142,15 +133,15 @@
 								<div class="pull-left">
 									选项 : &nbsp;
 									<div class="btn-group">
-										<button class="btn">所有</button>
+										<button onclick="javascript:window.location.href='${pageContext.request.contextPath}/otherController/getallwithdrawal.action'" class="btn">所有</button>
 										<button class="btn dropdown-toggle" data-toggle="dropdown">
 											<span class="caret"></span>
 										</button>
 										<ul class="dropdown-menu">
-											<li><a href="#">未处理 <b class="label green pull-right">
+											<li><a href="${pageContext.request.contextPath}/otherController/getnowithdrawal.action">待审核 <b class="label green pull-right">
                                     11</b></a></li>
-											<li><a href="#">通过</a></li>
-											<li><a href="#">未通过</a></li>
+											<li><a href="${pageContext.request.contextPath}/otherController/getonwithdrawal.action">通过</a></li>
+											<li><a  href="${pageContext.request.contextPath}/otherController/getoffwithdrawal.action">未通过</a></li>
 										
 										</ul>
 									</div>
@@ -163,32 +154,37 @@
 								<thead>
 									
 										<tr class="heading" >
-											<td class="cell-icon"></td>
-											<td class="cell-title">单号</td>
-											<td class="cell-title">会员ID</td>
-											<td class="cell-title">申请人姓名</td>
-											<td class="cell-title">提现金额</td>
-											<td class="cell-title" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;时间</td>
-											<td class="cell-status hidden-phone hidden-tablet" align="center">状态</td>
-											<td class="cell-title">经手人</td>
-											<td class="cell-title">操&nbsp;&nbsp;&nbsp;作</td>
+											
+											<td class="cell-title" style="text-align:center;vertical-align:middle;">单号</td>
+											<td class="cell-title" style="text-align:center;vertical-align:middle;">会员ID</td>
+											<td class="cell-title" style="text-align:center;vertical-align:middle;">申请人姓名</td>
+											<td class="cell-title" style="text-align:center;vertical-align:middle;">提现时间</td>
+											<td class="cell-title" style="text-align:center;vertical-align:middle;">提现金额</td>
+											<td class="cell-title" style="text-align:center;vertical-align:middle;">处理时间</td>
+											<td class="cell-status hidden-phone hidden-tablet" style="text-align:center;vertical-align:middle;">状态</td>
+											<td class="cell-title" style="text-align:center;vertical-align:middle;">经手人</td>
+											<td class="cell-title" style="text-align:center;vertical-align:middle;">操作</td>
 											
 										</tr>
 										</thead>
 										<tbody>
 										<c:forEach items="${list}" var="list">
 										<tr class="task"  >
-											<td class="cell-icon"><i class="icon-checker high"></i></td>
-											<td class="cell-title">${list.getBwId()}</td>
-											<td class="cell-title">${list.getuId().getmId()}</td>
-											<td class="cell-title">${list.getuId().getuName()}</td>
-											<td class="cell-title">${list.getMoney()}</td>
-											<td class="cell-title">${list.getBwTime()}</td>
-											<td class="cell-status hidden-phone hidden-tablet"><c:if test="${list.getBwState()=='未处理'}"><b class="due"></c:if>${list.getBwState()}</b></td>
-												<td class="cell-title">${list.getBwName()}</td>
-											<td class="cell-title" >
-											<input type ="button"  value="通过" class="btn btn-info"> 
-											<input type ="button"  value="拒绝" class="btn btn-info">
+											
+											<td class="cell-title" style="text-align:center;vertical-align:middle;">${list.getBwId()}</td>
+											<td class="cell-title" style="text-align:center;vertical-align:middle;">${list.getuId().getmId()}</td>
+											<td class="cell-title" style="text-align:center;vertical-align:middle;">${list.getuId().getuName()}</td>
+											<td class="cell-title" style="text-align:center;vertical-align:middle;">${list.getBwTime()}</td>
+											<td class="cell-title" style="text-align:center;vertical-align:middle;">${list.getMoney()}</td>
+											<td class="cell-title" style="text-align:center;vertical-align:middle;">${list.getBwtoTime()}</td>
+											<td class="cell-status hidden-phone hidden-tablet" style="text-align:center;vertical-align:middle;"><c:if test="${list.getBwState()=='待审核'}"><b class="due"></c:if>${list.getBwState()}</b></td>
+												<td class="cell-title" style="text-align:center;vertical-align:middle;">${list.getBwName()}</td>
+											
+											<td class="cell-title"  style="text-align:center;vertical-align:middle;">
+											<c:if test="${list.getBwState()=='待审核'}">
+											<input type ="button"  onclick="javascript:window.location.href='${pageContext.request.contextPath}/otherController/updatewithdrawaly.action?BwId=${list.getBwId()}'"  value="通过" class="btn btn-info"> 
+											<input type ="button"  onclick="javascript:window.location.href='${pageContext.request.contextPath}/otherController/updatewithdrawaln.action?BwId=${list.getBwId()}'"  value="拒绝" class="btn btn-info">
+											</c:if>
 											</td>
 											
 										</tr>

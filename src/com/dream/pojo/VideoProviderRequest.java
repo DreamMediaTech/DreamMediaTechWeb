@@ -13,6 +13,20 @@ public class VideoProviderRequest {
 	private String vprState;
 	private int vprResponsibility;
 	private String vprName;
+	private String vprTime;
+	private String vprtoTime;
+	public String getVprTime() {
+		return vprTime;
+	}
+	public void setVprTime(String vprTime) {
+		this.vprTime = vprTime;
+	}
+	public String getVprtoTime() {
+		return vprtoTime;
+	}
+	public void setVprtoTime(String vprtoTime) {
+		this.vprtoTime = vprtoTime;
+	}
 	public int getVprId() {
 		return vprId;
 	}

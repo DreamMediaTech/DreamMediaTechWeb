@@ -15,7 +15,16 @@ public class Member {
 	private float sharingIntegral;
 	private User user;
 	private int drwaralQuota;
+	private int bate;
 	
+	public int getBate() {
+		return bate;
+	}
+
+	public void setBate(int bate) {
+		this.bate = bate;
+	}
+
 	public int getDrwaralQuota() {
 		return drwaralQuota;
 	}

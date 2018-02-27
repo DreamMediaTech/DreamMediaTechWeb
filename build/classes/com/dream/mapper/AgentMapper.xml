@@ -9,10 +9,13 @@
 <result property="arState" column="ARstate" />
 <result property="arResponsibility" column="ARresponsibility" />
 <result property="arName" column="ARname" />
+<result property="arTime" column="ARtime" />
+<result property="artoTime" column="ARtotime" />
 <association property="user" javaType="com.dream.pojo.User">
    <id property="uId" column="Uid"></id>
     <result property="uName" column="Uname"></result>
      <result property="uSex" column="Usex"></result>
+     <result property="mId" column="Mid"></result>
       <result property="uPhone" column="Uphone"></result>
         <result property="ymId" column="YMid"></result>
 </association>
@@ -47,21 +50,49 @@
         <result property="ymId" column="YMid"></result>
 </association>
 </resultMap>
-
+<parameterMap type="map" id="insau">
+<parameter property="mId"/>
+<parameter property="agId"/>
+</parameterMap>
+<!-- 新增一个agents -->
+<insert id="insertAgents" useGeneratedKeys="true" keyProperty="agId" parameterType="Agents"  >
+insert into agents(area)  values(#{area})
+</insert>
+<!-- 差比例 -->
+<select id="queryrebate" resultType="Agents">
+select FirstRebate,SecondRebate from agents where agid=0; 
+</select>
+<!-- 将agid插入到user -->
+<insert id="insertagentsintouser" parameterMap="insau">
+update user set  agid=#{agId} where mid=#{mId}
+</insert>
+<!-- 初始化比例 -->
+<update id="updateRebate" parameterType="Agents">
+update agents set firstRebate=#{firstRebate}, SecondRebate=#{secondRebate} where agId=#{agId}
+</update>
 <!-- 后台进行申请表修改 -->
 <update id="updateAgentapply" parameterType="AgentRequest">
-update  agentrequest set arstate=#{arState} , ARresponsibility=#{arResponsibility.uId} where arid=#{arId}
+update  agentrequest set arstate=#{arState} ,ARtotime=#{artoTime} , ARresponsibility=#{arResponsibility} ,ARname=#{arName} where arid=#{arId}
 </update>
 
-<!-- 后台进行申请表修改 -->
+<!-- 后台代理商修改 -->
 <update id="updateagents" parameterType="Agents">
-update  Agents set area=#{area} , FirstRebate=#{firstRebate} ,SecondRebate=#{secondRebate}  where agid=#{agId}
+update  Agents set area=#{area} , FirstRebate=#{firstRebate} ,SecondRebate=#{secondRebate}  where AGid=#{agId}
 </update>
 <!-- 后台查询所有申请表 -->
 <select id="queryallapply" resultMap="AgentRequestMapper">
-select * from AgentRequest a,user u ,user u1  where u.uId=a.uId and u1.uId=a.arResponsibility
+select * from AgentRequest a,user u ,user u1  where u.uId=a.uId and u1.uId=a.arResponsibility ORDER BY ARstate
 </select>
-
+<!-- 后台查询三类申请表 -->
+<select id="queryoffapply" resultMap="AgentRequestMapper">
+select * from AgentRequest a,user u ,user u1  where u.uId=a.uId and u1.uId=a.arResponsibility and ARstate='未通过'
+</select>
+<select id="querynoapply" resultMap="AgentRequestMapper">
+select * from AgentRequest a,user u ,user u1  where u.uId=a.uId and u1.uId=a.arResponsibility and ARstate='待审核'
+</select>
+<select id="queryonapply" resultMap="AgentRequestMapper">
+select * from AgentRequest a,user u ,user u1  where u.uId=a.uId and u1.uId=a.arResponsibility and ARstate='通过'
+</select>
 <!-- 查询所有代理商的信息 -->
 <select id="queryallagents" resultMap="AgentsMapper">
 select * from agents , user , member   where user.AGid=agents.AGid and member.Mid=user.Mid
@@ -75,4 +106,11 @@ select * from agents , user , member   where user.AGid=agents.AGid and member.Mi
 <insert id="insertagent" parameterType="AgentRequest">
 insert into AgentRequest values(#{arId},#{arState},#{uId},null)
 </insert>
+
+<select id="queryagentsByUser" resultType="Agents">
+select ag.AGid,ag.area,ag.FirstRebate,ag.SecondRebate from User u,Agents ag
+where u.AGid = ag.AGid 
+and u.Uid = #{uId}
+</select>
+
 </mapper>

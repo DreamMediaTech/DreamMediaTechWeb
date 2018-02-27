@@ -5,8 +5,11 @@
 <resultMap type="com.dream.pojo.User" id="UserMap">
    <id property="uId" column="Uid"></id>
     <result property="uName" column="Uname"></result>
+    <result property="uNickName" column="Unickname"></result>
+    <result property="uRegisterTime" column="Uregistertime"></result>
     <result property="uSex" column="Usex"></result>
     <result property="uPhone" column="Uphone"></result>
+    <result property="uPassword" column="Upassword"></result>
     <result property="ymId" column="YMid"></result>
     <association property="memberInformation" javaType="com.dream.pojo.Member">
         <id property="mId" column="Mid"></id>
@@ -20,21 +23,20 @@
         <result property="bonusIntegral" column="BonusIntegral"></result>
         <result property="consumptionIntegral" column="ConsumptionIntegral"></result>
         <result property="sharingIntegral" column="SharingIntegral"></result>
-        <result property="superQuota" column="SuperQuota"></result>
-    </association>
-    <association property="agentsInformation" javaType="com.dream.pojo.Agents">
-        <id property="agId" column="AGid"></id>
-        <result property="area" column="area"></result>
-        <result property="firstRebate" column="FirstRebate" />
-        <result property="secondRebate" column="SecondRebate" />
     </association>
 </resultMap>
+
+<resultMap type="com.dream.pojo.Function" id="FunctionMap">
+    <id property="fId" column="Fid"/>
+    <result property="fName" column="Fname" />
+    <result property="fDescribe" column="Fdescribe" />
+    <result property="fState" column="state" />
+</resultMap>
     <select id="getUserById" resultMap="UserMap">
-	select u.Uid,u.Uname ,u.Usex,u.Upassword,u.YMid,
-	m.Mid,m.Birthday,m.Mail,m.wechat,m.Introducer,m.FirstSuperior,m.SecondSuperior,m.BonusIntegral,m.ConsumptionIntegral,m.SharingIntegral,m.SuperQuota,
-	ag.AGid,ag.area,ag.FirstRebate,ag.SecondRebate
-	from user u,member m,agents ag 
-	where u.Mid = m.Mid and u.AGid = ag.AGid and u.uId = #{uId}
+	select u.Uid,u.Uname ,u.Usex,u.Upassword,u.YMid,u.Unickname,u.Uregistertime,
+	m.Mid,m.Birthday,m.Mail,m.alipay,m.wechat,m.Introducer,m.FirstSuperior,m.SecondSuperior,m.BonusIntegral,m.ConsumptionIntegral,m.SharingIntegral
+	from user u,member m
+	where u.Mid = m.Mid and u.uId = #{uId}
 	</select>
 
 	<select id="queryuser" resultType="User">
@@ -53,8 +55,11 @@
 	    insert into user(Uphone,Upassword,YMid) values(#{uPhone},#{uPassword},#{ymId})
 	</insert>
 	
-	<select id="queryUserByPhone" resultType="User">
-	select * from user where Uphone = #{uPhone}
+	<select id="queryUserByPhone" resultMap="UserMap">
+	select u.Uid,u.Uname ,u.Usex,u.Upassword,u.YMid,u.Unickname,u.Uregistertime,
+	m.Mid,m.Birthday,m.Mail,m.wechat,m.Introducer,m.FirstSuperior,m.SecondSuperior,m.BonusIntegral,m.ConsumptionIntegral,m.SharingIntegral
+	from user u,member m
+	where u.Mid = m.Mid  and Uphone =#{uPhone}
 	</select>
 	
 	<select id="checkPhone" resultType="Integer">
@@ -62,9 +67,47 @@
 	</select>
 	
 	<update id="updateUser">
-	update user set Uname=#{uName},Usex=#{uSex},Uphone=#{uPhone},Mid=#{memberInformation.mId},AGid=#{agentsInformation.agId},YMid=#{ymId} where Uid=#{uId}
+	update user set Uimage=#{uImage},Uimage = #{uImageAddress},Unickname=#{uNickName},Uname=#{uName},Usex=#{uSex} where Uid=#{uId}
 	</update>
 	
+	<!-- 获取角色列表 -->
+	<select id="getRoleByUser" resultType="Role">
+	select R.Rid,R.Rname,R.Rdescribe from Role R, user_role ur WHERE R.Rid = ur.Rid and ur.Uid=#{uId}
+	</select>
 
-	
+    <!-- 根据角色获取权限 -->
+    <select id="getFunctionByRole" resultType="Function">
+    SELECT distinct f.Fid,f.Fname,f.Fdescribe from  role r,`function` f,function_role fr
+    WHERE r.Rid = fr.Rid and f.Fid = fr.Fid
+    and r.Rid in(
+    <foreach collection="roles" item="role" separator="," >
+    #{role.rId}
+    </foreach>
+    ) 
+    <if test="functions!=null">
+    AND f.Fid NOT in
+    <foreach collection="functions" item="function" open="(" close=")" separator=",">
+    #{function.fId}
+    </foreach>
+    </if>
+    </select>
+    
+    <!-- 获取用户特殊权限  -->
+    <select id="getFunctionByUser" resultMap="FunctionMap" >
+    SELECT f.Fid,f.Fname,f.Fdescribe,fu.state FROM function_user fu , `function` f
+    where fu.Fid = f.Fid 
+    and fu.Uid=#{uId}
+    </select>
+    
+    <select id="checkIntrgral" resultType="Integer">
+    SELECT checkIntrgral(#{vid},#{uid})
+    </select>
+    
+    <select id="userBuyVideo" statementType="CALLABLE">
+    call UserBuyVideo(#{vid},#{uid})
+	</select>
+
+	<update id="updateUserPassword">
+	update user set Upassword = #{uPassword} where Uid = #{uId}
+	</update>
 </mapper>

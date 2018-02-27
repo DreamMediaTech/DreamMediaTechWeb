@@ -7,6 +7,7 @@
 <id property="bwId" column="BWid"></id>
 <result property="money" column="Money" />
 <result property="bwTime" column="BWtime" />
+<result property="bwtoTime" column="BWtotime" />
 <result property="bwState" column="BWstate" />
 <result property="bwName" column="BWname" />
 <result property="bwRespinsibility" column="BWrespinsibility" />
@@ -19,15 +20,29 @@
 
 <!-- 后台进行申请表修改 -->
 <update id="updateapply" parameterType="BigWithDrawals">
-update  BigWithDrawals set BWstate=#{bwState} , BWresponsibility=#{bwRespinsibility.uId} where BWid=#{bwId}
+update  BigWithDrawals set BWstate=#{bwState} , BWtotime=#{bwtoTime} , BWname=#{bwName} , BWresponsibility=#{bwRespinsibility} where BWid=#{bwId}
 </update>
 
 <!-- 后台查询所有申请表 -->
 <select id="queryallapply" resultMap="BigWithDrawalsMapper">
-select * from BigWithDrawals a,user u ,user u1  where u1.uId=a.BWresponsibility  and u.uId=a.uId
+select * from BigWithDrawals a,user u ,user u1  where u1.uId=a.BWresponsibility  and u.uId=a.uId ORDER BY BWstate
 </select>
 <!-- app请求提现操作 -->
 <insert id ="insertbwd" parameterType="BigWithDrawals">
 insert into BigWithDrawals values(#{bwId},#{money},#{bwTime},#{bwState},#{user.uId},null)
 </insert>
+<!-- 三个查询  -->
+<select id="queryoffapply" parameterType="BigWithDrawals" resultMap="BigWithDrawalsMapper">
+select * from BigWithDrawals a,user u ,user u1 where u1.uId=a.BWresponsibility  and u.uId=a.uId  and
+BWstate ="未通过"
+</select>
+
+<select id="querynoapply" parameterType="BigWithDrawals" resultMap="BigWithDrawalsMapper">
+select * from BigWithDrawals a,user u ,user u1 where u1.uId=a.BWresponsibility  and u.uId=a.uId  and
+BWstate ="待审核"
+</select>
+<select id="queryonapply" parameterType="BigWithDrawals" resultMap="BigWithDrawalsMapper">
+select * from BigWithDrawals a,user u ,user u1 where u1.uId=a.BWresponsibility  and u.uId=a.uId  and
+BWstate ="通过"
+</select>
 </mapper>

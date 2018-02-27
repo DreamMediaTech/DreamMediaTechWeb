@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dream.mapper.RuleMapper">
+
+<select id="getall" resultType="com.dream.pojo.Rule">
+select * from rule
+</select>
+
+<update id="updaterule" parameterType="com.dream.pojo.Rule">
+update rule set RuParameter=#{ruParameter} where Ruid=#{ruId}
+</update>
+<update id="updatefirst" parameterType="com.dream.pojo.Agents">
+update Agents set FirstRebate=#{firstRebate}
+</update>
+<update id="updatesecond" parameterType="com.dream.pojo.Agents">
+update Agents set SecondRebate=#{secondRebate}
+</update>
+<update id="updatememberbate" parameterType="com.dream.pojo.Member">
+update Member set Bate=#{bate}
+</update>
+</mapper>

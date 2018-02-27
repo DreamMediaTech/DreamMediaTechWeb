@@ -15,10 +15,10 @@ private ArticleMapper articleMapper;
  * 新增一篇文章
  */
 	@Override
-	public void insertarticle(Article article) {
+	public void publicarticle(Article article) {
 		
 		// TODO Auto-generated method stub
-		articleMapper.insertarticle(article);
+		articleMapper.publicarticle(article);
 	}
 	/**
 	 * 删除某一篇文章
@@ -55,6 +55,53 @@ public void deletearticle(int aId) {
 		// TODO Auto-generated method stub
 		article=articleMapper.queryarticle(article);
 		return article;
+	}
+	@Override
+	public void deletearticlelist(List<Integer> ids) {
+		// TODO Auto-generated method stub
+		articleMapper.deletearticlelist(ids);
+	}
+	@Override
+	public List<Article> queryarticlebyid(int uId) {
+		// TODO Auto-generated method stub
+		List<Article> list= articleMapper.queryarticlebyid(uId);
+		return list;
+	}
+	
+	/**
+	 * app获取文章列表
+	 */
+	@Override
+	public List<Article> getAllArticleToApp(int start, int num) {
+		return articleMapper.getAllArticleToApp(start, num);
+	}
+	
+	/**
+	 * 计算文章总量
+	 */
+	@Override
+	public int countArticle() {
+		return articleMapper.countArticle();
+	}
+	@Override
+	public void updateArticle(Article article) {
+		// TODO Auto-generated method stub
+		articleMapper.updateArticle(article);
+	}
+	@Override
+	public List<Article> queryno() {
+		// TODO Auto-generated method stub
+		return articleMapper.queryno();
+	}
+	@Override
+	public List<Article> queryoff() {
+		// TODO Auto-generated method stub
+		return articleMapper.queryoff();
+	}
+	@Override
+	public List<Article> queryon() {
+		// TODO Auto-generated method stub
+		return articleMapper.queryon();
 	}
 
 }

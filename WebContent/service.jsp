@@ -2,23 +2,23 @@
     pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>圆梦中心</title>
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link type="text/css" href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link type="text/css" href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
-        <link type="text/css" href="css/theme.css" rel="stylesheet">
-        <link type="text/css" href="images/icons/css/font-awesome.css" rel="stylesheet">
-        <link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600'
-            rel='stylesheet'>
+ <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>圆梦中心</title>
+        <link type="text/css" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link type="text/css" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link type="text/css" href="${pageContext.request.contextPath}/css/theme.css" rel="stylesheet">
+        <link type="text/css" href="${pageContext.request.contextPath}/images/icons/css/font-awesome.css" rel="stylesheet">
+    <link type="text/css" href="${pageContext.request.contextPath}/bootstrap/css/googleapis.css"
+            rel="stylesheet">
     </head>
-    <body>
+     <body>
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
-                        <i class="icon-reorder shaded"></i></a><a class="brand" href="index.html">圆梦中心 </a>
+                        <i class="icon-reorder shaded"></i></a><a class="brand" href="#">圆梦中心 </a>
                     <div class="nav-collapse collapse navbar-inverse-collapse">
                         <ul class="nav pull-right">
                          
@@ -60,7 +60,8 @@
                                         <li><a href="${pageContext.request.contextPath}/articleController/skiparticle.action"><i class="icon-inbox"></i>发布文章 <b class="label green pull-right">
                                     11</b>  </a></li>
                                         <li><a href="${pageContext.request.contextPath}/articleController/getarticle.action"><i class="icon-inbox"></i>文章列表 </a></li>
-                                       
+                                        <li><a href="${pageContext.request.contextPath}/articleController/queryarticlebyid.action?uId=${sessionScope.uid}"><i class="icon-inbox"></i>我的文章 </a></li>
+										<li><a href="${pageContext.request.contextPath}/articleController/getarticlerequest.action"><i class="icon-inbox"></i>文章审核中心 </a></li>
                                     </ul>
                                 </li>
                             
@@ -71,9 +72,10 @@
                                 </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
                                 </i>视频中心 </a>
                                     <ul id="video" class="collapse unstyled">
-                                        <li><a href="video-upload.jsp"><i class="icon-inbox"></i>视频上传 </a></li>
-                                        <li><a href="video-list.jsp"><i class="icon-inbox"></i>视频列表 </a></li>
-                                        <li><a href="${pageContext.request.contextPath}/videoController/getapply.action"><i class="icon-inbox"></i>申请记录 </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/videoController/getUploadPage.action"><i class="icon-inbox"></i>视频上传 </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/videoController/getAllVideoToWeb.action"><i class="icon-inbox"></i>视频列表 </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/videoController/getAllCommentToWeb.action"><i class="icon-inbox"></i>评论管理 </a></li>
+                                        <li><a href="#"><i class="icon-inbox"></i>申请记录 </a></li>
                                     </ul>
                                 </li> 
                             </ul>
@@ -82,7 +84,7 @@
                                 </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
                                 </i>管理中心 </a>
                                     <ul id="agency" class="collapse unstyled">
-                                        <li><a href="edit-admin.jsp"><i class="icon-inbox"></i>运营用户信息 </a></li> 
+                                        <li><a href="${pageContext.request.contextPath}/function_roleController/queryrole.action"><i class="icon-inbox"></i>角色管理 </a></li> 
                                          <li><a href="${pageContext.request.contextPath}/otherController/getallwithdrawal.action"><i class="icon-inbox"></i>提现审核 </a></li> 
                                           <li><a href="${pageContext.request.contextPath}/agencyController/getapply.action"><i class="icon-inbox"></i>代理商审核 </a></li> 
                                           <li><a href="${pageContext.request.contextPath}/videoController/getapply.action"><i class="icon-inbox"></i>视频创作者审核 </a></li> 
@@ -112,18 +114,7 @@
                                     </ul>
                                 </li>
                             </ul>    
-                               <ul class="widget widget-menu unstyled">
-                                <li><a class="collapsed" data-toggle="collapse" href="#statistics"><i class="menu-icon icon-cog">
-                                </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
-                                </i>统计中心 </a>
-                                    <ul id="statistics" class="collapse unstyled">
-                                     <li><a href="#"><i class="icon-inbox"></i>会员统计</a></li> 
-                                      <li><a href="#"><i class="icon-inbox"></i>代理商统计</a></li> 
-                                       <li><a href="#"><i class="icon-inbox"></i>文章统计</a></li> 
-                                        <li><a href="#"><i class="icon-inbox"></i>视频统计</a></li> 
-                                    </ul>
-                                </li>
-                            </ul>                        
+                                               
                              <ul class="widget widget-menu unstyled">
                              <li><a href="login.jsp"><i class="menu-icon icon-signout"></i>退出</a></li>
                             </ul>

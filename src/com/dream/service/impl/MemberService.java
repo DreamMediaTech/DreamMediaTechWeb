@@ -13,4 +13,6 @@ public interface MemberService {
 	public Member createMember(User Introducer);//创建新会员信息
 	public void updateMember(Member member);//后台修改会员信息
 	public List<Member> querydimmember(String dim );//通过id或姓名模糊查询会员
+	public Member queryIntegral(int uid);//查询用户积分信息
+	public void updateMemberByApp(Member member);//app修改会员信息
 }

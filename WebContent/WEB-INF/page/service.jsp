@@ -2,24 +2,23 @@
     pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>圆梦中心</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link type="text/css" href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link type="text/css" href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
-        <link type="text/css" href="css/theme.css" rel="stylesheet">
-        <link type="text/css" href="images/icons/css/font-awesome.css" rel="stylesheet">
-        <link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600'
-            rel='stylesheet'>
-            
+ <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>圆梦中心</title>
+        <link type="text/css" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link type="text/css" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link type="text/css" href="${pageContext.request.contextPath}/css/theme.css" rel="stylesheet">
+        <link type="text/css" href="${pageContext.request.contextPath}/images/icons/css/font-awesome.css" rel="stylesheet">
+    <link type="text/css" href="${pageContext.request.contextPath}/bootstrap/css/googleapis.css"
+            rel="stylesheet">
     </head>
-     <body>
+    <body>
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
-                        <i class="icon-reorder shaded"></i></a><a class="brand" href="index.html">圆梦中心 </a>
+                        <i class="icon-reorder shaded"></i></a><a class="brand" href="#">圆梦中心 </a>
                     <div class="nav-collapse collapse navbar-inverse-collapse">
                         <ul class="nav pull-right">
                          
@@ -61,7 +60,7 @@
                                         <li><a href="${pageContext.request.contextPath}/articleController/skiparticle.action"><i class="icon-inbox"></i>发布文章 <b class="label green pull-right">
                                     11</b>  </a></li>
                                         <li><a href="${pageContext.request.contextPath}/articleController/getarticle.action"><i class="icon-inbox"></i>文章列表 </a></li>
-                                       
+                                        <li><a href="${pageContext.request.contextPath}/articleController/queryarticlebyid.action?uId=${sessionScope.uid}"><i class="icon-inbox"></i>我的文章 </a></li>
                                     </ul>
                                 </li>
                             
@@ -72,9 +71,10 @@
                                 </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
                                 </i>视频中心 </a>
                                     <ul id="video" class="collapse unstyled">
-                                        <li><a href="video-upload.jsp"><i class="icon-inbox"></i>视频上传 </a></li>
-                                        <li><a href="video-list.jsp"><i class="icon-inbox"></i>视频列表 </a></li>
-                                        <li><a href="${pageContext.request.contextPath}/videoController/getapply.action"><i class="icon-inbox"></i>申请记录 </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/videoController/getUploadPage.action"><i class="icon-inbox"></i>视频上传 </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/videoController/getAllVideoToWeb.action"><i class="icon-inbox"></i>视频列表 </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/videoController/getAllCommentToWeb.action"><i class="icon-inbox"></i>评论管理 </a></li>
+                                        <li><a href="#"><i class="icon-inbox"></i>申请记录 </a></li>
                                     </ul>
                                 </li> 
                             </ul>
@@ -138,60 +138,42 @@
                             <div class="module message">
                                 <div class="module-head">
                                     <h3>
-                                       所有运营人员</h3>
+                                     自动回复客服</h3>
                                 </div>
                                 <div class="module-option clearfix">
                                  
                                     <div class="pull-right">
-                                        <a href="#" class="btn btn-primary">删除</a>
-                                        <a href="#" class="btn btn-primary">新增</a>
+                                        <a href="#" class="btn btn-primary">新增自动回复</a>
                                     </div>
                                       </div>
-                                <div class="module-body table">
-                                    <table  class="datatable-1 table table-message">
-                                        <thead>
-                                            <tr class="heading">
-                                               <td class="cell-check">
-                                                    <input type="checkbox" class="inbox-checkbox">
-                                                </td>
-                                                <td class="cell-icon hidden-phone hidden-tablet">
-                                               运营人员名字
-                                                </td>
-                                                <td class="cell-icon hidden-phone hidden-tablet">
-                                                    文章发表人
-                                                </td>
-                                              
-                                                <td class="cell-icon hidden-phone hidden-tablet">
-                          入职日期             
-                                                </td>
-                                                <td class="cell-icon hidden-phone hidden-tablet ">
-                                                   操作
-                                                </td>
-                                            </tr>
-                                            <tbody >
-                                            <tr>
-                                            <td>  <input type="checkbox" class="inbox-checkbox"></td>
-                                            <td>文章123</td>
-                                            <td>陈你好</td>
-                                           
-                                            <td >2018-1-1 18：01</td>
-                                            <td> <a href="#" class="btn btn-primary">删除</a>
-                                        <a href="#" class="btn btn-primary">修改</a></td>
-                                            </tr>
-                                             
-                                         
-                                        </tbody>
-                                       
-                                    </table>
-                                </div>
+                               <table class="table">
+	<caption>基本的表格布局</caption>
+   <thead>
+      <tr>
+         <th>问题</th>
+         <th>自动回复内容</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <td>今天吃什么</td>
+         <td>白菜</td>
+      </tr>
+      <tr>
+         <td>明天吃什么</td>
+         <td>白昼</td>
+      </tr>
+   </tbody>
+</table>
                             </div>
                         </div>
                         <!--/.content-->
-                    </div></div>
+                    </div>
                     <!--/.span9-->
                 </div>
-         
+            </div>
             <!--/.container-->
+       </div>
        
         <!--/.wrapper-->
         <div class="footer">
@@ -206,15 +188,7 @@
         <script src="scripts/flot/jquery.flot.resize.js" type="text/javascript"></script>
         <script src="scripts/datatables/jquery.dataTables.js" type="text/javascript"></script>
         <script src="scripts/common.js" type="text/javascript"></script>
-      <script>
-		$(document).ready(function() {
-			$('.datatable-1').dataTable();
-			$('.dataTables_paginate').addClass("btn-group datatable-pagination");
-			$('.dataTables_paginate > a').wrapInner('<span />');
-			$('.dataTables_paginate > a:first-child').append('<i class="icon-chevron-left shaded"></i>');
-			$('.dataTables_paginate > a:last-child').append('<i class="icon-chevron-right shaded"></i>');
-		} );
-	</script>
+      
     </body>
 
 </html>

@@ -11,8 +11,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.dream.pojo.BigWithDrawals;
+import com.dream.pojo.Rule;
 import com.dream.pojo.User;
 import com.dream.service.impl.BigWithdrawalsService;
+import com.dream.service.impl.RuleService;
 
 public class BigWithdrawalsTest {
 	ApplicationContext ac=null;
@@ -66,4 +68,15 @@ public class BigWithdrawalsTest {
 		BigWithdrawalsService bigWithdrawalsService =(BigWithdrawalsService)ac.getBean("bigwithdrawalsservice");
 		bigWithdrawalsService.insertbwd(bigWithDrawals);
 	}*/
+	/**
+	 * 
+	 
+	@Test
+	public void queryallapply() {
+		RuleService ruleService =(RuleService)ac.getBean("ruleService");
+		Rule rule =new Rule();
+		rule.setRuId(1);
+		rule.setRuParameter("12");
+		ruleService.updaterule(rule);
+	}	*/
 }

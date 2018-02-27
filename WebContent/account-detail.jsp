@@ -3,7 +3,7 @@
         <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-  <head>
+ <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>圆梦中心</title>
@@ -11,15 +11,15 @@
         <link type="text/css" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
         <link type="text/css" href="${pageContext.request.contextPath}/css/theme.css" rel="stylesheet">
         <link type="text/css" href="${pageContext.request.contextPath}/images/icons/css/font-awesome.css" rel="stylesheet">
-        <link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600'
-            rel='stylesheet'>
+    <link type="text/css" href="${pageContext.request.contextPath}/bootstrap/css/googleapis.css"
+            rel="stylesheet">
     </head>
      <body>
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
-                        <i class="icon-reorder shaded"></i></a><a class="brand" href="index.html">圆梦中心 </a>
+                        <i class="icon-reorder shaded"></i></a><a class="brand" href="#">圆梦中心 </a>
                     <div class="nav-collapse collapse navbar-inverse-collapse">
                         <ul class="nav pull-right">
                          
@@ -61,7 +61,8 @@
                                         <li><a href="${pageContext.request.contextPath}/articleController/skiparticle.action"><i class="icon-inbox"></i>发布文章 <b class="label green pull-right">
                                     11</b>  </a></li>
                                         <li><a href="${pageContext.request.contextPath}/articleController/getarticle.action"><i class="icon-inbox"></i>文章列表 </a></li>
-                                       
+                                        <li><a href="${pageContext.request.contextPath}/articleController/queryarticlebyid.action?uId=${sessionScope.uid}"><i class="icon-inbox"></i>我的文章 </a></li>
+										<li><a href="${pageContext.request.contextPath}/articleController/getarticlerequest.action"><i class="icon-inbox"></i>文章审核中心 </a></li>
                                     </ul>
                                 </li>
                             
@@ -72,9 +73,10 @@
                                 </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
                                 </i>视频中心 </a>
                                     <ul id="video" class="collapse unstyled">
-                                        <li><a href="video-upload.jsp"><i class="icon-inbox"></i>视频上传 </a></li>
-                                        <li><a href="video-list.jsp"><i class="icon-inbox"></i>视频列表 </a></li>
-                                        <li><a href="${pageContext.request.contextPath}/videoController/getapply.action"><i class="icon-inbox"></i>申请记录 </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/videoController/getUploadPage.action"><i class="icon-inbox"></i>视频上传 </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/videoController/getAllVideoToWeb.action"><i class="icon-inbox"></i>视频列表 </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/videoController/getAllCommentToWeb.action"><i class="icon-inbox"></i>评论管理 </a></li>
+                                        <li><a href="#"><i class="icon-inbox"></i>申请记录 </a></li>
                                     </ul>
                                 </li> 
                             </ul>
@@ -83,7 +85,7 @@
                                 </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
                                 </i>管理中心 </a>
                                     <ul id="agency" class="collapse unstyled">
-                                        <li><a href="edit-admin.jsp"><i class="icon-inbox"></i>运营用户信息 </a></li> 
+                                        <li><a href="${pageContext.request.contextPath}/function_roleController/queryrole.action"><i class="icon-inbox"></i>角色管理 </a></li> 
                                          <li><a href="${pageContext.request.contextPath}/otherController/getallwithdrawal.action"><i class="icon-inbox"></i>提现审核 </a></li> 
                                           <li><a href="${pageContext.request.contextPath}/agencyController/getapply.action"><i class="icon-inbox"></i>代理商审核 </a></li> 
                                           <li><a href="${pageContext.request.contextPath}/videoController/getapply.action"><i class="icon-inbox"></i>视频创作者审核 </a></li> 
@@ -113,18 +115,7 @@
                                     </ul>
                                 </li>
                             </ul>    
-                               <ul class="widget widget-menu unstyled">
-                                <li><a class="collapsed" data-toggle="collapse" href="#statistics"><i class="menu-icon icon-cog">
-                                </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
-                                </i>统计中心 </a>
-                                    <ul id="statistics" class="collapse unstyled">
-                                     <li><a href="#"><i class="icon-inbox"></i>会员统计</a></li> 
-                                      <li><a href="#"><i class="icon-inbox"></i>代理商统计</a></li> 
-                                       <li><a href="#"><i class="icon-inbox"></i>文章统计</a></li> 
-                                        <li><a href="#"><i class="icon-inbox"></i>视频统计</a></li> 
-                                    </ul>
-                                </li>
-                            </ul>                        
+                                               
                              <ul class="widget widget-menu unstyled">
                              <li><a href="login.jsp"><i class="menu-icon icon-signout"></i>退出</a></li>
                             </ul>
@@ -134,54 +125,145 @@
                     <!--/.span3-->
                     <div class="span9">
                         <div class="content">
-                           <div class="module message">
-                                <div class="module-head">
-                                    <h3>
-                                       会员详细信息</h3>
-                                      <form action="${pageContext.request.contextPath}/accountController/updateaccount.action?mId=${member.getmId()}" method="post">
-                                 <table>
-                                 <tr>
-                                 <td>会员编号：<input type="text" name="uId" readonly="readonly" value="${member.getmId()}"></td>
-                                 <td>真实名字：<input type="text" name="uName" readonly  value="${member.getUser().getuName()}"></td>
-                                
-                                 </tr>         
-                                 <tr>
-                                  <td>性别：<input type="text" name="uSex" readonly  value="${member.getUser().getuSex()}"></td>
-                                  <td>联系电话：<input type="text" name="uPhone" readonly  value="${member.getUser().getuPhone()}"></td>
-                                 </tr>
-                                  <tr>
-                                 <td>会员生日：<input type="date" name="birthday" readonly  value="${member.getBirthday()}"></td>
-                                  <td>会员邮箱：<input type="text" name="mail" readonly  value="${member.getMail()}"></td>
-                                 </tr>
-                                  
-                                 
-                                  
-                                  <tr>
-                                 <td>奖励积分：<input type="number" name="bonusIntegral"  min="0"  value="${member.getBonusIntegral()}">分</td>
-                                  <td>消费积分：<input type="number"  name="consumptionIntegral" value="${member.getConsumptionIntegral()}">分</td>
-                                   
-                                 </tr>
-                                 <tr>
-                                 <td>分享积分：<input type="number" min="0" name="sharingIntegral"  value="${member.getSharingIntegral()}">分</td>
-                                <td>提现限额：<input type="number" min="0" name="drwaralQuota" value="${member.getDrwaralQuota()}">元</td>
-                                 </tr>
-                                  <tr>
-                                 <td>支付宝账号：<input type="text" name="alipay" readonly  value="${member.getAlipay()}"></td>
-                                  <td>微信账号：<input type="text" name="wechat" readonly  value="${member.getWechat()}"></td>
-                                 </tr>
-                                 <tr>
-                                 <td>会员一级代理商：<input type="text" name="firstSuperior"  readonly  value="${member.getFirstSuperior()}"></td>
-                                  <td>会员二级代理商：<input type="text" name="secondSuperior" readonly  value="${member.getSecondSuperior()}"></td>
-                                 </tr>
-                                  <tr>
-                                 <td>会员介绍人：<input type="text" name="introducer" readonly  value="${member.getIntroducer()}"></td>
-                                  <td>返利比例：<input type="text" name="reBate"  value=""><span class=" ">%</span></td>
-                                 </tr>
-                                 <tr align="center">
-                                 <td><input type="submit" class="btn btn-info"  value="修改"></td>
-                                 </tr>
-                                 </table>
-                               </form>
+                       <div class="module">
+							<div class="module-head">
+								<h3>会员信息</h3>
+							</div> <br>
+							<div class="module-body">
+                                      <form class="form-horizontal row-fluid"  action="${pageContext.request.contextPath}/accountController/updateaccount.action?mId=${member.getmId()}" method="post">
+				
+										<div class="control-group">
+											<label class="control-label" for="basicinput">会员编号：</label>
+											<div class="controls" >
+												<input type="text" style="text-align:center;" name="uId" class="span8" disabled value="${member.getmId()}">
+											</div>
+										</div>
+										
+										<div class="control-group">
+											<label class="control-label" for="basicinput">真实名字：</label>
+											<div class="controls" >
+												<input type="text" style="text-align:center;" name="uName" class="span8" disabled  value="${member.getUser().getuName()}">
+											</div>
+										</div>
+                                    
+                                    <div class="control-group">
+											<label class="control-label" for="basicinput">性别：</label>
+											<div class="controls" >
+												<input type="text" style="text-align:center;" name="uSex" class="span8" disabled  value="${member.getUser().getuSex()}">
+											</div>
+										</div>
+										
+										  <div class="control-group">
+											<label class="control-label" for="basicinput">联系电话：</label>
+											<div class="controls" >
+												<input type="text" style="text-align:center;" name="uPhone" class="span8" disabled  value="${member.getUser().getuPhone()}">
+											</div>
+										</div>
+										
+										<div class="control-group">
+											<label class="control-label" for="basicinput">会员生日：</label>
+											<div class="controls" >
+												<input type="text" style="text-align:center;" name="birthday" class="span8" disabled  value="${member.getBirthday()}">
+											</div>
+										</div>
+										
+										<div class="control-group">
+											<label class="control-label" for="basicinput">会员邮箱：</label>
+											<div class="controls" >
+												<input type="text" style="text-align:center;" name="mail" class="span8" disabled  value="${member.getMail()}">
+											</div>
+										</div>
+										
+										<div class="control-group">
+											<label class="control-label" for="basicinput">支付宝账号：</label>
+											<div class="controls" >
+												<input type="text" style="text-align:center;" name="alipay" class="span8" disabled  value="${member.getAlipay()}">
+											</div>
+										</div>
+										
+										<div class="control-group">
+											<label class="control-label" for="basicinput">微信号：</label>
+											<div class="controls" >
+												<input type="text" style="text-align:center;" name="wechat" class="span8" disabled value="${member.getWechat()}">
+											</div>
+										</div>
+										
+										<div class="control-group">
+											<label class="control-label" for="basicinput">上属一级代理商：</label>
+											<div class="controls" >
+												<input type="text" style="text-align:center;" name="firstSuperior"  class="span8" disabled value="${member.getFirstSuperior()}">
+											<span class="help-inline">该编号为用户编号</span>
+											</div>
+										</div>
+										
+											<div class="control-group">
+											<label class="control-label" for="basicinput">上属二级代理商：</label>
+											<div class="controls" >
+												<input type="text" style="text-align:center;" name="secondSuperior"  class="span8" disabled value="${member.getSecondSuperior()}">
+												<span class="help-inline">该编号为用户编号</span>
+											</div>
+										</div>
+										
+										<div class="control-group">
+											<label class="control-label" for="basicinput">会员介绍人：</label>
+											<div class="controls" >
+												<input type="text" style="text-align:center;"  name="introducer"   class="span8" disabled value="${member.getIntroducer()}">
+												<span class="help-inline">该编号为用户编号</span>
+											</div>
+										</div>
+																		
+										<div class="control-group">
+											<label class="control-label" for="basicinput">返利比例：</label>
+											<div class="controls">
+												<div class="input-append">
+													<input type="number"  name="Bate"  min="0" max="100" value="${member.getBate()}" class="span8"><span class="add-on">%</span>
+												</div>
+											</div>
+										</div>
+										
+										<div class="control-group">
+											<label class="control-label" for="basicinput">奖励积分：</label>
+											<div class="controls">
+												<div class="input-append">
+													<input type="number"  name="bonusIntegral"  min="0" value="${member.getBonusIntegral()}" class="span8"><span class="add-on">分</span>
+												</div>
+											</div>
+										</div>
+										
+											<div class="control-group">
+											<label class="control-label" for="basicinput">消费积分：</label>
+											<div class="controls">
+												<div class="input-append">
+													<input type="number"  name="consumptionIntegral"  min="0" value="${member.getConsumptionIntegral()}" class="span8"><span class="add-on">分</span>
+												</div>
+											</div>
+										</div>
+										
+										<div class="control-group">
+											<label class="control-label" for="basicinput">分享积分：</label>
+											<div class="controls">
+												<div class="input-append">
+													<input type="number"  name="sharingIntegral"  min="0" value="${member.getSharingIntegral()}" class="span8"><span class="add-on">分</span>
+												</div>
+											</div>
+										</div>
+										
+										<div class="control-group">
+											<label class="control-label" for="basicinput">提现限额：</label>
+											<div class="controls">
+												<div class="input-append">
+													<input type="number"  name="drwaralQuota"  min="0" value="${member.getDrwaralQuota()}" class="span8"><span class="add-on">分</span>
+												</div>
+											</div>
+										</div>
+										
+										<div class="control-group">
+											<div class="controls">
+												<button type="submit" class="btn btn-info">提交</button>
+											</div>
+										</div>
+										
+                                    </form>
                                 </div>
                                 </div>
                             </div>

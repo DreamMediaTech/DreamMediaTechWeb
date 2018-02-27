@@ -1,5 +1,6 @@
 package com.dream.test.folder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
@@ -8,6 +9,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.dream.pojo.Member;
+import com.dream.service.impl.Function_RoleService;
 import com.dream.service.impl.MemberService;
 
 public class MemberTest {
@@ -48,11 +50,15 @@ public class MemberTest {
 	
 	/**
 	 * 测试模糊查询
- */
+*/
 	@Test
 	public void querymember() {
-		String dim="80";
-		MemberService memberService=(MemberService)ac.getBean("memberservice");
-		List<Member> list =memberService.querydimmember(dim);
-	}
+		int rid=7;
+		List<Integer> fid=new ArrayList<>();
+		fid.add(12);
+		fid.add(11);
+		fid.add(5);
+		Function_RoleService f=(Function_RoleService)ac.getBean("functionroleservice");
+		f.insertFunction(rid, fid);
+	} 
 }

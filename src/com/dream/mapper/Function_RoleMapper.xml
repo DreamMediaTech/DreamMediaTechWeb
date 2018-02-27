@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dream.mapper.Function_RoleMapper">
+
+<select id="getFunction" resultType="com.dream.pojo.Function">
+select f.fid,f.fname,f.fdescribe from function f
+</select> 
+
+<select id="getRole" resultType="com.dream.pojo.Role">
+select * from Role
+</select>
+ <select id="getFunctionbyRole" parameterType="Role" resultType="Function">
+ select  f.fid,f.fname,f.fdescribe from role r,function_role fr,function f
+ where r.rid=fr.rid and f.fid=fr.fid and r.rid=#{rId}
+ </select>
+<select id="getunFunctionbyRole" parameterType="Role" resultType="Function">
+select  a.* from 
+(select * from `function`) a
+LEFT OUTER JOIN
+( select  f.fid,f.fname,f.fdescribe from role r,function_role fr,function f
+ where r.rid=fr.rid and f.fid=fr.fid and r.rid=#{rId}) b
+on a.fid=b.fid
+where b.fid is null
+ </select>
+ <insert id="insertRole" useGeneratedKeys="true" keyProperty="rId" parameterType="Role">
+ insert into Role(Rname,Rdescribe) values(#{rName},#{rDescribe})
+ </insert>
+<insert id="insertFunction" parameterType="List">
+insert into function_role(Fid,Rid) values
+<foreach collection="fId" item="item"  separator=",">
+	   (#{item},#{rId})	
+	   </foreach>
+</insert>
+<delete id="deleteRole" parameterType="Role">
+delete  from Role where Rid=#{rId}
+</delete>
+<select id="queryrole" parameterType="Role" resultType="Role">
+select * from Role where Rid=#{rId}
+</select>
+<delete id="deleteFunctionbyrole" parameterType="List">
+delete  from  function_role where Fid in
+<foreach collection="list" item="item" open="(" close=")" separator=",">
+	  #{item}
+	</foreach>
+</delete>
+<update parameterType="Role" id="updateRole">
+update Role set 
+<if test="rName!=null and rName!=''">
+rName=#{rName},
+</if>
+<if test="rDescribe!=null and rDescribe!=''">
+rDescribe=#{rDescribe}
+</if>
+where rid=#{rId}
+</update>
+</mapper>

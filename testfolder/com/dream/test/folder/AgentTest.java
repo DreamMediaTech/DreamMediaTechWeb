@@ -29,10 +29,10 @@ public class AgentTest {
 		agentRequest.setArState("拒绝");
 		User user =new User();
 		user.setuId(2);
-		agentRequest.setArResponsibility(user);
+		agentRequest.setArResponsibility(2);
 		AgentService agentService=(AgentService) ac.getBean("agentservice");
 		agentService.updateAgentapply(agentRequest);
-	} */
+	} 
 	@Test 
 	public void queryallapply() {
 		AgentService agentService=(AgentService) ac.getBean("agentservice");
@@ -42,18 +42,18 @@ public class AgentTest {
 			System.out.println(agentRequest.getArState());
 		}
 	}
-	
+	*/
 	/**
 	 * 查询所有代理商操作
-	 */
+	
 			@Test
 			public void queryallagents() {
 				AgentService agentService =(AgentService)ac.getBean("agentservice");
 				List<Agents> list= agentService.queryallagents();
-			}
+			} */
 			/**
 			 * 查询单个代理商信息
-			 */
+			
 			@Test
 			public void queryagents() {
 				Agents agents=new Agents();
@@ -61,7 +61,7 @@ public class AgentTest {
 				AgentService agentService =(AgentService)ac.getBean("agentservice");
 				agents= agentService.queryagents(agents);
 				System.out.println(agents.getUser().getuId());
-			}
+			} */
 			/**
 			 * app相应申请成为代理商 测试通过
 			@Test
@@ -74,4 +74,18 @@ public class AgentTest {
 				agentService.insertagent(agentRequest);
 			}
 			*/
+			
+			/**
+			 * 根据用户查询代理商信息
+			
+			@Test
+			public void queryAgentsByUser(){
+				AgentService agentService =(AgentService)ac.getBean("agentservice");
+				Agents agents=new Agents();
+				agents.setAgId(23);
+				agents.setArea("s");
+				agents.setFirstRebate(12);
+				agents.setSecondRebate(14);
+				agentService.updateagents(agents);;
+			} */
 }

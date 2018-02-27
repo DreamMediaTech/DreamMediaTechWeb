@@ -35,42 +35,41 @@ public class PackageTest {
 //		integralPackageService.insertNewPackage(integralPackage);
 //	}
 	/**
-	 * 
-	 
-	@Test
-	public void buyPackage(){
-		IntegralPackageService integralPackageService = (IntegralPackageService) ac.getBean("integralPackageService");
-		User user = new User();
-		user.setuId(24);
-		Member member = new Member();
-		member.setmId(826);
-		member.setBonusIntegral(0);
-		member.setConsumptionIntegral(0);
-		member.setSharingIntegral(0);
-		member.setSuperQuota(0);
-		user.setMemberInformation(member);
-		
-		List<IntegralPackage> packages =integralPackageService.getAllPackage();
-		
-		
-		
-		integralPackageService.buyPackage(user, packages.get(0));
-	}
-	*/
-	/**
 	 * 测试通过更新礼包
-	 
+	 */
 	@Test 
 	public void updatepackage() {
 		IntegralPackageService integralPackageService = (IntegralPackageService) ac.getBean("integralPackageService");
 		IntegralPackage integralPackage =new  IntegralPackage();
 		integralPackage.setPrice(12);
-		integralPackage.setpId(1);
+		integralPackage.setpId(11);
 		integralPackage.setpName("12元礼包");
 		integralPackage.setBonusIntegral(12);
 		integralPackage.setConsumptionIntegral(13);
 		integralPackage.setSharingIntegral(14);
-		integralPackage.setSuperQuota(3);
+		integralPackage.setvipQuota(3);
 		integralPackageService.updatePackage(integralPackage);
+	}
+	/**
+	 * 测试通过更新礼包
+	 
+	@Test
+	public void buyPackage(){
+		IntegralPackageService integralPackageService = (IntegralPackageService) ac.getBean("integralPackageService");
+		integralPackageService.buyPackage(1,2 );
 	}*/
+//	
+//	@Test
+//	public void getAllPackage(){
+//		IntegralPackageService integralPackageService = (IntegralPackageService) ac.getBean("integralPackageService");
+//		List<IntegralPackage> list = integralPackageService.getAllPackage();
+//		System.out.println(list.size());
+//	}
+//	
+//	@Test
+//	public void getPackage(){
+//		IntegralPackageService integralPackageService = (IntegralPackageService) ac.getBean("integralPackageService");
+//		IntegralPackage i = integralPackageService.getPackageById(2);
+//		System.out.println(i.getpName());
+//	}
 }

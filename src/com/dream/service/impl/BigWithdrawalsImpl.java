@@ -40,5 +40,23 @@ public class BigWithdrawalsImpl implements BigWithdrawalsService {
 		bigWithdrawalsMapper.insertbwd(bigWithDrawals);
 		
 	}
+	@Override
+	public List<BigWithDrawals> queryoffapply(BigWithDrawals bigWithDrawals) {
+		// TODO Auto-generated method stub
+		List<BigWithDrawals> list=bigWithdrawalsMapper.queryoffapply(bigWithDrawals);
+		return list;
+	}
+	@Override
+	public List<BigWithDrawals> queryonapply(BigWithDrawals bigWithDrawals) {
+		// TODO Auto-generated method stub
+		List<BigWithDrawals> list=bigWithdrawalsMapper.queryonapply(bigWithDrawals);
+		return list;
+	}
+	@Override
+	public List<BigWithDrawals> querynoapply(BigWithDrawals bigWithDrawals) {
+		// TODO Auto-generated method stub
+		List<BigWithDrawals> list=bigWithdrawalsMapper.querynoapply(bigWithDrawals);
+		return list;
+	}
 
 }

@@ -7,6 +7,21 @@ public class AgentRequest {
 	private int arResponsibility;
 	private String arName;
 	private User user;
+	private String arTime;
+	private String artoTime;
+	
+	public String getArTime() {
+		return arTime;
+	}
+	public void setArTime(String arTime) {
+		this.arTime = arTime;
+	}
+	public String getArtoTime() {
+		return artoTime;
+	}
+	public void setArtoTime(String artoTime) {
+		this.artoTime = artoTime;
+	}
 	public User getUser() {
 		return user;
 	}

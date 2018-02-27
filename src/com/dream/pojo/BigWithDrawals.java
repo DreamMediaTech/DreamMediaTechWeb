@@ -5,9 +5,17 @@ public class BigWithDrawals {
 	private User uId;
 	private int money;
 	private String bwTime;
+	private String bwtoTime;
 	private String bwState;
 	private int bwRespinsibility;
 	private String bwName;
+	
+	public String getBwtoTime() {
+		return bwtoTime;
+	}
+	public void setBwtoTime(String bwtoTime) {
+		this.bwtoTime = bwtoTime;
+	}
 	public int getBwId() {
 		return bwId;
 	}

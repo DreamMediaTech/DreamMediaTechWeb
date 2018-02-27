@@ -12,11 +12,15 @@ public interface UserService {
 	
 	public Role getRoleById(int Id);//根据名称获取角色 
 
-	public User appLogin(String phone, String password);//app密码 登录
+	public User queryUserByPhone(String phone);//根据电话号码获取完整用户信息
+	
+	public User getUserInformationById(int uid);//根据编号获取用户信息
 	
 	public boolean checkPhone(String phone);//检查电话号码能否注册
 	
 	public void updateUser(User user);//修改用户信息
 	
 	public void updatePassword(User user);//修改密码
+	
+	public User getRoleAndFunction(User user);//获取用户的角色和权限
 }

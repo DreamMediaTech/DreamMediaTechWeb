@@ -5,17 +5,29 @@ import java.util.List;
 public class User {
 	private int uId;
 	private String uName;
+	private String uNickName;
+	private String uImage;
+	private String uImageAddress;
 	private String uSex;
 	private String uPhone;
 	private String uPassword;
 	private String ymId;
-	private int mId;
 	private Member memberInformation;
 	private Agents agentsInformation;
+	private String uRegisterTime;
+	private String uType;
+	private int mId;
 	private List<Role> roles;
 	private List<Function> functions;
+	private String uRegistertime;
 	
 	
+	public String getuRegistertime() {
+		return uRegistertime;
+	}
+	public void setuRegistertime(String uRegistertime) {
+		this.uRegistertime = uRegistertime;
+	}
 	public int getmId() {
 		return mId;
 	}
@@ -82,5 +94,38 @@ public class User {
 	public void setFunctions(List<Function> functions) {
 		this.functions = functions;
 	}
+	public String getuNickName() {
+		return uNickName;
+	}
+	public void setuNickName(String uNickName) {
+		this.uNickName = uNickName;
+	}
+	public String getuImage() {
+		return uImage;
+	}
+	public void setuImage(String uImage) {
+		this.uImage = uImage;
+	}
+	public String getuImageAddress() {
+		return uImageAddress;
+	}
+	public void setuImageAddress(String uImageAddress) {
+		this.uImageAddress = uImageAddress;
+	}
+	public String getuRegisterTime() {
+		return uRegisterTime;
+	}
+	public void setuRegisterTime(String uRegisterTime) {
+		this.uRegisterTime = uRegisterTime;
+	}
+	public String getuType() {
+		return uType;
+	}
+	public void setuType(String uType) {
+		this.uType = uType;
+	}
+	
+	
+	
 	
 }

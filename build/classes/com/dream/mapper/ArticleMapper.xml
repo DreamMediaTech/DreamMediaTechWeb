@@ -7,7 +7,12 @@
 <result property="aTitle" column="Atitle" />
 <result property="aContent" column="Acontent" />
 <result property="clicks" column="Clicks" />
+<result property="aState" column="aState" />
 <result property="aTime" column="Atime" />
+<result property="auId" column="AUid" />
+<result property="auName" column="AUname" />
+<result property="aSendtime" column="Asendtime" />
+<result property="aCover" column="Acover" />
 <association property="user" javaType="com.dream.pojo.User">
    <id property="uId" column="Uid"></id>
     <result property="uName" column="Uname"></result>
@@ -17,8 +22,8 @@
 </association>
 </resultMap>
 <!-- 新增文章 -->
-<insert id="insertarticle" parameterType="Article">
-insert into article values(#{aId},#{aTitle},#{aContent},#{clicks},#{aTime},#{author}) 
+<insert id="publicarticle" parameterType="Article">
+insert into article(Atitle,Acontent,Clicks,Atime,Uid,Astate) values(#{aTitle},#{aContent},#{clicks},#{aTime},#{uId},#{aState}) 
 </insert>
 <!-- 删除某篇 -->
 <delete id="deletearticle" parameterType="int">
@@ -26,8 +31,9 @@ delete from article where aid=#{aId}
 </delete>
 <!-- 查询所有文章 -->
 <select id="queryallarticle" resultMap="ArticleMapper">
-select * from article a,user u where a.Uid=u.Uid 
+select * from article a,user u where a.Uid=u.Uid order by Astate
 </select>
+
 <!-- 查询发布人的所有文章 -->
 <select id="queryarticlebyid" resultMap="ArticleMapper">
 select * from article a,user u where a.Uid=u.Uid and a.Uid=#{user.uId}
@@ -36,4 +42,38 @@ select * from article a,user u where a.Uid=u.Uid and a.Uid=#{user.uId}
 <select id="queryarticle" resultMap="ArticleMapper">
 select * from article a,user u where a.Uid=u.Uid and Aid=#{aId}
 </select>
+<!-- 批量删除文章 -->
+<delete id="deletearticlelist" parameterType="List">
+delete from article where Aid in
+<foreach collection="list" item="item" open="(" close=")" separator=",">
+	    #{item}
+	</foreach>
+</delete>
+<!-- app获取轻量级文章列表 -->
+<select id="getAllArticleToApp" resultMap="ArticleMapper">
+select a.Aid,a.Atitle,a.Clicks,a.Atime from article a,user u where a.Uid=u.Uid ORDER BY  a.Atime desc limit #{start},#{num}
+</select>
+
+<!-- app获取文章总数 -->
+<select id="countArticle" resultType="java.lang.Integer">
+select count(*) from article a,user u where a.Uid=u.Uid 
+</select>
+
+<update id="updateArticle" parameterType="Article">
+update Article set Astate=#{aState},AUid=#{auId},AUname=#{auName},Asendtime=#{aSendtime} where Aid=#{aId}
+</update>
+
+<!-- 三个查询 -->
+<select id="queryoff" resultMap="ArticleMapper">
+select * from article a,user u where a.Uid=u.Uid and Astate='待审核' order by Astate
+</select>
+<select id="queryon" resultMap="ArticleMapper">
+select * from article a,user u where a.Uid=u.Uid and Astate='通过' order by Astate
+</select>
+<select id="queryno" resultMap="ArticleMapper">
+select * from article a,user u where a.Uid=u.Uid and Astate='未通过' order by Astate
+</select>
+
+
 </mapper>
+

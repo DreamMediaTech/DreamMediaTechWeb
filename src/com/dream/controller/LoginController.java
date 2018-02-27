@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.dream.pojo.User;
 import com.dream.service.impl.UserService;
+import com.dream.util.PasswordEncoder;
 
 @Controller
 @RequestMapping("loginController")
@@ -32,7 +33,7 @@ public class LoginController {
 	public ModelAndView weblogin(HttpServletRequest request,HttpServletResponse response,User user) throws IOException{
 		ModelAndView modelAndView = new ModelAndView();
 		User ymid=userService.queryuser(user);
-		if(ymid!=null&&ymid.getuPassword().equals(user.getuPassword())) {
+		if(ymid!=null&&ymid.getuPassword().equals(PasswordEncoder.EncoderByMd5(user.getuPassword()))) {
 			request.getSession().setAttribute("ymid", ymid.getYmId());
 			request.getSession().setAttribute("uid", ymid.getuId());
 			request.getSession().setAttribute("uname", ymid.getuName());

@@ -4,7 +4,7 @@ public class RuleUser {
 	private int ruId;
 	private int uId;
 	private int ruState;
-	private String ruParameter;
+
 	public int getRuId() {
 		return ruId;
 	}
@@ -22,12 +22,6 @@ public class RuleUser {
 	}
 	public void setRuState(int ruState) {
 		this.ruState = ruState;
-	}
-	public String getRuParameter() {
-		return ruParameter;
-	}
-	public void setRuParameter(String ruParameter) {
-		this.ruParameter = ruParameter;
 	}
 	
 

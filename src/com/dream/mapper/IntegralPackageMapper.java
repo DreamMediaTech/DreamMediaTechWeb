@@ -20,4 +20,6 @@ public interface IntegralPackageMapper {
 	public void deletePackage(int pid);//删除礼包
 	
 	public List<IntegralPackage> getAllPackage();//获取所有礼包
+	
+	public IntegralPackage getPackageById(int pid);//获取礼包信息
 }

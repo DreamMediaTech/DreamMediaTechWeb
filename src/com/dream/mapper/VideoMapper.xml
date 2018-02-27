@@ -4,12 +4,14 @@
 <mapper namespace="com.dream.mapper.VideoMapper">
 <resultMap id="VideoProviderRequestMapper" type="VideoProviderRequest">
 <id property="vprId" column="VPRid"></id>
-<result property="uId" column="Uid" />
 <result property="vprState" column="VPRstate" />
 <result property="vprResponsibility" column="VPRresponsibility" />
 <result property="vprName" column="VPRname" />
+<result property="vprTime" column="VPRtime" />
+<result property="vprtoTime" column="VPRtotime" />
 <association property="user" javaType="com.dream.pojo.User">
    <id property="uId" column="Uid"></id>
+    <result property="mId" column="Mid"></result>
     <result property="uName" column="Uname"></result>
      <result property="uSex" column="Usex"></result>
       <result property="uPhone" column="Uphone"></result>
@@ -17,16 +19,321 @@
 </association>
 </resultMap>
 
+<resultMap id="CommentMap" type="com.dream.pojo.Comment">
+    <id property="cId" column="Cid" />
+    <result property="cContent" column="Ccontent" />
+    <result property="cState" column="Cstate" />
+    <result property="cTime" column="Ctime"></result>
+    <association property="cUser" javaType="com.dream.pojo.User">
+        <result property="uId" column="Uid"></result>
+        <result property="uNickName" column="Unickname"></result>
+    </association>
+    <association property="cResponsibility" javaType="com.dream.pojo.User">
+        <result property="uId" column="Uid"></result>
+        <result property="uName" column="Uname"></result>
+    </association>
+    <association property="video" javaType="com.dream.pojo.Video">
+        <result property="vId" column="Vid"></result>
+        <result property="vTitle" column="Vtitle"></result>
+    </association>
+</resultMap>
+
+<resultMap id="AppCommentMap" type="com.dream.pojo.Comment">
+    <id property="cId" column="Cid" />
+    <result property="cContent" column="Ccontent" />
+    <result property="cState" column="Cstate" />
+    <result property="cTime" column="Ctime"></result>
+    <association property="cUser" javaType="com.dream.pojo.User">
+        <id property="uId" column="Uid"></id>
+        <result property="uNickName" column="Unickname"></result>
+    </association>
+</resultMap>
+
+<resultMap id="VideoListMap" type="com.dream.pojo.Video">
+    <id property="vId" column="Vid"></id>
+    <result property="vTitle" column="Vtitle"></result>
+    <result property="vNum" column="Vnum"></result>
+    <result property="vProfit" column="Vprofit" />
+    <result property="vPrice" column="Vprice"></result>
+    <result property="vCount" column="Vcount"></result>
+    <result property="vCommentCount" column="Vcommentcount" />
+    <association property="firstType" javaType="com.dream.pojo.VideoType">
+    <id property="vtId" column="VTid"></id>
+    <result property="vtName" column="VTname"></result>
+    </association>
+    <association property="author" javaType="com.dream.pojo.User">
+        <id property="uId" column="Uid"></id>
+        <result property="uNickName" column="Unickname"></result>
+    </association>
+</resultMap>
+
+<resultMap id="VideoMap" type="com.dream.pojo.Video">
+    <id property="vId" column="Vid"></id>
+    <result property="vTitle" column="Vtitle"></result>
+    <result property="vNum" column="Vnum"></result>
+    <result property="vIntroduce" column="Vintroduce"></result>
+    <result property="vPrice" column="Vprice"></result>
+    <result property="vProfit" column="Vprofit" />
+    <result property="vCount" column="Vcount"></result>
+    <result property="vState" column="Vstate"></result>
+    <result property="vCommentCount" column="Vcommentcount" />
+    <result property="vAddress" column="Vaddress"/>
+    <result property="vAddress_sd" column="Vaddress_sd"/>
+    <result property="vAddress_hd" column="Vaddress_hd"/>
+    <result property="vAddress_ud" column="Vaddress_ud"/>
+    <association property="firstType" javaType="com.dream.pojo.VideoType">
+    <id property="vtId" column="VTid"></id>
+    <result property="vtName" column="VTname"></result>
+    </association>
+    <association property="author" javaType="com.dream.pojo.User">
+        <id property="uId" column="Uid"></id>
+        <result property="uNickName" column="Unickname"></result>
+    </association>
+</resultMap>
+
+<resultMap id="WebVideoMap" type="com.dream.pojo.Video">
+    <id property="vId" column="Vid"></id>
+    <result property="vTitle" column="Vtitle"></result>
+    <result property="vNum" column="Vnum"></result>
+    <result property="vIntroduce" column="Vintroduce"></result>
+    <result property="vProfit" column="Vprofit" />
+    <result property="vPrice" column="Vprice"></result>
+    <result property="vCount" column="Vcount"></result>
+    <result property="vCommentCount" column="Vcommentcount" />
+    <result property="vState" column="Vstate" />
+    <result property="vAddress" column="Vaddress"/>
+    <result property="vAddress_sd" column="Vaddress_sd"/>
+    <result property="vAddress_hd" column="Vaddress_hd"/>
+    <result property="vAddress_ud" column="Vaddress_ud"/>
+    <association property="firstType" javaType="com.dream.pojo.VideoType">
+    <id property="vtId" column="VTid"></id>
+    <result property="vtName" column="VTname"></result>
+    </association>
+    <association property="author" javaType="com.dream.pojo.User">
+        <id property="uId" column="Uid"></id>
+        <result property="uNickName" column="Unickname"></result>
+    </association>
+</resultMap>
+
 <!-- 后台修改申请表 -->
 <update id="updateVideoapply" parameterType="VideoProviderRequest">
-update videoproviderrequest  set VPRresponsibility=#{vprResponsibility.uId} ,vprstate=#{vprState} where vprid=#{vprId} 
+update videoproviderrequest  set VPRresponsibility=#{vprResponsibility} ,VPRstate=#{vprState} ,VPRtotime=#{vprtoTime}, VPRname=#{vprName} where VPRid=#{vprId} 
+</update>
+<!-- 通过后修改角色 -->
+<update id="updatevpr" parameterType="int">
+update user_role set rid=3 where uId=#{uId}
 </update>
 <!-- 后台查询所有申请表 -->
 <select id="queryallapply" resultMap="VideoProviderRequestMapper">
-select * from videoproviderrequest v,user u,user u1 where v.Uid=u1.Uid  and v.VPRresponsibility=u.Uid
+select * from videoproviderrequest v,user u,user u1 where v.Uid=u.Uid  and v.VPRresponsibility=u1.Uid  ORDER BY VPRstate
+</select>
+<!-- 三类查询 -->
+<select id="queryon" resultMap="VideoProviderRequestMapper" > 
+select * from videoproviderrequest v,user u,user u1 where v.Uid=u.Uid  and v.VPRresponsibility=u1.Uid and VPRstate='通过'  ORDER BY VPRstate
+</select>
+
+<select id="queryno" resultMap="VideoProviderRequestMapper" > 
+select * from videoproviderrequest v,user u,user u1 where v.Uid=u.Uid  and v.VPRresponsibility=u1.Uid and VPRstate='未通过'  ORDER BY VPRstate
+</select>
+
+<select id="queryoff" resultMap="VideoProviderRequestMapper" > 
+select * from videoproviderrequest v,user u,user u1 where v.Uid=u.Uid  and v.VPRresponsibility=u1.Uid and VPRstate='待审核'  ORDER BY VPRstate
 </select>
 <!-- app请求申请为视频创作者 -->
 <insert id="insertVRP" parameterType="VideoProviderRequest">
 insert into VideoProviderRequest values(#{vprId},#{vprState},#{uId},null)
 </insert>
+
+<!-- 添加视频类别 -->
+<insert id="insertVideoType" parameterType="VideoType">
+insert into VideoType values(#{vtId},#{vtName},#{vtFather})
+</insert>
+
+<!-- 修改视频类别 -->
+<update id="updateVideoType" parameterType="VideoType">
+update videoType set VTname = #{vtName} , VTfather = #{vtFather} where VTid = #{vtId}
+</update>
+
+<!-- 删除视频类别 -->
+<delete id="deleteVideoType" >
+delete from VideoType where VTid = #{id} or VTfather = #{id}
+</delete>
+
+<!-- 获取视频类别列表  -->
+<select id="getAllVideoType" resultType="VideoType">
+select * from VideoType
+</select>
+
+<!-- 会员发布评论 -->
+<insert id="insertComment">
+insert into Comment(Cuser,Ccontent,Cstate,Vid,Ctime) values(#{cUser.uId},#{cContent},#{cState},#{video.vId},#{cTime})
+</insert>
+
+<!-- 运营审核评论 -->
+<insert id ="updateComment">
+update Comment set Cresponsibility = #{cResponsibility.uId} , Cstate = #{cState} where Cid=#{cId}
+</insert>
+
+<!-- 运营删除评论  -->
+<delete id="deleteComment" statementType="CALLABLE">
+CALL deleteComment(#{Cid})
+</delete>
+
+<!-- 删除所有不通过审核的评论  -->
+<delete id="deleteAllUnexamineComment">
+delete from Comment where Cstate = #{state}
+</delete>
+
+<!-- 获得某个视频的评论  -->
+<select id="getAllCommentByVideo" resultMap="CommentMap">
+select u.Uid,u.Uname,c.Cid,c.Ccontent,c.Cstate,c.Ctime,v.Vid,v.Vtitle from user u ,video v ,`comment` c 
+where c.Cuser=u.Uid and v.Vid = c.Vid and v.Vid = #{id}
+</select>
+
+<!-- 根据状态获取评论 -->
+<select id="getCommentByState" resultMap="CommentMap">
+select u.Uid,u.Unickname,c.Cid,c.Ccontent,c.Cstate,c.Ctime,v.Vid,v.Vtitle from user u ,video v ,`comment` c 
+where c.Cuser=u.Uid and v.Vid = c.Vid and c.Cstate = #{state}
+</select>
+
+<!-- 获取某个视频已通过评论  -->
+<select id="getExamineCommentByVideo" resultMap="CommentMap">
+select u.Uid,u.Uname,c.Cid,c.Ccontent,c.Cstate,c.Ctime,v.Vid,v.Vtitle from user u ,video v ,`comment` c 
+where c.Cuser=u.Uid and v.Vid = c.Vid and c.Cstate = 1 and v.Vid = #{id}
+</select>
+
+<!-- 获得所有评论  -->
+<select id="getAllComment" resultMap="CommentMap">
+select u.Uid,u.Unickname,c.Cid,c.Ccontent,c.Cstate,c.Ctime,v.Vid,v.Vtitle from user u ,video v ,`comment` c 
+where c.Cuser=u.Uid and v.Vid = c.Vid 
+</select>
+
+<!-- app限量获取视频评论 -->
+<select id="getExamineCommentByVideoToAPP" resultMap="AppCommentMap">
+select u.Uid,u.Unickname,c.Cid,c.Ccontent,c.Cstate,c.Ctime,v.Vid,v.Vtitle from user u ,video v ,`comment` c 
+where c.Cuser=u.Uid and v.Vid = c.Vid  and c.Cstate = 1 and v.Vid = #{vid}  ORDER BY  c.Ctime desc  LIMIT #{start},#{num}
+</select>
+
+
+<!-- 插入视频信息  -->
+<insert id="insertVideoInformation" parameterType="com.dream.pojo.Video">
+update Video set Vtitle=#{vTitle},Vintroduce=#{vIntroduce},Vprice=#{vPrice},Vauthor=#{author.uId},FirstType=#{firstType.vtId}
+where Vid = #{vId}
+</insert>
+
+<!-- 添加转码后的视频源  -->
+<update id="addVideoScoure">
+update Video set Vtop=#{vTop},Vscoure=#{vScoure},Vscoure_sd=#{vScoure_sd},Vscoure_hd = #{vScoure_hd},Vscoure_ud=#{vScoured_ud}
+where Vid=#{vId}
+</update>
+
+<!-- 修改视频信息 -->
+<update id="updateVideoInformation">
+update Video set Vtitle=#{vTitle},Vintroduce=#{vIntroduce},Vprice=#{vPrice},Vcount=#{vCount},FirstType=#{firstType.vtId} where Vid=#{vId}
+</update>
+
+<!-- 根据类别和分类获取视频列表 -->
+<select id="getVideoByType" resultMap="VideoListMap">
+SELECT v.Vid,v.Vtitle,v.Vnum,vt.VTname ,u.Uid ,u.Unickname,vt.VTid,vt.VTname from video v ,`user` u , videotype vt
+where v.Vauthor = u.Uid and v.FirstType = vt.VTid 
+and v.Vstate=1 AND FirstType = #{type} limit #{start},#{num}
+</select>
+
+<!-- 计算类别下的视频总量 -->
+<select id="countVideoByType" resultType="java.lang.Integer">
+select count(*) from video v where v.FirstType = #{type}
+</select>
+
+<!-- 根据视频编号获取具体视频信息 -->
+<select id="getVideoById" resultMap="VideoMap">
+SELECT v.Vid,v.Vtitle,v.Vnum,v.Vprice,v.Vintroduce,v.Vprofit,v.Vcount,v.Vstate,v.Vcommentcount,v.Vaddress,v.Vaddress_sd,v.Vaddress_hd,v.Vaddress_ud,vt.VTname ,vt.VTid, u.Uid ,u.Unickname
+from video v ,`user` u , videotype vt
+where v.Vauthor = u.Uid and v.FirstType = vt.VTid
+AND v.Vid=#{vId}
+</select>
+
+<!-- 更新视频播放量 -->
+<update id="updateVideoNum" >
+UPDATE video SET Vnum = Vnum+1 , Vprofit = Vprofit + Vprice
+WHERE vid=#{vId}
+</update>
+
+<!-- 更新评论数量  -->
+<update id="updateCommentNum">
+UPDATE video SET Vcommentcount = (select count(*) from `comment` c where  c.Cstate = 1 and Vid =#{vid})
+WHERE vid=#{vid}
+</update>
+
+<!-- 插入视频购买记录 -->
+<insert id="insertVidoePurchaseRecode">
+INSERT INTO videopurchaserecord (Count,BuyCount,Time,EndTime,Uid,Vid)
+VALUES(
+(SELECT v.Vcount FROM video v WHERE v.vid = #{video.vId}),
+(SELECT v.Vcount FROM video v WHERE v.vid = #{video.vId}),
+#{time},#{endTime},
+#{user.uId},#{video.vId})
+</insert>
+
+<!-- 检查用户是否具有视频额度 -->
+<select id="checkUserVideoCount" resultType="java.lang.Integer">
+SELECT COALESCE(SUM(vp.Count),0) from videopurchaserecord vp
+where vp.EndTime > (SELECT NOW()) and Vid = #{vid} AND vp.Uid = #{uid}
+</select>
+
+<!-- 减少相应的用户视频额度 -->
+<select id="subUserCount" statementType="CALLABLE" >
+call UserStartVideo(#{vid},#{uid})
+</select>
+
+	<!--视频评论开关 -->
+<update id="">
+UPDATE video set video.Vcomment = - video.Vcomment
+where video.Vid in
+<foreach collection="vids" item="vid" separator=","  open="(" close=")">
+ #{vid}
+ </foreach>
+</update>
+
+<!-- 视频创作者查看视频收益列表  -->
+<select id="getOwnVideoList" resultMap="VideoListMap" >
+SELECT v.Vid,v.Vtitle,v.Vprofit,v.Vnum,vt.VTname ,u.Uid ,u.Unickname from video v ,`user` u , videotype vt
+where v.Vauthor = u.Uid and v.FirstType = vt.VTid
+AND u.Uid = #{uid}
+</select>
+
+<!-- 计算视频创作者总收益  -->
+<select id="getAllProfit" resultType="java.lang.Integer">
+SELECT SUM(v.Vprofit) from video v ,`user` u , videotype vt
+where v.Vauthor = u.Uid and v.FirstType = vt.VTid
+AND u.Uid = #{uid}
+</select>
+
+<insert id="insertVideoAddress" useGeneratedKeys="true" keyProperty="vId" >
+insert into video (Vaddress) VALUES(#{vAddress})
+</insert>
+
+<!-- 获取所有视频 -->
+<select id="getAllVideo" resultMap="WebVideoMap">
+SELECT v.Vid,v.Vtitle,v.Vnum,v.Vprice,v.Vstate,v.Vintroduce,v.Vcount,v.Vcommentcount,vt.VTname ,vt.VTid, u.Uid ,u.Unickname 
+from video v ,`user` u , videotype vt
+where v.Vauthor = u.Uid and v.FirstType = vt.VTid 
+</select>
+
+<!-- 根据web端状态获取视频  -->
+<select id="getAllVideoByState" resultMap="WebVideoMap">
+SELECT v.Vid,v.Vtitle,v.Vnum,v.Vprice,v.Vstate,v.Vintroduce,v.Vcount,v.Vcommentcount,vt.VTname ,vt.VTid, u.Uid ,u.Unickname 
+from video v ,`user` u , videotype vt
+where v.Vauthor = u.Uid and v.FirstType = vt.VTid and v.Vstate = #{state}
+</select>
+
+<update id="auditVideo">
+update video set Vstate = #{state} where Vid = #{vid}
+</update>
+
+<select id="getCommentById" resultMap="CommentMap">
+select c.Cid,u.Uid,u.Unickname,c.Ccontent,c.Cstate,v.Vid,v.Vtitle,c.Ctime from `comment` c,`user` u,video v
+where c.Cuser = u.Uid and c.Vid = v.Vid
+and c.Cid = #{cid}
+</select>
+
 </mapper>

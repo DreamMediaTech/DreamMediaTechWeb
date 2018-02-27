@@ -5,7 +5,7 @@ public class Rule {
 	private String ruType;
 	private String ruParameter;
 	private String Rucontent;
-	private int Rustate;
+	
 	public int getRuId() {
 		return ruId;
 	}
@@ -30,12 +30,7 @@ public class Rule {
 	public void setRucontent(String rucontent) {
 		Rucontent = rucontent;
 	}
-	public int getRustate() {
-		return Rustate;
-	}
-	public void setRustate(int rustate) {
-		Rustate = rustate;
-	}
+
 	
 	
 	

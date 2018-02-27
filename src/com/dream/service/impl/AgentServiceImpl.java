@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.dream.mapper.AgentMapper;
 import com.dream.pojo.AgentRequest;
 import com.dream.pojo.Agents;
+import com.dream.pojo.User;
 
 @Service("agentservice")
 public class AgentServiceImpl implements AgentService{
@@ -17,9 +18,10 @@ public class AgentServiceImpl implements AgentService{
   * 后台修改申请表
   */
 	@Override
-	public void updateAgentapply(AgentRequest agentRequest) {
+	public boolean updateAgentapply(AgentRequest agentRequest) {
 		// TODO Auto-generated method stub
 		agentMapper.updateAgentapply(agentRequest);
+		return true;
 	}
 	/**
 	 * 后台查询所有申请表
@@ -63,5 +65,52 @@ public class AgentServiceImpl implements AgentService{
 		agentMapper.updateagents(agents);
 	}
 
+	/**
+	 * 根据用户查询相应的代理商信息
+	 */
+	@Override
+	public Agents queryagentsByUser(User user) {
+		return agentMapper.queryagentsByUser(user);
+	}
+	@Override
+	public List<AgentRequest> queryoffapply(AgentRequest agentRequest) {
+		// TODO Auto-generated method stub
+		List<AgentRequest> list =agentMapper.queryoffapply(agentRequest);
+		return list;
+	}
+	@Override
+	public List<AgentRequest> queryonapply(AgentRequest agentRequest) {
+		// TODO Auto-generated method stub
+		List<AgentRequest> list =agentMapper.queryonapply(agentRequest);
+				return list;
+	}
+	@Override
+	public List<AgentRequest> querynoapply(AgentRequest agentRequest) {
+		// TODO Auto-generated method stub
+		List<AgentRequest> list =agentMapper.querynoapply(agentRequest);
+				return list;
+	}
+	
+	@Override
+	public int insertAgents(Agents agents) {
+		// TODO Auto-generated method stub
+		agentMapper.insertAgents(agents);
+		return agents.getAgId();
+	}
+	@Override
+	public Agents queryrebate() {
+		// TODO Auto-generated method stub
+		return agentMapper.queryrebate();
+	}
+	@Override
+	public void insertagentsintouser(int agId, int mId) {
+		// TODO Auto-generated method stub
+		agentMapper.insertagentsintouser(agId, mId);
+	}
+	@Override
+	public void updateRebate(Agents agents) {
+		// TODO Auto-generated method stub
+		agentMapper.updateRebate(agents);
+	}
 
 }

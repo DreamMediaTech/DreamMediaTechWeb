@@ -11,15 +11,15 @@
         <link type="text/css" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
         <link type="text/css" href="${pageContext.request.contextPath}/css/theme.css" rel="stylesheet">
         <link type="text/css" href="${pageContext.request.contextPath}/images/icons/css/font-awesome.css" rel="stylesheet">
-        <link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600'
-            rel='stylesheet'>
+    <link type="text/css" href="${pageContext.request.contextPath}/bootstrap/css/googleapis.css"
+            rel="stylesheet">
     </head>
-   <body>
+    <body>
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
-                        <i class="icon-reorder shaded"></i></a><a class="brand" href="index.html">圆梦中心 </a>
+                        <i class="icon-reorder shaded"></i></a><a class="brand" href="#">圆梦中心 </a>
                     <div class="nav-collapse collapse navbar-inverse-collapse">
                         <ul class="nav pull-right">
                          
@@ -61,7 +61,8 @@
                                         <li><a href="${pageContext.request.contextPath}/articleController/skiparticle.action"><i class="icon-inbox"></i>发布文章 <b class="label green pull-right">
                                     11</b>  </a></li>
                                         <li><a href="${pageContext.request.contextPath}/articleController/getarticle.action"><i class="icon-inbox"></i>文章列表 </a></li>
-                                       
+                                        <li><a href="${pageContext.request.contextPath}/articleController/queryarticlebyid.action?uId=${sessionScope.uid}"><i class="icon-inbox"></i>我的文章 </a></li>
+										<li><a href="${pageContext.request.contextPath}/articleController/getarticlerequest.action"><i class="icon-inbox"></i>文章审核中心 </a></li>
                                     </ul>
                                 </li>
                             
@@ -72,9 +73,10 @@
                                 </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
                                 </i>视频中心 </a>
                                     <ul id="video" class="collapse unstyled">
-                                        <li><a href="video-upload.jsp"><i class="icon-inbox"></i>视频上传 </a></li>
-                                        <li><a href="video-list.jsp"><i class="icon-inbox"></i>视频列表 </a></li>
-                                        <li><a href="${pageContext.request.contextPath}/videoController/getapply.action"><i class="icon-inbox"></i>申请记录 </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/videoController/getUploadPage.action"><i class="icon-inbox"></i>视频上传 </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/videoController/getAllVideoToWeb.action"><i class="icon-inbox"></i>视频列表 </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/videoController/getAllCommentToWeb.action"><i class="icon-inbox"></i>评论管理 </a></li>
+                                        <li><a href="#"><i class="icon-inbox"></i>申请记录 </a></li>
                                     </ul>
                                 </li> 
                             </ul>
@@ -83,7 +85,7 @@
                                 </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
                                 </i>管理中心 </a>
                                     <ul id="agency" class="collapse unstyled">
-                                        <li><a href="edit-admin.jsp"><i class="icon-inbox"></i>运营用户信息 </a></li> 
+                                        <li><a href="${pageContext.request.contextPath}/function_roleController/queryrole.action"><i class="icon-inbox"></i>角色管理 </a></li> 
                                          <li><a href="${pageContext.request.contextPath}/otherController/getallwithdrawal.action"><i class="icon-inbox"></i>提现审核 </a></li> 
                                           <li><a href="${pageContext.request.contextPath}/agencyController/getapply.action"><i class="icon-inbox"></i>代理商审核 </a></li> 
                                           <li><a href="${pageContext.request.contextPath}/videoController/getapply.action"><i class="icon-inbox"></i>视频创作者审核 </a></li> 
@@ -113,18 +115,7 @@
                                     </ul>
                                 </li>
                             </ul>    
-                               <ul class="widget widget-menu unstyled">
-                                <li><a class="collapsed" data-toggle="collapse" href="#statistics"><i class="menu-icon icon-cog">
-                                </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
-                                </i>统计中心 </a>
-                                    <ul id="statistics" class="collapse unstyled">
-                                     <li><a href="#"><i class="icon-inbox"></i>会员统计</a></li> 
-                                      <li><a href="#"><i class="icon-inbox"></i>代理商统计</a></li> 
-                                       <li><a href="#"><i class="icon-inbox"></i>文章统计</a></li> 
-                                        <li><a href="#"><i class="icon-inbox"></i>视频统计</a></li> 
-                                    </ul>
-                                </li>
-                            </ul>                        
+                                               
                              <ul class="widget widget-menu unstyled">
                              <li><a href="login.jsp"><i class="menu-icon icon-signout"></i>退出</a></li>
                             </ul>
@@ -138,14 +129,15 @@
                             <div class="module message">
                                 <div class="module-head">
                                     <h3>
-                                       我的文章</h3>
+                                       文章列表</h3>
                                 </div>
+                                <form action="${pageContext.request.contextPath}/articleController/deletearticlelist.action" method="post">
                                 <div class="module-option clearfix">
                                  <div class="pull-left">
-                                  <a href="#" class="btn btn-primary">我的文章</a>
+                                 
                                  </div>
                                     <div class="pull-right">
-                                        <a href="#" class="btn btn-primary">删除</a>
+                                        <input type="submit" value="删除"  class="btn btn-primary">
                                         
                                     </div>
                                       </div>
@@ -156,14 +148,16 @@
                                                <td class="cell-check">
                                                     <input type="checkbox" class="inbox-checkbox">
                                                 </td>
-                                                <td class="cell-icon hidden-phone hidden-tablet">
+                                                <td style="text-align:center;vertical-align:middle;" class="cell-icon hidden-phone hidden-tablet">
                                                 文章名字
                                                 </td>
-                                                <td class="cell-icon hidden-phone hidden-tablet">
+                                                <td style="text-align:center;vertical-align:middle;" class="cell-icon hidden-phone hidden-tablet">
                                                     文章发表人
                                                 </td>
-                                     
-                                                <td class="cell-icon hidden-phone hidden-tablet">
+                                         <td style="text-align:center;vertical-align:middle;" class="cell-icon hidden-phone hidden-tablet">
+                                                 审核状态
+                                                </td>
+                                                <td style="text-align:center;vertical-align:middle;" class="cell-icon hidden-phone hidden-tablet">
                                            发表日期
                                                 </td>
                                              
@@ -171,17 +165,18 @@
                                             <tbody >
                                             <c:forEach items="${list}" var="list">
                                             <tr  >
-                                            <td>  <input type="checkbox" class="inbox-checkbox"></td>
-                                            <td onclick="javascript:window.location.href='${pageContext.request.contextPath}/articleController/queryarticle.action?aId=${list.getaId()}'">${list.getaTitle()}</td>
-                                            <td onclick="javascript:window.location.href='${pageContext.request.contextPath}/articleController/queryarticle.action?aId=${list.getaId()}'">${list.getUser().getuName()}</td>
-                                            <td onclick="javascript:window.location.href='${pageContext.request.contextPath}/articleController/queryarticle.action?aId=${list.getaId()}'">${list.getaTime()}</td>
+                                            <td>  <input type="checkbox" name="aids" value="${list.getaId()}" class="inbox-checkbox"></td>
+                                            <td style="text-align:center;vertical-align:middle;" onclick="javascript:window.location.href='${pageContext.request.contextPath}/articleController/queryarticle.action?aId=${list.getaId()}'">${list.getaTitle()}</td>
+                                            <td style="text-align:center;vertical-align:middle;" onclick="javascript:window.location.href='${pageContext.request.contextPath}/articleController/queryarticle.action?aId=${list.getaId()}'">${list.getUser().getuName()}</td>
+                                            <td style="text-align:center;vertical-align:middle;" onclick="javascript:window.location.href='${pageContext.request.contextPath}/articleController/queryarticle.action?aId=${list.getaId()}'">${list.getaState()}</td>
+                                            <td style="text-align:center;vertical-align:middle;" onclick="javascript:window.location.href='${pageContext.request.contextPath}/articleController/queryarticle.action?aId=${list.getaId()}'">${list.getaTime()}</td>
                                          
                                             </tr>
                                             </c:forEach>
                                         </tbody>
                                        
                                     </table>
-                                </div>
+                                </div></form>
                             </div>
                         </div>
                         <!--/.content-->

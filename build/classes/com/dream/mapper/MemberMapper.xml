@@ -17,19 +17,17 @@
 <result property="firstSuperior" column="FirstSuperior"/>
 <result property="secondSuperior" column="SecondSuperior"/>
 <result property="drwaralQuota" column="DrwaralQuota"/>
+<result property="bate" column="Bate"/>
 <association property="user" javaType="com.dream.pojo.User">
    <id property="uId" column="Uid"></id>
     <result property="uName" column="Uname"></result>
     <result property="uSex" column="Usex"></result>
     <result property="uPhone" column="Uphone"></result>
+     <result property="ymId" column="YMid"></result>
+        <result property="uRegistertime" column="Uregistertime"></result>
 </association>
 </resultMap>
 
-<!-- 用户模糊查询 -->
-
-<select id="querydimmember" parameterType="String" resultMap="MemberMap">
-select * from member m , user u  where u.Mid=m.mid and m.mid like '%${dim}%' or u.uname like '%${dim}%' 
-</select>
 
 
 
@@ -47,10 +45,16 @@ update member <set>
  bonusIntegral = #{bonusIntegral},
 </if>
 <if  test="consumptionIntegral!=null and consumptionIntegral!=''">
- ConsumptionIntergral = #{consumptionIntegral},
+ ConsumptionIntegral = #{consumptionIntegral},
 </if>
 <if  test="sharingIntegral!=null and sharingIntegral!=''">
  SharingIntegral = #{sharingIntegral},
+</if>
+<if  test="drwaralQuota!=null and drwaralQuota!=''">
+ drwaralQuota = #{drwaralQuota},
+</if>
+<if  test="bate!=null and bate!=''">
+ bate = #{bate},
 </if>
 </set>
 where Mid=#{mId}
@@ -63,5 +67,9 @@ insert into member(BonusIntegral,ConsumptionIntegral,SharingIntegral,SuperQuota)
 <insert id="createMemberByShare" useGeneratedKeys="true" keyProperty="mId">
 insert into member(BonusIntegral,ConsumptionIntegral,SharingIntegral,SuperQuota,Introducer) values(#{bonusIntegral},#{consumptionIntegral},#{sharingIntegral},#{superQuota},#{introducer})
 </insert>
+
+<select id="queryIntegral" resultMap="MemberMap">
+select m.BonusIntegral,m.SharingIntegral,m.ConsumptionIntegral,u.Uid from member m , user u where u.Mid=m.Mid and u.Uid=#{uid}
+</select >
 
 </mapper>

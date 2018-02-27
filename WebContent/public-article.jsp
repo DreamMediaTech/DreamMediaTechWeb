@@ -2,17 +2,17 @@
     pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>圆梦中心</title>
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>圆梦中心</title>
         <link type="text/css" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link type="text/css" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
         <link type="text/css" href="${pageContext.request.contextPath}/css/theme.css" rel="stylesheet">
         <link type="text/css" href="${pageContext.request.contextPath}/images/icons/css/font-awesome.css" rel="stylesheet">
-        <link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600'
-            rel='stylesheet'>
-        <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/ueditor/ueditor.config.js"></script>
+    <link type="text/css" href="${pageContext.request.contextPath}/bootstrap/css/googleapis.css"
+            rel="stylesheet">
+             <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/ueditor/ueditor.config.js"></script>
     <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/ueditor/ueditor.all.min.js"> </script>
     <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
     <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
@@ -37,7 +37,7 @@ video::-webkit-media-controls-panel {
             <div class="navbar-inner">
                 <div class="container">
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
-                        <i class="icon-reorder shaded"></i></a><a class="brand" href="index.html">圆梦中心 </a>
+                        <i class="icon-reorder shaded"></i></a><a class="brand" href="#">圆梦中心 </a>
                     <div class="nav-collapse collapse navbar-inverse-collapse">
                         <ul class="nav pull-right">
                          
@@ -79,7 +79,8 @@ video::-webkit-media-controls-panel {
                                         <li><a href="${pageContext.request.contextPath}/articleController/skiparticle.action"><i class="icon-inbox"></i>发布文章 <b class="label green pull-right">
                                     11</b>  </a></li>
                                         <li><a href="${pageContext.request.contextPath}/articleController/getarticle.action"><i class="icon-inbox"></i>文章列表 </a></li>
-                                       
+                                        <li><a href="${pageContext.request.contextPath}/articleController/queryarticlebyid.action?uId=${sessionScope.uid}"><i class="icon-inbox"></i>我的文章 </a></li>
+										<li><a href="${pageContext.request.contextPath}/articleController/getarticlerequest.action"><i class="icon-inbox"></i>文章审核中心 </a></li>
                                     </ul>
                                 </li>
                             
@@ -90,9 +91,10 @@ video::-webkit-media-controls-panel {
                                 </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
                                 </i>视频中心 </a>
                                     <ul id="video" class="collapse unstyled">
-                                        <li><a href="video-upload.jsp"><i class="icon-inbox"></i>视频上传 </a></li>
-                                        <li><a href="video-list.jsp"><i class="icon-inbox"></i>视频列表 </a></li>
-                                        <li><a href="${pageContext.request.contextPath}/videoController/getapply.action"><i class="icon-inbox"></i>申请记录 </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/videoController/getUploadPage.action"><i class="icon-inbox"></i>视频上传 </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/videoController/getAllVideoToWeb.action"><i class="icon-inbox"></i>视频列表 </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/videoController/getAllCommentToWeb.action"><i class="icon-inbox"></i>评论管理 </a></li>
+                                        <li><a href="#"><i class="icon-inbox"></i>申请记录 </a></li>
                                     </ul>
                                 </li> 
                             </ul>
@@ -101,7 +103,7 @@ video::-webkit-media-controls-panel {
                                 </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
                                 </i>管理中心 </a>
                                     <ul id="agency" class="collapse unstyled">
-                                        <li><a href="edit-admin.jsp"><i class="icon-inbox"></i>运营用户信息 </a></li> 
+                                        <li><a href="${pageContext.request.contextPath}/function_roleController/queryrole.action"><i class="icon-inbox"></i>角色管理 </a></li> 
                                          <li><a href="${pageContext.request.contextPath}/otherController/getallwithdrawal.action"><i class="icon-inbox"></i>提现审核 </a></li> 
                                           <li><a href="${pageContext.request.contextPath}/agencyController/getapply.action"><i class="icon-inbox"></i>代理商审核 </a></li> 
                                           <li><a href="${pageContext.request.contextPath}/videoController/getapply.action"><i class="icon-inbox"></i>视频创作者审核 </a></li> 
@@ -131,18 +133,7 @@ video::-webkit-media-controls-panel {
                                     </ul>
                                 </li>
                             </ul>    
-                               <ul class="widget widget-menu unstyled">
-                                <li><a class="collapsed" data-toggle="collapse" href="#statistics"><i class="menu-icon icon-cog">
-                                </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
-                                </i>统计中心 </a>
-                                    <ul id="statistics" class="collapse unstyled">
-                                     <li><a href="#"><i class="icon-inbox"></i>会员统计</a></li> 
-                                      <li><a href="#"><i class="icon-inbox"></i>代理商统计</a></li> 
-                                       <li><a href="#"><i class="icon-inbox"></i>文章统计</a></li> 
-                                        <li><a href="#"><i class="icon-inbox"></i>视频统计</a></li> 
-                                    </ul>
-                                </li>
-                            </ul>                        
+                                               
                              <ul class="widget widget-menu unstyled">
                              <li><a href="login.jsp"><i class="menu-icon icon-signout"></i>退出</a></li>
                             </ul>
@@ -155,12 +146,14 @@ video::-webkit-media-controls-panel {
                      
                   
                      <h3 >发布文章</h3>
-                      
-                         <h1>文章标题：</h1> <input type="text" placeholder="请输入标题">	 
+                      	<form action="${pageContext.request.contextPath}/articleController/publicarticle.action" method="post">
+                         <h1>文章标题：</h1> <input type="text" name="aTitle" placeholder="请输入标题">	 
                           <div>
-    <script id="editor" type="text/plain" style="width:800px;height:500px;"></script>
+    <script id="aContent" value="getContent()"  name="aContent" type="text/plain" style="width:800px;height:500px;"></script>
 </div>
-                     
+	
+				<input type="submit" class="btn btn-info"  >
+                     </form>
                    
         
                             </div>
@@ -191,7 +184,7 @@ video::-webkit-media-controls-panel {
 
     //实例化编辑器
     //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
-    var ue = UE.getEditor('editor',  
+    var ue = UE.getEditor('aContent',  
             {    
         //这里可以选择自己需要的工具按钮名称,此处仅选择如下五个    
         toolbars:[['FullScreen',  'test','undo', 'redo','bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
@@ -221,19 +214,25 @@ video::-webkit-media-controls-panel {
 
 
     function isFocus(e){
-        alert(UE.getEditor('editor').isFocus());
+        alert(UE.getEditor('aContent').isFocus());
         UE.dom.domUtils.preventDefault(e)
     }
     function setblur(e){
-        UE.getEditor('editor').blur();
+        UE.getEditor('aContent').blur();
         UE.dom.domUtils.preventDefault(e)
     }
     
     function createEditor() {
         enableBtn();
-        UE.getEditor('editor');
+        UE.getEditor('aContent');
     }
-
+    function getContent() {
+        var arr = [];
+        arr.push("使用editor.getContent()方法可以获得编辑器的内容");
+        arr.push("内容为：");
+        arr.push(UE.getEditor('aContent').getContent());
+        alert(arr.join("\n"));
+    }
 </script>
     </body>
 

@@ -3,10 +3,10 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dream.mapper.IntegralPackageMapper">
 
-<select id="insertNewPackage" >
+<insert id="insertNewPackage" parameterType="IntegralPackage" >
 insert into integralpackage (PName,Price,BonusIntegral,ConsumptionIntegral,SharingIntegral,vipQuota) 
 values(#{pName},#{price},#{bonusIntegral},#{consumptionIntegral},#{sharingIntegral},#{vipQuota});
-</select>
+</insert>
 
 <delete id="deletePackage" parameterType="int">
 delete from  integralpackage where Pid=#{pId}
@@ -25,25 +25,16 @@ update member set BonusIntegral=#{bonusIntegral},ConsumptionIntegral=#{consumpti
 
 <update id="updatePackage" parameterType="IntegralPackage">
 update integralpackage  set
-<if test="pName!=null and pName!=''">
 pName=#{pName},
-</if>
-<if test="price!=0">
 price=#{price},
-</if>
-<if test="bonusIntegral!=0">
 bonusIntegral=#{bonusIntegral},
-</if>
-<if test="consumptionIntegral!=0">
 consumptionIntegral=#{consumptionIntegral},
-</if>
-<if test="sharingIntegral!=0">
 sharingIntegral=#{sharingIntegral},
-</if>
-<if test="superQuota!=0">
-superQuota=#{superQuota}
-</if>
-where pId=#{pId}
+vipQuota=#{vipQuota}
+where Pid=#{pId}
 </update>
 
+<select id="getPackageById" resultType="com.dream.pojo.IntegralPackage" >
+    select * from integralpackage where pid = #{pid}
+</select>
 </mapper>

@@ -1,14 +1,19 @@
 package com.dream.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dream.mapper.UserMapper;
+import com.dream.pojo.Function;
 import com.dream.pojo.Member;
 import com.dream.pojo.Role;
 import com.dream.pojo.User;
 import com.dream.util.Encoder;
+import com.dream.util.PasswordEncoder;
 
 @Service("userservice")
 public class UserServiceImpl implements UserService{
@@ -43,7 +48,7 @@ public class UserServiceImpl implements UserService{
 		//创建用户信息
 		User user = new User();
 		user.setuPhone(phone);
-		user.setuPassword(Encoder.EncoderByMd5(password));
+		user.setuPassword(PasswordEncoder.EncoderByMd5(password));
 		user.setMemberInformation(member);
 		
 		userMapper.insertNewUser(user);
@@ -76,13 +81,12 @@ public class UserServiceImpl implements UserService{
 	 * 使用手机号码进行APP登录
 	 */
 	@Override
-	public User appLogin(String phone,String password) {
+	public User queryUserByPhone(String phone) {
 		User user = userMapper.queryUserByPhone(phone);
-		if(user==null&&user.getuPassword().equals(password)){
-			return user;
-		}
-		else return null;
+		if(user!=null){user = getRoleAndFunction(user);}
+		return user;
 	}
+
 
 	@Override
 	public boolean checkPhone(String phone) {
@@ -100,7 +104,37 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public void updatePassword(User user) {
-		
+		userMapper.updateUserPassword(user);
 	}
+	
+	/**
+	 * 根据id获取用户信息
+	 */
+
+	@Override
+	public User getUserInformationById(int uid) {
+		//获取基本信息
+		User user = userMapper.getUserById(uid);
+		return getRoleAndFunction(user);
+	}
+
+	/**
+	 * 获取用户角色和权限
+	 */
+	@Override
+	public User getRoleAndFunction(User user) {
+		user.setRoles(userMapper.getRoleByUser(user));
+		List<Function> specialFunctions = userMapper.getFunctionByUser(user);
+		if(specialFunctions.size()==0){
+			user.setFunctions(userMapper.getFunctionByRole(user));
+		}else{
+			user.setFunctions(specialFunctions);
+			List<Function> functionlist = userMapper.getFunctionByRole(user);
+			user.getFunctions().addAll(functionlist);
+		}
+		return user;
+	}
+	
+	
 	
 }
